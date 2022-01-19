@@ -1,9 +1,10 @@
 import React from 'react';
-import WWDContainer, { ButtonText, EcllipseImg1, EcllipseImg2 } from './styled';
+import WWDContainer, { ButtonText, EcllipseImg1, EcllipseImg2, FrameImg } from './styled';
 import { BsArrowRight } from 'react-icons/bs';
 import { Col, Row } from 'antd';
 import Ecllipseone from '../../../assets/png/Ellipse1.png';
 import Ecllipsetwo from '../../../assets/png/Ellipse2.png';
+import Frame from '../../../assets/png/Frame.png';
 
 const WhatWillDo = () => {
   return (
@@ -21,7 +22,10 @@ const WhatWillDo = () => {
         </Col>
         <Col span={12}>
           <div className="content_two">
-            <h4>We are solutions</h4>
+            <h4>
+              <FrameImg src={Frame} alt="frame"/>
+              We are solutions
+            </h4>
             <h6>
               The world is looking for solution givers.
               <br /> Be part of It now or live to serve others. Take control of your time and life with what you have

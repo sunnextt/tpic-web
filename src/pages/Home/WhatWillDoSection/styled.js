@@ -15,6 +15,7 @@ const WWDContainer = styled.main`
       line-height: 52px;
       letter-spacing: 0em;
       color: ${({ theme }) => theme.colors.darkColorPrimary};
+      text-align: left;
     }
 
     h6 {
@@ -41,7 +42,9 @@ const WWDContainer = styled.main`
       font-weight: 700;
       line-height: 52px;
       letter-spacing: 0em;
+      text-align: left;
       color: ${({ theme }) => theme.colors.darkColorPrimary};
+      margin-bottom: 2rem;
     }
 
     h6 {
@@ -50,12 +53,20 @@ const WWDContainer = styled.main`
       font-weight: 500;
       line-height: 24px;
       letter-spacing: 0em;
+      text-align: left;
       color: ${({ theme }) => theme.colors.darkColorPrimary};
       margin-bottom: 3rem;
     }
   }
 `;
 
+export const FrameImg = styled.img`
+  background: #00a953;
+  padding: 10px;
+  border-radius: 50%;
+  width: 64px;
+  margin-right: 2rem;
+`;
 export const EcllipseImg1 = styled.img`
   width: 30%;
   position: absolute;

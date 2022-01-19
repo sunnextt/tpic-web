@@ -1,12 +1,16 @@
 import React from 'react';
-import HeroPage from './HeroPage';
-import WhatWillDo from './WhatWillDo';
+import DontworriesSection from './DontWorriesSection';
+import HeroSection from './HeroSection';
+import WhatWillDoSection from './WhatWillDoSection';
+import WorkInterestSection from './WorkInterestSection';
 
 const HomePage = () => {
   return (
     <>
-      <HeroPage />
-      <WhatWillDo/>
+      <HeroSection />
+      <WhatWillDoSection />
+      <WorkInterestSection />
+      <DontworriesSection />
     </>
   );
 };

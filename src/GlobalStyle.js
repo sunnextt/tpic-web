@@ -66,29 +66,39 @@ h3 {
 h4 {
     font-style: normal;
     font-family: 'Lato', sans-serif;
-          text-align: left;
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 52px;
+    text-align: center;
+
+
 
 
 }
 h5 {
     font-style: normal;
     font-family: 'Lato', sans-serif;
-          text-align: left;
+    text-align: left;
 
 
 }  
 h6 {
     font-style: normal;
     font-family: 'Lato', sans-serif;
-          text-align: left;
+    font-size: 21px;
+    font-weight: 400;
+    line-height: 32px;
+    text-align: left;
+
 
 
 }  
 p{
     font-family: 'Lato', sans-serif;
-    font-weight: 300;
-          text-align: left;
-
+    text-align: left;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
 }
 
 a {
