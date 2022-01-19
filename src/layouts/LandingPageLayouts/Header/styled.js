@@ -9,7 +9,7 @@ const HeaderContainer = styled.div`
   width: 100%;
   position: Fixed;
   top: 0;
-  z-index: 1000;
+  z-index: 1000000;
 `;
 
 export default HeaderContainer;
