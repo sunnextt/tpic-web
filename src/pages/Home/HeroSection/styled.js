@@ -15,7 +15,14 @@ export const HeroImage = styled.img`
   margin: 1rem;
   width: 500px;
 `;
+export const HeroSripeImg = styled.img`
+  position: absolute;
+  top: 31%;
+  width: 410px;
+  left: 20%;
+`;
 export const HeroContents = styled.div`
+  position: relative;
   width: 50%;
   display: flex;
   flex-direction: column;
@@ -33,15 +40,20 @@ export const HeroContents = styled.div`
     color: #ffb400;
   }
 
-  h2 {
+  h3 {
+    position: relative;
     font-family: Lato;
-    font-size: 64px;
+    font-size: 62px;
     font-style: normal;
-    font-weight: 800;
+    font-weight: 700;
     line-height: 70px;
     letter-spacing: 0em;
     text-align: left;
     color: #004221;
+    z-index: 1000;
+    span {
+      font-weight: 800;
+    }
   }
 
   h6 {
