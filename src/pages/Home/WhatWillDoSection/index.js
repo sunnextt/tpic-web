@@ -2,9 +2,9 @@ import React from 'react';
 import WWDContainer, { ButtonText, EcllipseImg1, EcllipseImg2, FrameImg } from './styled';
 import { BsArrowRight } from 'react-icons/bs';
 import { Col, Row } from 'antd';
-import Ecllipseone from '../../../assets/png/Ellipse1.png';
-import Ecllipsetwo from '../../../assets/png/Ellipse2.png';
-import Frame from '../../../assets/png/Frame.png';
+import Ecllipseone from 'assets/png/Ellipse1.png';
+import Ecllipsetwo from 'assets/png/Ellipse2.png';
+import Frame from 'assets/png/Frame.png';
 
 const WhatWillDo = () => {
   return (

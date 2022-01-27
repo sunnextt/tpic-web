@@ -102,8 +102,17 @@ p{
 }
 
 a {
-    font-family: 'Lato', sans-serif;
-    font-weight: 400;
+    font-family: Lato;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 150%;
+      color: #282828;
+
+      &:hover {
+        color: ${(props) => props.theme.colors.colorOrangePrimary};
+        transition: 0.3s;
+      }
 }
 
 
