@@ -10,6 +10,8 @@ import LandingPageLayout from 'layouts/LandingPageLayouts';
 import HomePage from 'pages/Home';
 import GalleryPage from 'pages/Gallery';
 import ConatctPage from 'pages/contactUsPage';
+import AuthLayout from 'layouts/AuthLayout';
+import Register from 'pages/AuthPage/RegisterPage';
 
 function App() {
   return (
@@ -62,6 +64,22 @@ function App() {
                 <ConatctPage />
               </Suspense>
             </LandingPageLayout>
+          }
+        />
+        <Route
+          path="/register"
+          element={
+            <AuthLayout>
+              <Register />
+            </AuthLayout>
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            <AuthLayout>
+              <Register />
+            </AuthLayout>
           }
         />
       </Routes>

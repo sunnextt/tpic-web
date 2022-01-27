@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
 
 const Input = styled.input`
@@ -69,10 +70,11 @@ const Indicator = styled.div`
   }
 `;
 
-export default function Checkbox({ value, checked, onChange, name, id, label, disabled }) {
+export default function Checkbox({ value, checked, onChange, name, id, label, disabled, link, path }) {
   return (
     <Label htmlFor={id} disabled={disabled}>
       {label}
+      {link && <Link to={path}>{link}</Link>}
       <Input
         id={id}
         type="checkbox"

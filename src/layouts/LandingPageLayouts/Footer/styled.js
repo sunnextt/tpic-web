@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const FooterWrapper = styled.section`
-  padding: 6rem 8rem;
+  padding: 0rem 8rem 6rem;
   width: 100%;
   height: 100%;
 
