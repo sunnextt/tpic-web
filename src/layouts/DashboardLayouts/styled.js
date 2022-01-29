@@ -3,7 +3,6 @@ import styled from 'styled-components';
 
 const MainLayout = styled(_Layout)`
   background: #e5e5e5;
-  background: #e5e5e5;
   height: 100%;
 
   .ant-menu-inline.ant-menu-root .ant-menu-item > .ant-menu-title-content,

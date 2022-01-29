@@ -19,9 +19,15 @@ import Image1 from '../../../assets/png/Image1.png';
 import Image2 from '../../../assets/png/Image3.png';
 import Button from 'components/Button';
 import Checkbox from 'components/Checkbox';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const [value, setCheckbox] = useState(true);
+
+  const Navigate = useNavigate();
+  const handleClick = () => {
+    Navigate('/dashboard');
+  };
 
   return (
     <LoginContainer>
@@ -58,8 +64,8 @@ const Login = () => {
                 </div>
               </div>
               <BtnDiv>
-                <Button color="primary" width="fullWidth">
-                  Create Account
+                <Button color="primary" width="fullWidth" onClick={handleClick}>
+                  Login to Continue
                 </Button>
               </BtnDiv>
               <LinkToSignin>
