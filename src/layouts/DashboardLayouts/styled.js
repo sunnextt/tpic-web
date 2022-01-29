@@ -71,6 +71,52 @@ const MainLayout = styled(_Layout)`
     white-space: nowrap;
     text-overflow: ellipsis;
   }
+
+  .css-1s2u09g-control {
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    background-color: #ffffff;
+    border-style: solid;
+    border-width: 1px;
+    cursor: default;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
+    min-height: 38px;
+    outline: 0 !important;
+    position: relative;
+    -webkit-transition: all 100ms;
+    transition: all 100ms;
+    box-sizing: border-box;
+    color: #282828;
+    opacity: 0.3;
+    border: 0.8327px solid #282828;
+    box-sizing: border-box;
+    border-radius: 8px;
+  }
+
+  .css-14el2xx-placeholder {
+    grid-area: 1/1/2/3;
+    margin-left: 2px;
+    margin-right: 2px;
+    font-family: Lato;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13.3232px;
+    line-height: 16px;
+    color: #282828;
+    opacity: 0.5;
+  }
 `;
 
 export default MainLayout;

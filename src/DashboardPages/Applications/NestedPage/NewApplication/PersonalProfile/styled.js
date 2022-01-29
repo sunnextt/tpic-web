@@ -18,10 +18,6 @@ const PPCTs = styled.div`
     width: 80%;
 
   }
-
-  .selectinput {
-    background: red;
-  }
 `;
 
 export const SaveAndContBtnDiv = styled.div`

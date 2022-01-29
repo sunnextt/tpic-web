@@ -4,10 +4,7 @@ import ReactSelect from 'components/ReactSelect';
 import React from 'react';
 import PPCTs, { LinkButton, SaveAndContBtnDiv } from './styled';
 
-const colourStyles = {
-  background: 'red',
-  color: 'red',
-};
+const colourStyles = {};
 
 const PersonalProfile = () => {
   return (
@@ -39,15 +36,15 @@ const PersonalProfile = () => {
               className="selectinput"
               name="country"
               placeholder="Nigeria"
-              Label="Country"
+              label="Country"
               colourStyles={colourStyles}
             />
-            <ReactSelect className="className" name="state" placeholder="Lagos" Label="state" />
+            <ReactSelect className="className" name="state" placeholder="Lagos" label="state" />
             <ReactSelect
               className="className"
               name="id"
               placeholder="International Passport"
-              Label="Means of Identification"
+              label="Means of Identification"
             />
             <InputLabel>
               <Label>ID Number</Label>
