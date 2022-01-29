@@ -12,6 +12,7 @@ import GalleryPage from 'pages/Gallery';
 import ConatctPage from 'pages/contactUsPage';
 import AuthLayout from 'layouts/AuthLayout';
 import Register from 'pages/AuthPage/RegisterPage';
+import Login from 'pages/AuthPage/LoginPage';
 
 function App() {
   return (
@@ -78,7 +79,7 @@ function App() {
           path="/login"
           element={
             <AuthLayout>
-              <Register />
+              <Login />
             </AuthLayout>
           }
         />

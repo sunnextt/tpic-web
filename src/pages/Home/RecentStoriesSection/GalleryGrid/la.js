@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Responsive, WidthProvider } from 'react-grid-layout';
-import _ from 'lodash';
 import { layoutGenerate } from './gerateLayout';
+import _ from 'lodash';
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
-
 
 const initialState = {
   currentBreakpoint: 'lg',
@@ -15,69 +14,64 @@ const initialState = {
 const GalleryGrid = () => {
   const [state, setState] = useState(initialState);
 
-  const layouts = [
-    { i: 'a', x: 0, y: 0, w: 1, h: 2, static: true },
-    { i: 'b', x: 1, y: 0, w: 3, h: 2, minW: 2, maxW: 4 },
-    { i: 'c', x: 4, y: 0, w: 1, h: 2 },
-  ];
-
   const generateDOM = () => {
     return _.map(state.layouts.lg, function (l, i) {
       return (
         <div key={i} className={l.static ? 'static' : ''}>
           {l.static ? (
-            <span className="text" title="This item is static and cannot be removed or resized.">
-              Static - {i}
-            </span>
+            <>
+              <div style={{ background: 'red', width: '100%', height: '100%' }}>
+                <span className="text" title="This item is static and cannot be removed or resized.">
+                  Static - {i}
+                </span>
+                <h1>now</h1>
+              </div>
+            </>
           ) : (
-            <span className="text">{i}</span>
+            <div style={{ background: 'red', width: '100%', height: '100%' }}>
+              <span className="text">{i}</span>
+              <h1>here for you</h1>
+            </div>
           )}
         </div>
       );
     });
   };
 
-  useEffect(() => {
-    setState({ mounted: true });
-  }, []);
+  function onLayoutChange(layout, layouts) {
+    onLayoutChange(layout, layouts);
+  }
 
-  //   function onBreakpointChange(breakpoint) {
-  //     this.setState({
-  //       currentBreakpoint: breakpoint,
-  //     });
-  //   }
+  const defaultProps = {
+    className: 'layout',
+    rowHeight: 30,
+    cols: { lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 },
+  };
 
-  //   function onCompactTypeChange() {
-  //     const { compactType: oldCompactType } = this.state;
-  //     const compactType =
-  //       oldCompactType === 'horizontal' ? 'vertical' : oldCompactType === 'vertical' ? null : 'horizontal';
-  //     this.setState({ compactType });
-  //   }
+  function onCompactTypeChange() {
+    const { compactType: oldCompactType } = this.state;
+    const compactType =
+      oldCompactType === 'horizontal' ? 'vertical' : oldCompactType === 'vertical' ? null : 'horizontal';
+    setState({ compactType });
+  }
 
-  //   function onLayoutChange(layout, layouts) {
-  //     onLayoutChange(layout, layouts);
-  //   }
-
-  //   function onNewLayout() {
-  //     this.setState({
-  //       layouts: { lg: layoutGenerate },
-  //     });
-  //   }
+  const yes = false;
 
   return (
     <>
-      <ResponsiveReactGridLayout className="layout" layouts={layouts}>
+      <div>
+        <button type="button" onClick={onCompactTypeChange}>
+          button
+        </button>
+      </div>
+      <ResponsiveReactGridLayout
+        compactType="horizontal"
+        preventCollision={yes}
         layouts={state.layouts}
-        {/* onBreakpointChange={onBreakpointChange} */}
-        {/* onLayoutChange={onLayoutChange} */}
-        {/* measureBeforeMount={false} */}
+        {...defaultProps}
+      >
         {generateDOM()}
-        {/* useCSSTransforms={state.mounted}
-        compactType={state.compactType}
-        preventCollision={!state.compactType} */}
       </ResponsiveReactGridLayout>
-      {/* <button onClick={onNewLayout}>Generate New Layout</button>
-      <button onClick={onCompactTypeChange}>Change Compaction Type</button> */}
     </>
   );
 };

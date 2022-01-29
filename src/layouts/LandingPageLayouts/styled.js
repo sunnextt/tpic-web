@@ -8,7 +8,9 @@ const Layout = styled(_Layout)`
 `;
 
 export const ContentContent = styled.main`
-  margin: 10rem 0;
+  width: 100%;
+  height: 100%;
+  margin: 8rem 0 2rem;
   height: auto;
 
   @media screen and (max-width: 320px) {

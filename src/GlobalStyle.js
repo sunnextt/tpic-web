@@ -111,7 +111,7 @@ a {
 
       &:hover {
         color: ${(props) => props.theme.colors.colorOrangePrimary};
-        transition: 0.3s;
+      transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1);
       }
 }
 

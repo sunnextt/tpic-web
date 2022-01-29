@@ -1,15 +1,13 @@
-import { Col, Row } from 'antd';
+import GalleryGrid from './GalleryGrid';
 import GalleryPageContainer from './styled';
-                                                      
-const GalleryPage = () => {
 
+const GalleryPage = () => {
   return (
     <GalleryPageContainer>
-      <Row>
-        <Col>
-          <h1>Gallery Grid</h1>
-        </Col>
-      </Row>
+      <div className="GalleryGrid">
+        <h4>Gallery</h4>
+      </div>
+      <GalleryGrid />
     </GalleryPageContainer>
   );
 };

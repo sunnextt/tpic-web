@@ -14,6 +14,27 @@ const Label = styled.label`
   display: inline-block;
   cursor: ${(props) => (props.disabled ? 'not-allowed' : 'pointer')};
   margin: 0.6em 2em;
+  font-family: Lato;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 13.3232px;
+  line-height: 16px;
+  color: #282828;
+  opacity: 0.6;
+
+  a {
+    padding: 0;
+    color: #00a953;
+    font-family: Lato;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 0px;
+  }
+
+  span {
+    padding: 0 1rem;
+  }
 `;
 
 const rotate = keyframes`
@@ -32,7 +53,7 @@ const Indicator = styled.div`
   height: 1.2em;
   background: #e6e6e6;
   position: absolute;
-  top: 5px;
+  top: 1px;
   left: -1.6em;
   border: 1px solid #757575;
   border-radius: 0.2em;
@@ -73,8 +94,10 @@ const Indicator = styled.div`
 export default function Checkbox({ value, checked, onChange, name, id, label, disabled, link, path }) {
   return (
     <Label htmlFor={id} disabled={disabled}>
-      {label}
-      {link && <Link to={path}>{link}</Link>}
+      <span>
+        {label}
+        {link && <Link to={path}>{link}</Link>}
+      </span>
       <Input
         id={id}
         type="checkbox"

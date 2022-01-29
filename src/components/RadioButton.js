@@ -24,7 +24,13 @@ const Label = styled.label`
   display: inline-block;
   cursor: ${(props) => (props.disabled ? 'not-allowed' : 'pointer')};
   margin: 0.6em 1em;
-  font-size: 24px;
+  font-family: Lato;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 13.3232px;
+  line-height: 16px;
+  color: #282828;
+  opacity: 0.6;
 `;
 
 const Indicator = styled.div`

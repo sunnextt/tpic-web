@@ -17,14 +17,14 @@ const ButtonWrap = styled.button`
 
   &:hover {
     color: #ffffff;
-    background-color: #004221;
+    background-color: #ffb400;
     transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1);
     text-shadow: nthree;
   }
   &:active {
     color: white;
     transform: scale(0.9);
-    background-color: #001950;
+    background-color: #ffb400;
     transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1);
     text-shadow: nthree;
   }
