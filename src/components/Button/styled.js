@@ -4,14 +4,15 @@ const ButtonWrap = styled.button`
   display: block;
   width: ${({ width }) => (width === 'fullWidth' ? '100%' : `${width}`)};
   background: ${({ color }) => (color === 'primary' ? '#00A953' : '#004221')};
-  border-radius: 4px;
-  padding: 20px;
+  border-radius: ${({ radius }) => (radius ? radius : '4px')};
+  padding: ${({ padding }) => (padding ? padding : '20px')};
   border: none;
   font-family: GT Walsheim Pro;
   font-style: normal;
   font-weight: normal;
-  font-size: 16px;
-  line-height: 18px;
+  font-size: ${({ fontSize }) => (fontSize ? fontSize : '16px')};
+  line-height: ${({ lineHeight }) => (lineHeight ? lineHeight : '18px')};
+  height: ${({ height }) => height && height};
   cursor: pointer;
   color: ${({ color }) => (color === 'primary' ? '#ffffff' : `#ccc`)};
 

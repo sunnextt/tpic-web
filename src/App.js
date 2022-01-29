@@ -13,6 +13,8 @@ import ConatctPage from 'pages/contactUsPage';
 import AuthLayout from 'layouts/AuthLayout';
 import Register from 'pages/AuthPage/RegisterPage';
 import Login from 'pages/AuthPage/LoginPage';
+import DashboardLayout from 'layouts/DashboardLayouts';
+import Dashboard from 'routes';
 
 function App() {
   return (
@@ -81,6 +83,22 @@ function App() {
             <AuthLayout>
               <Login />
             </AuthLayout>
+          }
+        />
+        <Route
+          path="/dashboard/*"
+          element={
+            <DashboardLayout>
+              <Suspense
+                fallback={
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <Spin />
+                  </div>
+                }
+              >
+                <Dashboard />
+              </Suspense>
+            </DashboardLayout>
           }
         />
       </Routes>

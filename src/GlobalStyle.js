@@ -102,7 +102,7 @@ p{
 }
 
 a {
-    font-family: Lato;
+    font-family: 'Lato', sans-serif;
       font-style: normal;
       font-weight: 500;
       font-size: 14px;

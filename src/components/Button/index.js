@@ -2,9 +2,18 @@ import React from 'react';
 import ButtonWrap from './styled';
 
 // eslint-disable-next-line react/prop-types
-const Button = ({children, color, width, onClick}) => {
+export const Button = ({ children, color, width, onClick, radius, lineHeight, fontSize, padding, height, href }) => {
   return (
-    <ButtonWrap color={color} width={width} onClick={onClick}>
+    <ButtonWrap
+      color={color}
+      width={width}
+      radius={radius}
+      fontSize={fontSize}
+      lineHeight={lineHeight}
+      padding={padding}
+      height={height}
+      onClick={onClick}
+    >
       {children}
     </ButtonWrap>
   );
