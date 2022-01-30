@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const ApplicationPageWrap = styled.div`
   width: 100%;
   height: 100%;
-  background: #E5E5E5;
+  background: #F4F4F4;
   box-sizing: border-box;
 
   .tab_list {

@@ -2,7 +2,7 @@ import { Layout as _Layout } from 'antd';
 import styled from 'styled-components';
 
 const MainLayout = styled(_Layout)`
-  background: #e5e5e5;
+  background: #f4f4f4;
   height: 100%;
 
   .ant-menu-inline.ant-menu-root .ant-menu-item > .ant-menu-title-content,

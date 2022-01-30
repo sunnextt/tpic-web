@@ -11,13 +11,13 @@ const DashboardLayout = ({ children }) => {
       <TopHeader />
       <Layout style={{ height: '100%' }}>
         <ASide />
-        <Layout style={{ padding: '0 24px 0', background: '#e5e5e5', height: '100%' }}>
+        <Layout style={{ padding: '0 24px 0', background: '#F4F4F4', height: '100%' }}>
           <Content
             className="site-layout-background"
             style={{
               padding: '100px 3rem',
               margin: 0,
-              minHeight: 280,
+              minHeight: '100vh',
               height: '100%',
             }}
           >

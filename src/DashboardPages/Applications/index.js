@@ -7,9 +7,11 @@ import { useNavigate } from 'react-router-dom';
 
 const Application = () => {
   const Navigate = useNavigate();
+
   const handleClick = () => {
     Navigate('newapplication');
   };
+
   return (
     <Container>
       <HeaderDiv>

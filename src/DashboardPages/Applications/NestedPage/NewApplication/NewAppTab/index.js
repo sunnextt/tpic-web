@@ -1,9 +1,13 @@
 import { PageHeader } from 'antd';
+import AppSuccess from 'DashboardPages/Applications/ApplicationSuccess';
 import TabContainer from 'DashboardPages/Applications/Tab/styled';
-import React from 'react';
+import React, { useState } from 'react';
 import { Tabs, TabList, Tab, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import styled from 'styled-components';
+import ApplicationDetails from '../ApplicationDetails';
+import ApplicationFee from '../ApplicationFee';
+import DocumentsUpload from '../DocumentsUpload';
 import PersonalProfile from '../PersonalProfile';
 
 // Tabs === <div>
@@ -27,6 +31,16 @@ const HeaderDiv = styled.div`
 `;
 
 const AppTab = () => {
+  const [success, setSuccess] = useState(false);
+
+  const handlePayNow = () => {
+    setSuccess(true);
+  };
+
+  if (success) {
+    return <AppSuccess />;
+  }
+
   return (
     <TabContainer>
       <HeaderDiv>
@@ -50,9 +64,15 @@ const AppTab = () => {
         <TabPanel className="tab_panel">
           <PersonalProfile />
         </TabPanel>
-        <TabPanel>Personal Profile</TabPanel>
-        <TabPanel> Documents Upload</TabPanel>
-        <TabPanel>Application Fee</TabPanel>
+        <TabPanel>
+          <ApplicationDetails />
+        </TabPanel>
+        <TabPanel>
+          <DocumentsUpload />
+        </TabPanel>
+        <TabPanel>
+          <ApplicationFee handlePayNow={handlePayNow} />
+        </TabPanel>
       </Tabs>
     </TabContainer>
   );

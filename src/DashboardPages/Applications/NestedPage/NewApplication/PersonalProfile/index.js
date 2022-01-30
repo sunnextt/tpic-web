@@ -53,7 +53,7 @@ const PersonalProfile = () => {
           </InputDiv>
           <SaveAndContBtnDiv>
             <LinkButton type="button">Save & finish later</LinkButton>
-            <Button color="primary" width="20%" height="50px">
+            <Button color="primary" padding="16px 36px">
               Continue
             </Button>
           </SaveAndContBtnDiv>

@@ -4,7 +4,7 @@ import { InputLabel, Label } from './Input';
 
 const ReactSelect = ({ options, colourStyles, label, placeholder, className, name, onChange, onInputChange }) => {
   return (
-    <InputLabel>
+    <InputLabel >
       <Label>{label}</Label>
       <Select
         name={name}

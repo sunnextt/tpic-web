@@ -30,7 +30,6 @@ export const InputDiv = styled.div`
   gap: 1rem;
 `;
 
-
 export const Input = styled.input`
   font-family: Lato;
   font-style: normal;
@@ -52,4 +51,37 @@ export const Input = styled.input`
     color: #282828;
     opacity: 0.6;
   }
+`;
+
+export const StyledTextArea = styled.textarea`
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  color: #282828;
+  appearance: none;
+  background: #ececec;
+  border: 0.8327px solid #282828;
+  box-sizing: border-box;
+  border-radius: 8px;
+  width: 100%;
+  display: block;
+  font-family: inherit;
+  border: none;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
+  padding: 1rem;
+  outline: none;
+  margin-bottom: ${10 / 16}em;
+  resize: vertical;
+  &:focus,
+  &:active {
+    border-color: #1e96c8;
+    box-shadow: none;
+  }
+`;
+
+export const TextAreaDiv = styled.div`
+  width: 100%;
+  padding: 1rem 0;
 `;
