@@ -1,6 +1,9 @@
 import React from 'react';
 import { Tabs, TabList, Tab, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
+import TableCard from './AllStatus.js';
+import AppStatusTableCard from './AppStatusCategory/index.js';
+
 import TabContainer from './styled';
 
 // Tabs === <div>
@@ -34,10 +37,18 @@ const AppTab = () => {
             Rejected
           </CustomTab>
         </TabList>
-        <TabPanel className="tab_panel">wordd</TabPanel>
-        <TabPanel>hello</TabPanel>
-        <TabPanel>world</TabPanel>
-        <TabPanel>you</TabPanel>
+        <TabPanel className="tab_panel">
+          <TableCard appStatus="incomplete" paymentStatus="pending" />
+        </TabPanel>
+        <TabPanel>
+          <AppStatusTableCard appStatus="incomplete" paymentStatus="pending" />
+        </TabPanel>
+        <TabPanel>
+          <AppStatusTableCard appStatus="approved" paymentStatus="successful" />
+        </TabPanel>
+        <TabPanel>
+          <AppStatusTableCard appStatus="rejected" paymentStatus="successful" />
+        </TabPanel>
       </Tabs>
     </TabContainer>
   );

@@ -42,6 +42,7 @@ const ApplicationPageWrap = styled.div`
     border-radius: 0;
     border-bottom: 4px solid #00A953;
   }
+
 `;
 
 export default ApplicationPageWrap;
