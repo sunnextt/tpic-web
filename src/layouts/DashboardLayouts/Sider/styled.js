@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
-import { Link as _Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
-export const Link = styled(_Link)`
+export const Link = styled(NavLink)`
   font-family: 'Lato', sans-serif;
   font-style: normal;
   font-weight: normal;

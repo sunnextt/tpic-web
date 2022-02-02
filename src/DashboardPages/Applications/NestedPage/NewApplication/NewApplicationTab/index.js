@@ -52,7 +52,7 @@ const AppTab = () => {
             Personal Profile
           </CustomTab>
           <CustomTab className="custom_typo" selected="selected">
-            Personal Profile
+            Application Details
           </CustomTab>
           <CustomTab className="custom_typo" selected="selected">
             Documents Upload

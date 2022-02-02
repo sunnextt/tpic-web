@@ -1,5 +1,5 @@
 import React from 'react';
-import AppTab from './NewAppTab';
+import AppTab from './NewApplicationTab';
 import NewAppContainer from './styled';
 
 const NewApplication = () => {

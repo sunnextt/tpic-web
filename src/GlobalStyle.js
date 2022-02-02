@@ -107,7 +107,9 @@ a {
       font-weight: 500;
       font-size: 14px;
       line-height: 150%;
-      color: #282828;
+      color: #00A953;
+      padding: 0;
+      margin: 0;
 
       &:hover {
         color: ${(props) => props.theme.colors.colorOrangePrimary};

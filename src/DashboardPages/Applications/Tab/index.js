@@ -6,10 +6,6 @@ import AppStatusTableCard from './AppStatusCategory/index.js';
 
 import TabContainer from './styled';
 
-// Tabs === <div>
-// Tablist === ul
-// Tab === li
-// TabPanel === <div>
 
 const CustomTab = ({ children, selectedClassName, className, selected }) => (
   <Tab selectedClassName={selectedClassName} selected={selected}>
@@ -17,7 +13,7 @@ const CustomTab = ({ children, selectedClassName, className, selected }) => (
   </Tab>
 );
 
-CustomTab.tabsRole = 'Tab'; // Required field to use your custom Tab
+CustomTab.tabsRole = 'Tab';
 
 const AppTab = () => {
   return (

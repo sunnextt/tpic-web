@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
 const ApplicationPageWrap = styled.div`
+
+
   width: 100%;
   height: 100%;
   background: #F4F4F4;
@@ -16,7 +18,6 @@ const ApplicationPageWrap = styled.div`
     font-weight: 600;
     font-size: 15px;
     line-height: 18px;
-    color: #00a953;
     text-transform: capitalize;
     margin: 0;
   }
@@ -28,8 +29,8 @@ const ApplicationPageWrap = styled.div`
     bottom: -1px;
     position: relative;
     list-style: none;
-    padding: 6px 0;
-    margin: 0 7rem 0 0;
+    padding: 6px 3rem 10px 0;
+    margin: 0 2rem 0 0 ;
     cursor: pointer;
 
     @media screen and (max-width: 768px) {
@@ -39,8 +40,13 @@ const ApplicationPageWrap = styled.div`
 
   .react-tabs__tab--selected {
     background: transparent;
+    color: red,
     border-radius: 0;
     border-bottom: 4px solid #00A953;
+
+    h4 {
+    color: #00a953;
+    }
   }
 
 `;

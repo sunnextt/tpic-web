@@ -1,14 +1,19 @@
-import { Button } from 'antd';
+import { Button, Radio } from 'antd';
 import { LinkButton } from 'components/Button/styled';
 import { Input, InputDiv, InputLabel, Label, StyledTextArea, TextAreaDiv } from 'components/Input';
 import { Button as ContinueButton } from 'components/Button';
-import RadioButton from 'components/RadioButton';
 import ReactSelect from 'components/ReactSelect';
 import React, { useState } from 'react';
 import AppDetailsContainer from './styled';
 
 const ApplicationDetails = () => {
-  const [radioValue, setRadio] = useState(true);
+  const [value, setValue] = useState(1);
+
+  const onChange = (e) => {
+    setValue(e.target.value);
+  };
+
+  console.log(value);
 
   const MIN0ptions = [
     { value: 'yes', label: 'YES' },
@@ -23,29 +28,17 @@ const ApplicationDetails = () => {
     <AppDetailsContainer>
       <div className="styled_form">
         <div className="application_reason">
-          <RadioButton
-            label="Business Venture"
-            name="business_venture"
-            value={radioValue}
-            checked={radioValue}
-            onChange={({ target }) => {
-              console.log(target.value);
-              setRadio(Boolean(target.value));
-            }}
-          />
-          <RadioButton
-            label="Skills Aquisition"
-            name="Skills_aquisition"
-            value={radioValue}
-            checked={radioValue}
-            onChange={({ target }) => {
-              console.log(target.value);
-              setRadio(Boolean(target.value));
-            }}
-          />
+          <Radio.Group onChange={onChange} value={value}>
+            <Radio value={1}>Business Venture</Radio>
+            <Radio value={2}>Skills Aquisition</Radio>
+          </Radio.Group>
         </div>
         <InputDiv>
-          <ReactSelect name="skills_acquisition" placeholder="International Passport" label="Means of Identification" />
+          {value === 1 ? (
+            <ReactSelect name="business_name" placeholder="Enter your business name" label="Business Name" />
+          ) : (
+            <ReactSelect name="skills_acquisition" placeholder="Select Skills" label="Skills Aquisition" />
+          )}
           <ReactSelect
             label="Amount Needed"
             name="amount_needed"
@@ -53,7 +46,11 @@ const ApplicationDetails = () => {
             colourStyles={styles}
             width="300px"
           />
-          <ReactSelect label="Skills Type" name="skills_type" placeholder="Means of Identification" />
+          {value === 1 ? (
+            <ReactSelect label="Business Type" name="skills_type" placeholder="Means of Identification" />
+          ) : (
+            <ReactSelect label="Skills Type" name="skills_type" placeholder="Means of Identification" />
+          )}
           <InputLabel>
             <Label>Bank Account</Label>
             <Input name="bank_account" type="text" placeholder="Enter Bank Account" />

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const InputLabel = styled.div`
   display: flex;
   flex-direction: column;
-  width: ${({ width }) => (width === 'fullWidth' ? '100%' : '45%')};
+  width: ${({ width }) => (width === 'fullWidth' ? '100%' : width ? width : '45%')};
 `;
 export const Label = styled.label`
   font-family: Lato;
@@ -38,7 +38,6 @@ export const Input = styled.input`
   font-size: 13.3232px;
   line-height: 16px;
   background: #ffffff;
-  opacity: 0.3;
   border: 0.8327px solid #282828;
   box-sizing: border-box;
   border-radius: 8px;
