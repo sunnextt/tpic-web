@@ -37,7 +37,7 @@ export const LinkButton = styled.button`
   font-family: Lato;
   font-style: normal;
   font-weight: 600;
-  font-size: 17.9886px;
+  font-size: ${({ fontSize }) => (fontSize ? fontSize : '17.9886px')};
   line-height: 22px;
   display: flex;
   align-items: center;

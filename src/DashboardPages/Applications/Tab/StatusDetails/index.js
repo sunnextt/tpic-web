@@ -18,11 +18,12 @@ const CustomTab = ({ children, selectedClassName, className, selected }) => (
 CustomTab.tabsRole = 'Tab';
 
 const StatusDetails = () => {
+  let active = 2;
   return (
     <StatusDetailsContainer>
       <StatusHeading>Status</StatusHeading>
       <div className="margin_bottom">
-        <StepperWrap />
+        <StepperWrap active={active} />
       </div>
       <TabWrapper>
         <Tabs className="tabs">
@@ -34,7 +35,7 @@ const StatusDetails = () => {
               Application Details
             </CustomTab>
             <CustomTab className="custom_typo" selected="selected">
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: "10px"}}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px' }}>
                 <span> Documents Upload </span>
                 <BiError size="26" color="#FF2E00" />
               </div>

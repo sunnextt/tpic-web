@@ -2,13 +2,13 @@ import React from 'react';
 import { Stepper } from 'react-form-stepper';
 
 const styleConfig = {
-  activeBgColor: '#00A953',
   activeTextColor: '#ffffff',
-  completedBgColor: '#00A953',
   completedTextColor: '#ffffff',
-  inactiveBgColor: '#00A953',
-  inactiveTextColor: '#ffffff',
-  circleFontSize: 16,
+  inactiveTextColor: '#cccccc',
+  activeBgColor: '#00A953',
+  completedBgColor: '#00A953',
+  inactiveBgColor: '#FFFFFF',
+  circleFontSize: 20,
   labelFontSize: 16,
   borderRadius: 50,
   fontWeight: 600,
@@ -42,7 +42,7 @@ const styleConfig = {
 // }
 
 const connectorStyleConfig = {
-  disabledColor: '#00A953',
+  disabledColor: '#cccccc',
   activeColor: '#00A953',
   completedColor: '#00A953',
   size: 10,
@@ -59,11 +59,11 @@ const connectorStyleConfig = {
 //   style: string;
 // }
 
-const StepperWrap = () => {
+const StepperWrap = ({ active }) => {
   return (
     <Stepper
       steps={[{ label: 'Sumitted' }, { label: 'In Review' }, { label: 'Approved' }, { label: 'Funds Disbursed' }]}
-      activeStep={4}
+      activeStep={active}
       styleConfig={styleConfig}
       connectorStyleConfig={connectorStyleConfig}
     />
