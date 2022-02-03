@@ -63,7 +63,7 @@ const StepperWrap = ({ active }) => {
   return (
     <Stepper
       steps={[{ label: 'Sumitted' }, { label: 'In Review' }, { label: 'Approved' }, { label: 'Funds Disbursed' }]}
-      activeStep={active}
+      activeStep={1}
       styleConfig={styleConfig}
       connectorStyleConfig={connectorStyleConfig}
     />

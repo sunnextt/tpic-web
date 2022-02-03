@@ -15,6 +15,8 @@ import Register from 'pages/AuthPage/RegisterPage';
 import Login from 'pages/AuthPage/LoginPage';
 import DashboardLayout from 'layouts/DashboardLayouts';
 import Dashboard from 'routes';
+import ForgotPassword from 'pages/AuthPage/ForgotPassword';
+import RequireAuth from 'utils/requireAuth';
 
 function App() {
   return (
@@ -86,6 +88,14 @@ function App() {
           }
         />
         <Route
+          path="/forgotpassword"
+          element={
+            <AuthLayout>
+              <ForgotPassword />
+            </AuthLayout>
+          }
+        />
+        <Route
           path="/dashboard/*"
           element={
             <DashboardLayout>
@@ -96,7 +106,9 @@ function App() {
                   </div>
                 }
               >
-                <Dashboard />
+                <RequireAuth>
+                  <Dashboard />
+                </RequireAuth>
               </Suspense>
             </DashboardLayout>
           }

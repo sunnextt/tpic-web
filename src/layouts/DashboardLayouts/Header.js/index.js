@@ -3,6 +3,7 @@ import Avatar from 'react-avatar';
 import { Layout } from 'antd';
 import BrandLogo from './BrandLogo/BrandLogo';
 import { AuthProfile } from './styled';
+import { useSelector } from 'react-redux';
 const { Header } = Layout;
 
 const style = {
@@ -18,13 +19,18 @@ const style = {
 };
 
 const TopHeader = () => {
-  const name = 'Josh Osazuwa';
+  const { user: currentUser } = useSelector((state) => state.auth);
+
+  const { data } = currentUser || {};
+
+  const username = `${data && data.first_name} ${data && data.last_name}`;
+
   return (
     <Header className="header" style={style}>
       <BrandLogo />
       <AuthProfile>
-        <Avatar name={name} size={40} round />
-        <h6>{name}</h6>
+        <Avatar name={username} size={40} round />
+        <h6>{username}</h6>
       </AuthProfile>
     </Header>
   );

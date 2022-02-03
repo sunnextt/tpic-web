@@ -103,7 +103,7 @@ export const Label = styled.label`
   font-size: 13.3232px;
   line-height: 16px;
   color: #282828;
-  padding: .5rem 0;
+  padding: 0 0 .5rem;
 `;
 
 export const Img1 = styled.img`
@@ -134,7 +134,7 @@ export const InputDiv = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  padding: 2rem 2rem 4rem;
+  padding: 2rem 2rem 2rem;
   justify-content: space-between;
   align-items: center;
   gap: 1rem;
@@ -142,24 +142,30 @@ export const InputDiv = styled.div`
 
 export const Input = styled.input`
   font-family: Lato;
+  font-weight: 600;
   font-style: normal;
   font-weight: normal;
-  font-weight: 600;
-  font-size: 13.3232px;
-  line-height: 16px;
+  font-size: 16px;
+  line-height: 1.5rem;
   background: #ffffff;
-  opacity: 0.3;
   border: 0.8327px solid #282828;
   box-sizing: border-box;
   border-radius: 8px;
-  padding: 16px;
-  color: #282828;
+  padding: 12px 0.75rem;
+  width: 100%;
+    color: #282828;
 
   &::placeholder {
-    font-size: 13.3232px;
-    line-height: 16px;
     color: #282828;
     opacity: 0.6;
+  }
+
+  &:focus {
+    color: #282828;
+    background-color: #fff;
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
   }
 `;
 

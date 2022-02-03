@@ -40,8 +40,6 @@ export const ContactUsContentDiv = styled.div`
   }
 `;
 
-const black = 'rgba(74,74,74,0.94)';
-
 export const InputLabel = styled.div`
   display: flex;
   flex-direction: column;
@@ -60,9 +58,9 @@ export const StyledTextArea = styled.textarea`
   width: 91%;
   display: block;
   font-family: inherit;
-  font-weight: 300;
-  font-size: 1em;
-  color: ${black};
+  font-weight: 600;
+  font-size: 16px;
+  color: #282828;
   border: none;
   border-bottom: 3px solid #00a953;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
@@ -75,6 +73,11 @@ export const StyledTextArea = styled.textarea`
   &:active {
     border-color: #1e96c8;
     box-shadow: none;
+  }
+
+  &::placeholder {
+    color: #282828;
+      opacity: 0.6;
   }
 `;
 
@@ -102,13 +105,10 @@ export const Input = styled.input`
   }
 
   &::placeholder {
-    font-style: normal;
-    font-weight: normal;
-    font-size: 18px;
-    line-height: 32px;
-    color: #06040a;
-    opacity: 0.5;
+    color: #282828;
+    opacity: 0.6;
   }
+
 `;
 
 export const TextAreaDiv = styled.div`

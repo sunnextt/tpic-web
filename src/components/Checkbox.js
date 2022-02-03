@@ -33,7 +33,7 @@ const Label = styled.label`
   }
 
   span {
-    padding: 0 1rem;
+    padding: 0 .5rem;
   }
 `;
 
@@ -91,7 +91,7 @@ const Indicator = styled.div`
   }
 `;
 
-export default function Checkbox({ value, checked, onChange, name, id, label, disabled, link, path }) {
+export default function Checkbox({ value, onChange, name, id, label, disabled, link, path }) {
   return (
     <Label htmlFor={id} disabled={disabled}>
       <span>
@@ -103,8 +103,6 @@ export default function Checkbox({ value, checked, onChange, name, id, label, di
         type="checkbox"
         name={name}
         value={value}
-        disabled={disabled}
-        checked={checked}
         onChange={onChange}
       />
       <Indicator />

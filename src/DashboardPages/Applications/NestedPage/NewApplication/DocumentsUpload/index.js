@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import FileUpload from 'components/FileUpload';
 import { Button } from 'antd';
 import { Button as ContinueButton } from 'components/Button';

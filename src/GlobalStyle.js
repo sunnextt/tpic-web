@@ -117,6 +117,22 @@ a {
       }
 }
 
+.text-danger {
+    color: #dc3545 !important;
+    line-height: 1.5rem;
+    margin: 0;
+    padding: 0;
+}
+
+.form-group {
+    margin-bottom: 1.8rem;
+    width: 100%;
+}
+
+.form-check {
+    position: relative;
+    display: block;
+}
 
 `;
 

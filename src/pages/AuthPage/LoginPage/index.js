@@ -1,5 +1,5 @@
 import { Col, Row } from 'antd';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import LoginContainer, {
   Form,
   Img,
@@ -7,7 +7,6 @@ import LoginContainer, {
   Img2,
   Input,
   InputDiv,
-  InputLabel,
   Link,
   LinkToSignin,
   SideImageCon,
@@ -20,14 +19,93 @@ import Image2 from '../../../assets/png/Image3.png';
 import Button from 'components/Button';
 import Checkbox from 'components/Checkbox';
 import { useNavigate } from 'react-router-dom';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
+import { useDispatch } from 'react-redux';
+import { clearMessage } from 'redux/slice/MessageSlice';
+import { login } from 'redux/slice/AuthSlice';
+import { Spin } from 'antd';
+
+const validationSchema = function (values) {
+  return Yup.object().shape({
+    email: Yup.string().email('Invalid email address').required('Email is required!'),
+    password: Yup.string()
+      .min(6, `Password has to be at least ${6} characters!`)
+      .max(40, 'Password must not exceed 40 characters')
+      // .matches(
+      //   /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/,
+      //   'Password must contain: numbers, uppercase and lowercase letters\n',
+      // )
+      .required('Password is required'),
+  });
+};
+
+const validate = (getValidationSchema) => {
+  return (values) => {
+    const validationSchema = getValidationSchema(values);
+    try {
+      validationSchema.validateSync(values, { abortEarly: false });
+      return {};
+    } catch (error) {
+      return getErrorsFromValidationError(error);
+    }
+  };
+};
+
+const getErrorsFromValidationError = (validationError) => {
+  const FIRST_ERROR = 0;
+  return validationError.inner.reduce((errors, error) => {
+    return {
+      ...errors,
+      [error.path]: error.errors[FIRST_ERROR],
+    };
+  }, {});
+};
 
 const Login = () => {
   const [value, setCheckbox] = useState(true);
+  const [loading, setLoading] = useState(false);
+  const [ErrorMessage, setErrorMessage] = useState('');
 
   const Navigate = useNavigate();
-  const handleClick = () => {
-    Navigate('/dashboard');
-  };
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(clearMessage());
+  }, [dispatch]);
+
+  const formik = useFormik({
+    initialValues: {
+      email: '',
+      password: '',
+      remember_me: false,
+    },
+    validationSchema,
+    validate: validate(validationSchema),
+    onSubmit: (data) => {
+      setLoading(true);
+      dispatch(
+        login({
+          email: data.email,
+          password: data.password,
+        }),
+      )
+        .unwrap()
+        .then(() => {
+          setLoading(false);
+
+          Navigate('/dashboard');
+          window.location.reload();
+        })
+        .catch((error) => {
+          setLoading(false);
+
+          if (error.message === 'Rejected') {
+            setErrorMessage('Email or password is incorrect');
+          }
+        });
+    },
+  });
 
   return (
     <LoginContainer>
@@ -46,17 +124,36 @@ const Login = () => {
             <Img src={companyLogo} alt="company logo" />
           </div>
           <div className="form_container">
-            <Form className="styled_form">
-              <h4>Create an account</h4>
+            <Form className="styled_form" onSubmit={formik.handleSubmit}>
+              <h4>Login</h4>
+              <div className="text-danger">{ErrorMessage && ErrorMessage}</div>
               <InputDiv>
-                <Input name="email" placeholder="Enter Email address" required />
-                <Input name="password" placeholder="Password" required />
+                <div className="form-group">
+                  <Input
+                    name="email"
+                    placeholder="Enter Email address"
+                    onChange={formik.handleChange}
+                    value={formik.values.email}
+                  />
+                  <div className="text-danger">{formik.errors.email ? formik.errors.email : null}</div>
+                </div>
+                <div className="form-group">
+                  <Input
+                    name="password"
+                    onChange={formik.handleChange}
+                    value={formik.values.password}
+                    placeholder="Password"
+                  />
+                  <div className="text-danger">{formik.errors.password ? formik.errors.password : null}</div>
+                </div>
               </InputDiv>
               <div className="flex_space_btw">
                 <Checkbox
                   label="Remember Me"
+                  name="remember_me"
                   value={value}
                   checked={value}
+                  onClick={formik.handleReset}
                   onChange={({ target }) => setCheckbox(!value)}
                 />
                 <div>
@@ -64,10 +161,15 @@ const Login = () => {
                 </div>
               </div>
               <BtnDiv>
-                <Button color="primary" width="fullWidth" onClick={handleClick}>
+                <Button loading="disabled" type="submit" color="primary" width="fullWidth">
                   Login to Continue
                 </Button>
               </BtnDiv>
+              {loading && (
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <Spin />
+                </div>
+              )}
               <LinkToSignin>
                 <h6>
                   Don’t have an account ?<Link to="/register"> Register</Link>

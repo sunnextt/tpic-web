@@ -2,6 +2,16 @@ import styled from 'styled-components';
 import image from '../../../../assets/png/coilimg.png';
 
 const NewsLetterWrapper = styled.div`
+  padding-bottom: 3rem;
+
+  .error-danger {
+    color: #dc3545 !important;
+    font-size: 16px;
+    line-height: 1.5em;
+    margin: 0;
+    padding: 0;
+  }
+
   background-color: #00a953;
   background: #00a953;
   background-image: url(${image});
@@ -29,7 +39,6 @@ const NewsLetterWrapper = styled.div`
     position: relative;
     margin-bottom: 20px;
     background-color: transparent;
-    margin-bottom: 3rem;
   }
 
   .Subscribe::after {
