@@ -1,63 +1,126 @@
-import Button from 'components/Button';
-import { Form, Input, InputDiv, InputLabel, Label } from 'components/Input';
+import { Button as ContinueButton } from 'components/Button';
+import { Formdiv, Input, InputDiv, InputLabel, Label } from 'components/Input';
 import ReactSelect from 'components/ReactSelect';
 import React from 'react';
 import PPCTs, { LinkButton, SaveAndContBtnDiv } from './styled';
 
 const colourStyles = {};
 
-const PersonalProfile = () => {
+const PersonalProfile = ({ handleNext, handleSave, onChange, value, errors, setFieldValue }) => {
+  const stateOptions = [
+    { value: 'lag', label: 'Lagos' },
+    { value: 'oy', label: 'oyo' },
+  ];
+  const NIN0ptions = [
+    { value: 'idcard', label: 'NIN' },
+    { value: 'ip', label: 'international passport' },
+  ];
+
+  const countryoptions = [
+    { value: 'nig', label: 'Nigeria' },
+    { value: 'gha', label: 'Ghana' },
+  ];
+
   return (
     <PPCTs>
       <div className="form_container">
-        <Form className="styled_form">
+        <Formdiv className="styled_form">
           <InputDiv>
             <InputLabel>
               <Label>First Name</Label>
-              <Input name="name" type="text" placeholder="Enter your name" />
+              <Input
+                value={value.firstname}
+                onChange={onChange}
+                name="firstname"
+                type="text"
+                placeholder="Enter your name"
+              />
+              {errors.firstname && <div className="text-danger">{errors.firstname}</div>}
             </InputLabel>
             <InputLabel>
               <Label>Last Name</Label>
-              <Input name="name" type="text" placeholder="Enter Last name" />
+              <Input
+                value={value.lastname}
+                name="lastname"
+                onChange={onChange}
+                type="text"
+                placeholder="Enter Last name"
+              />
+              {errors.lastname && <div className="text-danger">{errors.lastname}</div>}
             </InputLabel>
             <InputLabel>
               <Label>Email Address</Label>
-              <Input name="name" type="text" placeholder="Enter Email Address" />
+              <Input
+                value={value.email}
+                onChange={onChange}
+                name="email"
+                type="text"
+                placeholder="Enter Email Address"
+              />
+              {errors.email && <div className="text-danger">{errors.email}</div>}
             </InputLabel>
             <InputLabel>
               <Label>Phone Number</Label>
-              <Input name="name" type="text" placeholder="Phone number" />
+              <Input value={value.phone} onChange={onChange} name="phone" type="text" placeholder="Phone number" />
+              {errors.phone && <div className="text-danger">{errors.phone}</div>}
             </InputLabel>
             <InputLabel width="fullWidth">
               <Label>Residential Address</Label>
-              <Input width="fullWidth" name="name" type="text" placeholder="Enter your name" />
+              <Input
+                value={value.address}
+                onChange={onChange}
+                width="fullWidth"
+                name="address"
+                type="text"
+                placeholder="Enter your name"
+              />
+              {errors.address && <div className="text-danger">{errors.address}</div>}
             </InputLabel>
             <ReactSelect
+              value={value.country}
               className="selectinput"
               name="country"
               placeholder="Nigeria"
               label="Country"
               colourStyles={colourStyles}
+              errors={errors.country}
+              setFieldValue={setFieldValue}
+              options={countryoptions}
             />
-            <ReactSelect className="className" name="state" placeholder="Lagos" label="state" />
             <ReactSelect
               className="className"
-              name="id"
+              name="state"
+              placeholder="Lagos"
+              label="state"
+              value={value.state}
+              setFieldValue={setFieldValue}
+              options={stateOptions}
+            />
+            <ReactSelect
+              value={value.means_of_identification}
+              className="className"
+              name="means_of_identification"
               placeholder="International Passport"
               label="Means of Identification"
+              errors={errors.means_of_identification}
+              options={NIN0ptions}
+              setFieldValue={setFieldValue}
             />
             <InputLabel>
               <Label>ID Number</Label>
-              <Input name="name" type="text" placeholder="ID Number" />
+              <Input value={value.id_number} onChange={onChange} name="id_number" type="text" placeholder="ID Number" />
+              {errors.id_number && <div className="text-danger">{errors.id_number}</div>}
             </InputLabel>
           </InputDiv>
-          <SaveAndContBtnDiv>
-            <LinkButton type="button">Save & finish later</LinkButton>
-            <Button color="primary" padding="16px 36px">
+          {/* <SaveAndContBtnDiv>
+            <LinkButton type="button" onClick={handleSave}>
+              Save & finish later
+            </LinkButton>
+            <ContinueButton type="button" onClick={handleNext} color="primary" padding="16px 36px">
               Continue
-            </Button>
-          </SaveAndContBtnDiv>
-        </Form>
+            </ContinueButton>
+          </SaveAndContBtnDiv> */}
+        </Formdiv>
       </div>
     </PPCTs>
   );

@@ -117,11 +117,28 @@ const ButtonUpload = styled.button`
   font-style: normal;
 `;
 
-const FileUpload = ({ uploadProps, label, component, name, className, style, children, description, filename }) => {
+const FileUpload = ({
+  uploadProps,
+  label,
+  component,
+  name,
+  className,
+  style,
+  children,
+  description,
+  filename,
+  setFieldValue,
+}) => {
+  const onStart = (file) => {
+    console.log(setFieldValue);
+    setFieldValue(name, file)
+  };
+
+
   return (
     <FileUploadWrap>
       <Label>{label}</Label>
-      <Upload {...uploadProps} component={component} name={name} className={className} style={style}>
+      <Upload {...uploadProps} component={component} name={name} className={className} style={style} onStart={onStart}>
         <Input placeholder={filename ? filename : ''} />
         <Button>{children}</Button>
       </Upload>

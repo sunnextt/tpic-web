@@ -1,21 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Card } from 'antd';
 import TableContainer from './styled';
 import { BsThreeDotsVertical } from 'react-icons/bs';
-import StatusDetails from '../StatusDetails';
 import { LinkButton } from 'components/Button/styled';
 import { gridStyle, statusStyle, appTypeStyle, paymentStyle } from '../gridStyle.js';
+import { useNavigate } from 'react-router-dom';
 
 const TableCard = ({ appStatus, paymentStatus }) => {
-  const [state, setState] = useState(false);
+  const Navigate = useNavigate();
 
   const handleStatusDetails = () => {
-    setState(true);
+    Navigate('statusdetails');
   };
-
-  if (state) {
-    return <StatusDetails />;
-  }
 
   return (
     <TableContainer>

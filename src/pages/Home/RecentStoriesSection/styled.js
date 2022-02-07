@@ -6,6 +6,10 @@ const RSContainer = styled.section`
   padding: 6rem 8rem;
   width: 100%;
   height: 100%;
+
+  @media screen and (max-width: 960px) {
+    padding: 6rem 2rem;
+  }
 `;
 
 export const CTop = styled.div`
@@ -19,6 +23,10 @@ export const CTop = styled.div`
     font-size: 40px;
     line-height: 130%;
     color: #004221;
+
+    @media screen and (max-width: 600px) {
+      font-size: 26px;
+    }
   }
 `;
 

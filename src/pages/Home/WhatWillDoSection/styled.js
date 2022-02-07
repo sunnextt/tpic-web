@@ -5,6 +5,13 @@ const WWDContainer = styled.main`
   width: 100%;
   height: 100%;
 
+  @media screen and (max-width: 960px) {
+    padding: 3rem 8rem;
+  }
+  @media screen and (max-width: 600px) {
+    padding: 3rem 2rem;
+  }
+
   .content_one {
     width: 88%;
     padding: 2rem 0;
@@ -16,6 +23,9 @@ const WWDContainer = styled.main`
       letter-spacing: 0em;
       color: ${({ theme }) => theme.colors.darkColorPrimary};
       text-align: left;
+      @media screen and (max-width: 960px) {
+        font-size: 26px;
+      }
     }
 
     h6 {
@@ -25,6 +35,10 @@ const WWDContainer = styled.main`
       line-height: 30px;
       letter-spacing: 0em;
       color: ${({ theme }) => theme.colors.darkColorPrimary};
+    }
+
+    @media screen and (max-width: 960px) {
+      width: 100%;
     }
   }
   .content_two {
@@ -45,6 +59,10 @@ const WWDContainer = styled.main`
       text-align: left;
       color: ${({ theme }) => theme.colors.darkColorPrimary};
       margin-bottom: 2rem;
+
+      @media screen and (max-width: 960px) {
+        font-size: 26px;
+      }
     }
 
     h6 {
@@ -56,6 +74,10 @@ const WWDContainer = styled.main`
       text-align: left;
       color: ${({ theme }) => theme.colors.darkColorPrimary};
       margin-bottom: 3rem;
+    }
+
+    @media screen and (max-width: 960px) {
+      width: 100%;
     }
   }
 `;

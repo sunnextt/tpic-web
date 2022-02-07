@@ -13,6 +13,11 @@ export const Link = styled(_Link)`
   padding: 8px 24px;
   margin: 0 1rem;
 
+  :not(.selected) {
+    border: 2px solid #00a953;
+    color: #00a953;
+  }
+
   &:hover {
     color: #00a953;
     border: 2px solid #00a953;

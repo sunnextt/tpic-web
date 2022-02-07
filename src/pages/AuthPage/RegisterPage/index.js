@@ -72,7 +72,7 @@ const getErrorsFromValidationError = (validationError) => {
 };
 
 const Register = () => {
-  const [value] = useState(true);
+  const [value, ] = useState(true);
   const [loading, setLoading] = useState(false);
   const [ErrorMessage, setErrorMessage] = useState('');
 
@@ -97,34 +97,33 @@ const Register = () => {
     validationSchema,
     validate: validate(validationSchema),
     onSubmit: (data) => {
-      console.log(JSON.stringify(data, null, 2));
       setLoading(true);
-      dispatch(
-        register({
-          email: data.email,
-          password: data.password,
-          first_name: data.first_name,
-          last_name: data.last_name,
-          phone_number: data.phone_number,
-          password_confirmation: data.password_confirmation,
-          acceptTerms: false,
-        }),
-      )
-        .unwrap()
-        .then(() => {
-          setLoading(false);
+        dispatch(
+          register({
+            email: data.email,
+            password: data.password,
+            first_name: data.first_name,
+            last_name: data.last_name,
+            phone_number: data.phone_number,
+            password_confirmation: data.password_confirmation,
+            acceptTerms: false,
+          }),
+        )
+          .unwrap()
+          .then(() => {
+            setLoading(false);
 
-          Navigate('/dashboard');
-          window.location.reload();
-        })
-        .catch((error) => {
-          setLoading(false);
-          console.log(error);
+            Navigate('/dashboard');
+            window.location.reload();
+          })
+          .catch((error) => {
+            setLoading(false);
+            console.log(error);
 
-          if (error.message === 'Rejected') {
-            setErrorMessage('The email has already been taken');
-          }
-        });
+            if (error.message === 'Rejected') {
+              setErrorMessage('The email has already been taken');
+            }
+          });
     },
   });
 

@@ -12,11 +12,11 @@ import Button from 'components/Button';
 const WhatWeNeedFromU = () => {
   return (
     <WWNFYContainer>
-      <Row style={{ justifyContent: 'space-between' }}>
-        <Col xs={24} sm={11} md={11} lg={11}>
+      <Row gutter={[24, 48]} style={{ justifyContent: 'space-between' }}>
+        <Col xs={24} sm={24} md={11} lg={11}>
           <HomeGallery />
         </Col>
-        <Col xs={24} sm={11} md={11} lg={11}>
+        <Col xs={24} sm={24} md={11} lg={11}>
           <div className="gallery_content">
             <div className="gallery_cont_headline">
               <h4>What we need from you</h4>

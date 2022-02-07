@@ -3,6 +3,19 @@ import styled from 'styled-components';
 const ApplicationPageWrap = styled.div`
 
 
+  .pre_next_div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .flex_space_btw {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4rem
+  }
+
+
   width: 100%;
   height: 100%;
   background: #F4F4F4;

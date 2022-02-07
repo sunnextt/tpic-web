@@ -1,8 +1,8 @@
 import ExpirySession from 'utils/expirysession';
-import CurrenxiAuthApi from './AuthApi.instance';
+import tredjkAuthApi from './AuthApi.instance';
 
 const register = async (first_name, last_name, email, password, password_confirmation, phone_number) => {
-  const response = await CurrenxiAuthApi.post('/register', {
+  const response = await tredjkAuthApi.post('/register', {
     first_name,
     last_name,
     email,
@@ -18,7 +18,7 @@ const register = async (first_name, last_name, email, password, password_confirm
 };
 
 const login = async (email, password) => {
-  const response = await CurrenxiAuthApi.post('login', { email, password });
+  const response = await tredjkAuthApi.post('login', { email, password });
 
   if (response.data) {
     ExpirySession.set('user', response.data);
@@ -27,12 +27,12 @@ const login = async (email, password) => {
 };
 
 const forgotpassword = async email => {
-  const response = await CurrenxiAuthApi.post('password/forget', { email });
+  const response = await tredjkAuthApi.post('password/forget', { email });
   return response.data;
 };
 
 const resetpassword = async (token, password_confirmation, password) => {
-  const response = await CurrenxiAuthApi.post('password/reset', { token, password_confirmation, password });
+  const response = await tredjkAuthApi.post('password/reset', { token, password_confirmation, password });
   return response.data;
 };
 

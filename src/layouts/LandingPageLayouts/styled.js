@@ -14,19 +14,19 @@ export const ContentContent = styled.main`
   height: auto;
 
   @media screen and (max-width: 320px) {
-    margin: 10rem 1rem 10rem;
+    margin: 10rem 0rem 10rem;
   }
 
   @media screen and (max-width: 600px) {
-    margin: 10rem 1rem 10rem;
+    margin: 10rem 0rem 10rem;
   }
 
   @media screen and (max-width: 768px) and (min-width: 408px) {
-    margin: 6rem 2rem 10rem;
+    margin: 6rem 0rem 10rem;
   }
 
   @media screen and (max-width: 900px) and (min-width: 768px) {
-    margin: 10rem 2rem 10rem;
+    margin: 10rem 0rem 10rem;
   }
 `;
 export default Layout;

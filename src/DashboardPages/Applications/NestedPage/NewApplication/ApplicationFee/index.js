@@ -2,10 +2,10 @@ import { Card, Button } from 'antd';
 import { LinkButton } from 'components/Button/styled';
 import Checkbox from 'components/Checkbox';
 import React, { useState } from 'react';
-import { Button as ContinueButton } from 'components/Button';
 import ApplicationFeeContainer, { CardDiv } from './styled';
 
-const ApplicationFee = ({ handlePayNow }) => {
+const ApplicationFee = ({ handleSave, handlePrevious, errors }) => {
+  console.log(errors);
   const [value, setCheckbox] = useState(true);
 
   return (
@@ -29,17 +29,11 @@ const ApplicationFee = ({ handlePayNow }) => {
           checked={value}
           onChange={({ target }) => setCheckbox(!value)}
         />
-      </div>
-      <div className="contents_btn_div">
-        <div className="pre_next_div">
-          <Button>Previous</Button>
-          <div className="flex_space_btw">
-            <LinkButton>Save & finish later</LinkButton>
-            <ContinueButton color="primary" padding="16px 36px" onClick={handlePayNow}>
-              Pay Now
-            </ContinueButton>
+        {errors && (
+          <div style={{ marginTop: 20, padding: 10, background: '#FFBABA' }} className="text-danger">
+            All the form fields are required
           </div>
-        </div>
+        )}
       </div>
     </ApplicationFeeContainer>
   );

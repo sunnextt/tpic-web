@@ -8,18 +8,41 @@ const HeroContainer = styled.main`
 
   .image_hero {
     width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @media screen and (max-width: 960px) {
+      width: 100%;
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    padding: 6rem 2rem 4rem;
   }
 `;
 
 export const HeroImage = styled.img`
   margin: 1rem;
-  width: 500px;
+  width: 100%;
+  height: auto;
+
+  @media screen and (max-width: 960px) {
+    width: 80%;
+  }
 `;
 export const HeroSripeImg = styled.img`
   position: absolute;
   top: 31%;
-  width: 410px;
+  width: 80%;
+  height: auto;
   left: 20%;
+
+  @media screen and (max-width: 900px) and (min-width: 600px) {
+    display: none;
+  }
+  @media screen and (max-width: 600px) {
+    display: none;
+  }
 `;
 export const HeroContents = styled.div`
   position: relative;
@@ -28,6 +51,10 @@ export const HeroContents = styled.div`
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
+
+  @media screen and (max-width: 960px) {
+    width: 100%;
+  }
 
   h4 {
     font-family: Lato;
@@ -38,6 +65,9 @@ export const HeroContents = styled.div`
     letter-spacing: 0em;
     text-align: left;
     color: #ffb400;
+    @media screen and (max-width: 600px) {
+      font-size: 24px;
+    }
   }
 
   h3 {
@@ -53,6 +83,9 @@ export const HeroContents = styled.div`
     z-index: 1000;
     span {
       font-weight: 800;
+    }
+    @media screen and (max-width: 1200px) {
+      font-size: 40px;
     }
   }
 
@@ -119,6 +152,11 @@ export const Flex = styled.div`
   & > div,
   & > ul {
     flex: 1;
+  }
+
+  @media screen and (max-width: 960px) {
+    flex-direction: column;
+    row-gap: 3rem;
   }
 `;
 

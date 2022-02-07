@@ -5,6 +5,14 @@ const WWNFYContainer = styled.section`
   width: 100%;
   height: 100%;
 
+  @media screen and (max-width: 960px) {
+    padding: 6rem 2rem;
+  }
+  @media screen and (max-width: 960px) {
+    font-size: 25px;
+    line-height: 40px;
+  }
+
   .gallery_cont_headline {
     h4 {
       font-style: normal;
@@ -14,6 +22,9 @@ const WWNFYContainer = styled.section`
       font-feature-settings: 'liga' off;
       color: #004221;
       text-align: left;
+      @media screen and (max-width: 600px) {
+        font-size: 26px;
+      }
     }
 
     p {

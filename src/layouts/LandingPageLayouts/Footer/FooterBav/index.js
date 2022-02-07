@@ -10,11 +10,11 @@ import { Link } from 'react-router-dom';
 const Nav = () => {
   return (
     <NavContainer>
-      <Row>
-        <Col xs={12} sm={12} md={12} lg={12}>
+      <Row gutter={[24, 24]}>
+        <Col xs={24} sm={12} md={12} lg={12} className="footer_img">
           <Img src={FooterLogo} alt="footer logo" />
         </Col>
-        <Col xs={12} sm={12} md={12} lg={12}>
+        <Col xs={24} sm={12} md={12} lg={12}>
           <div className="sitemap">
             <h5 className="">Sitemap</h5>
           </div>

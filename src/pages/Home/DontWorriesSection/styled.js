@@ -21,6 +21,11 @@ const DWSectionContainer = styled.section`
     color: #ffffff;
     text-align: left;
     z-index: 1000;
+
+    @media screen and (max-width: 960px) {
+      font-size: 25px;
+      line-height: 40px;
+    }
   }
 
   h5 {
@@ -31,10 +36,23 @@ const DWSectionContainer = styled.section`
     align-items: center;
     color: #ffffff;
     margin-top: 3rem;
+    @media screen and (max-width: 960px) {
+      font-size: 26px;
+      line-height: 40px;
+    }
+  }
+
+  @media screen and (max-width: 960px) {
+    padding: 2rem 4rem;
   }
 `;
 export const Img = styled.img`
   width: 340px;
+
+  @media screen and (max-width: 960px) {
+    width: 100%;
+    height: auto;
+  }
 `;
 export const ImgStrip = styled.img`
   width: 33%;
@@ -42,6 +60,10 @@ export const ImgStrip = styled.img`
   /* transform: translate: translate(-50%, -50%); */
   bottom: 29%;
   left: 0;
+
+  @media screen and (max-width: 600px) {
+    bottom: 34%;
+  }
 `;
 
 export default DWSectionContainer;

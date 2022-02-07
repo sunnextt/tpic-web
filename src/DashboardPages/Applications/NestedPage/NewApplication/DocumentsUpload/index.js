@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import FileUpload from 'components/FileUpload';
 import { Button } from 'antd';
 import { Button as ContinueButton } from 'components/Button';
@@ -11,46 +11,13 @@ const style = {
   position: 'relative',
 };
 
-const DocumentsUpload = () => {
-  const [fileDetails, setFileDetails] = useState([]);
-
-  console.log(fileDetails.filename);
-
+const DocumentsUpload = ({ handleNext, handleSave, handlePrevious, setFieldValue, value }) => {
   const uploadProps = {
-    // action: "/upload.do",
     multiple: false,
-    onStart(file) {
-      // console.log(file, file.name);
-    },
-    onSuccess(ret, file) {
-      // console.log('onSuccess', ret, file.name);
-    },
-    onError(err) {
-      // console.log('onError', err);
-    },
-    onProgress({ percent }, file) {
-      // console.log('onProgress', `${percent}%`, file.name);
-    },
-    // transformFile(file) {
-    //   return new Promise((resolve) => {
-    //     const reader = new FileReader();
-    //     reader.readAsDataURL(file);
-    //     reader.onload = () => {
-    //       const canvas = document.createElement('canvas');
-    //       const img = document.createElement('img');
-    //       img.src = reader.result;
-    //       img.onload = () => {
-    //         const ctx = canvas.getContext('2d');
-    //         ctx.drawImage(img, 0, 0);
-    //         canvas.toBlob(resolve);
-    //       };
-    //     };
-    //   });
-    // },
-    beforeUpload(file) {
-      setFileDetails({ file: file, filename: file.name });
-    },
+    beforeUpload(file) {},
   };
+
+  const { business_plan, means_of_identification, proof_of_address, passport } = value;
 
   return (
     <DocumentsUploadContainer>
@@ -58,60 +25,64 @@ const DocumentsUpload = () => {
         <FileUpload
           description="Accepted file format: Pdf, doc. Total file size may not exceed 20 MB. "
           label="Business Plan"
-          name="name"
+          name="business_plan"
           style={style}
           className="className"
           uploadProps={uploadProps}
           component="div"
-          filename={fileDetails.filename}
+          filename={business_plan.name}
+          setFieldValue={setFieldValue}
         >
           Choose File
         </FileUpload>
         <FileUpload
           description="Accepted file format: Pdf, doc, jpeg. Total file size may not exceed 5 MB. "
           label="Means of Identifcation"
-          name="name"
+          name="means_of_identification"
           style={style}
           className="className"
           uploadProps={uploadProps}
           component="div"
-          filename={fileDetails.filename}
+          filename={means_of_identification.name}
+          setFieldValue={setFieldValue}
         >
           Choose File
         </FileUpload>
         <FileUpload
           description="Accepted file format: Pdf, doc, jpeg. Total file size may not exceed 5 MB. "
           label="Passport Photograph (Taken in the last two months)"
-          name="name"
+          name="passport"
           style={style}
           className="className"
           uploadProps={uploadProps}
           component="div"
-          filename={fileDetails.filename}
+          filename={passport.name}
+          setFieldValue={setFieldValue}
         >
           Choose File
         </FileUpload>
         <FileUpload
           description="Accepted file format: Pdf, doc, jpeg. Total file size may not exceed 5 MB. "
           label="Proof of Address (Recent utility bill)"
-          name="name"
+          name="proof_of_address"
           style={style}
           className="className"
           uploadProps={uploadProps}
           component="div"
-          filename={fileDetails.filename}
+          filename={proof_of_address.name}
+          setFieldValue={setFieldValue}
         >
           Choose File
         </FileUpload>
-        <div className="pre_next_div">
-          <Button>Previous</Button>
+        {/* <div className="pre_next_div">
+          <Button onClick={handlePrevious}>Previous</Button>
           <div className="flex_space_btw">
-            <LinkButton>Save & finish later</LinkButton>
-            <ContinueButton color="primary" padding="16px 36px">
+            <LinkButton onClick={handleSave}>Save & finish later</LinkButton>
+            <ContinueButton color="primary" padding="16px 36px" onClick={handleNext}>
               Continue
             </ContinueButton>
           </div>
-        </div>
+        </div> */}
       </div>
     </DocumentsUploadContainer>
   );

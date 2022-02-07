@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import React, { Suspense, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 import './App.css';
@@ -17,8 +17,18 @@ import DashboardLayout from 'layouts/DashboardLayouts';
 import Dashboard from 'routes';
 import ForgotPassword from 'pages/AuthPage/ForgotPassword';
 import RequireAuth from 'utils/requireAuth';
+import { useDispatch } from 'react-redux';
+import { getAllApplication } from 'redux/slice/applicationDataSlice';
 
 function App() {
+  const dispatch = useDispatch();
+
+  const id = 1;
+
+  useEffect(() => {
+    dispatch(getAllApplication(id));
+  }, [dispatch]);
+
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />

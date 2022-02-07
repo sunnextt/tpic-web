@@ -37,6 +37,14 @@ const NavContainer = styled.div`
       }
     }
   }
+
+  .footer_img {
+    @media screen and (max-width: 600px) {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
 `;
 
 export const Img = styled.img`
@@ -93,6 +101,7 @@ export const Li = styled.li`
       transition: 0.3s;
     }
   }
+
 `;
 
 export default NavContainer;

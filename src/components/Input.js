@@ -18,6 +18,9 @@ export const Label = styled.label`
 export const Form = styled.form`
   width: 100%;
 `;
+export const Formdiv = styled.div`
+  width: 100%;
+`;
 
 export const InputDiv = styled.div`
   width: 100%;

@@ -5,6 +5,11 @@ const FooterWrapper = styled.section`
   width: 100%;
   height: 100%;
 
+
+  @media screen and (max-width: 600px) {
+    padding: 0rem 2rem 6rem;
+  }
+
   hr {
     border: none;
     border-top: 3px solid #e5e5e5;

@@ -4,6 +4,10 @@ import image from '../../../../assets/png/coilimg.png';
 const NewsLetterWrapper = styled.div`
   padding-bottom: 3rem;
 
+  @media screen and (max-width: 600px) {
+    padding: 0 2rem;
+  }
+
   .error-danger {
     color: #dc3545 !important;
     font-size: 16px;
@@ -39,6 +43,10 @@ const NewsLetterWrapper = styled.div`
     position: relative;
     margin-bottom: 20px;
     background-color: transparent;
+    width: 100%;
+
+    @media screen and (max-width: 600px) {
+    }
   }
 
   .Subscribe::after {
@@ -72,7 +80,7 @@ export const Form = styled.form`
 export const Input = styled.input`
   font-size: 16px;
   padding: 10px 16px;
-  width: 500px;
+  width: 100%;
   border: none;
   border-radius: 5px;
   color: #e5e5e5;
@@ -110,6 +118,10 @@ export const Button = styled.button`
 export const NewsHeader = styled.div`
   width: 50%;
   margin: 2rem 0;
+
+  @media screen and (max-width: 960px) {
+    width: 100%;
+  }
 `;
 
 export default NewsLetterWrapper;

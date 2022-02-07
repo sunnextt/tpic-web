@@ -1,3 +1,4 @@
+import StatusDetails from 'DashboardPages/Applications/Tab/StatusDetails';
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 
@@ -9,6 +10,7 @@ const ApplicationsRoute = () => {
     <Routes>
       <Route path="/*" element={<Application />} />
       <Route path="/newapplication" element={<NewApplication />} />
+      <Route path="/statusdetails" element={<StatusDetails />} />
     </Routes>
   );
 };

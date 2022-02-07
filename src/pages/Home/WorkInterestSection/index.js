@@ -16,7 +16,7 @@ const WorkInterestPage = () => {
 
       <DivContents>
         <Row gutter={[24, 24]}>
-          <Col xs={12} sm={12} md={12} lg={12}>
+          <Col xs={24} sm={24} md={12} lg={12}>
             <div className="col_contents">
               <div className="icon_div">
                 <BsFillCircleFill size="36" color="#FFB400" />
@@ -30,7 +30,7 @@ const WorkInterestPage = () => {
               </div>
             </div>
           </Col>
-          <Col xs={12} sm={12} md={12} lg={12}>
+          <Col xs={24} sm={24} md={12} lg={12}>
             <div className="col_contents">
               <div className="icon_div">
                 <BsFillCircleFill size="36" color="#00A953" />
@@ -44,7 +44,7 @@ const WorkInterestPage = () => {
               </div>
             </div>
           </Col>
-          <Col xs={12} sm={12} md={12} lg={12}>
+          <Col xs={24} sm={24} md={12} lg={12}>
             <div className="col_contents">
               <div className="icon_div">
                 <BsFillCircleFill size="36" color="#00A953" />
@@ -58,7 +58,7 @@ const WorkInterestPage = () => {
               </div>
             </div>
           </Col>
-          <Col xs={12} sm={12} md={12} lg={12}>
+          <Col xs={24} sm={24} md={12} lg={12}>
             <div className="col_contents">
               <div className="icon_div">
                 <BsFillCircleFill size="36" color="#FFB400" />
@@ -72,7 +72,7 @@ const WorkInterestPage = () => {
               </div>
             </div>
           </Col>
-          <Col xs={12} sm={12} md={12} lg={12}>
+          <Col xs={24} sm={24} md={12} lg={12}>
             <div className="col_contents">
               <div className="icon_div">
                 <BsFillCircleFill size="36" color="#FFB400" />
@@ -86,7 +86,7 @@ const WorkInterestPage = () => {
               </div>
             </div>
           </Col>
-          <Col xs={12} sm={12} md={12} lg={12}>
+          <Col xs={24} sm={24} md={12} lg={12}>
             <div className="col_contents">
               <div className="icon_div">
                 <BsFillCircleFill size="36" color="#00A953" />

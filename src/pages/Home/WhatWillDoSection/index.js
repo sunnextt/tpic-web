@@ -10,7 +10,7 @@ const WhatWillDo = () => {
   return (
     <WWDContainer>
       <Row>
-        <Col span={12}>
+        <Col xs={24} sm={24} md={24} lg={12} xl={12} >
           <div className="content_one">
             <h4>We provide you with your first step-needs to entrepreneurship </h4>
             <h6>
@@ -20,7 +20,7 @@ const WhatWillDo = () => {
             </h6>
           </div>
         </Col>
-        <Col span={12}>
+        <Col xs={24} sm={24} md={24} lg={12} xl={12} >
           <div className="content_two">
             <h4>
               <FrameImg src={Frame} alt="frame"/>

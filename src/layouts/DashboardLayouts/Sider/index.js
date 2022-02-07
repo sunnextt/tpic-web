@@ -47,7 +47,7 @@ const ASide = () => {
         <Menu.Item key="2">
           <Link to={`${path}/settings`}>Settings</Link>
         </Menu.Item>
-        <Menu.Item>
+        <Menu.Item key="3">
           <Link to="/login" onClick={logOut}>
             Log Out
           </Link>

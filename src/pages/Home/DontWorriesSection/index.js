@@ -7,7 +7,7 @@ import goldenStrip from '../../../assets/png/goldenstrip.png';
 const DontworriesSection = () => {
   return (
     <DWSectionContainer>
-      <Row>
+      <Row gutter={[24, 24]}>
         <Col
           xs={24}
           sm={10}

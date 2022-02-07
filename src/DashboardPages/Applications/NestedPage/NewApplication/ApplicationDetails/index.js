@@ -6,18 +6,31 @@ import ReactSelect from 'components/ReactSelect';
 import React, { useState } from 'react';
 import AppDetailsContainer from './styled';
 
-const ApplicationDetails = () => {
-  const [value, setValue] = useState(1);
+const ApplicationDetails = ({ handleChangeInput, handlePrevious, onChange, value, errors, setFieldValue }) => {
+  const [index, setIndex] = useState('');
 
-  const onChange = (e) => {
-    setValue(e.target.value);
+  const handleindex = (e) => {
+    handleChangeInput(e);
+    setIndex(e.target.value);
   };
-
-  console.log(value);
 
   const MIN0ptions = [
     { value: 'yes', label: 'YES' },
     { value: 'no', label: 'NO' },
+  ];
+
+  const BUSOptions = [
+    { value: '1', label: 'TYPE1' },
+    { value: '2', label: 'TYPE2' },
+  ];
+  const BANK0ptions = [
+    { value: '1', label: 'UBA' },
+    { value: '2', label: 'GTB' },
+  ];
+
+  const AMOUNToptions = [
+    { value: '5000', label: '5000' },
+    { value: '20000', label: '20000' },
   ];
 
   const styles = {
@@ -28,58 +41,123 @@ const ApplicationDetails = () => {
     <AppDetailsContainer>
       <div className="styled_form">
         <div className="application_reason">
-          <Radio.Group onChange={onChange} value={value}>
-            <Radio value={1}>Business Venture</Radio>
-            <Radio value={2}>Skills Aquisition</Radio>
+          <Radio.Group name="reason" onChange={handleindex} value={index}>
+            <Radio value="Business Venture">Business Venture</Radio>
+            <Radio value="Skills Aquisition">Skills Aquisition</Radio>
           </Radio.Group>
         </div>
         <InputDiv>
-          {value === 1 ? (
-            <ReactSelect name="business_name" placeholder="Enter your business name" label="Business Name" />
+          {index === 'Business Venture' ? (
+            <InputLabel>
+              <Label>Business Name</Label>
+              <Input
+                type="text"
+                name="previous_business_name"
+                value={value.previous_business_name}
+                onChange={onChange}
+                placeholder="Enter your business name"
+              />
+              {errors.previous_business_name && <div className="text-danger">{errors.previous_business_name}</div>}
+            </InputLabel>
           ) : (
-            <ReactSelect name="skills_acquisition" placeholder="Select Skills" label="Skills Aquisition" />
+            <ReactSelect
+              name="skills_acquisition"
+              value={value.skills_acquisition}
+              setFieldValue={setFieldValue}
+              placeholder="Select Skills"
+              label="Skills Aquisition"
+              options={MIN0ptions}
+              errors={errors.skills_acquisition}
+            />
           )}
           <ReactSelect
             label="Amount Needed"
             name="amount_needed"
+            value={value.amount_needed}
+            setFieldValue={setFieldValue}
             placeholder="NGN"
             colourStyles={styles}
             width="300px"
+            options={AMOUNToptions}
+            errors={errors.amount_needed}
           />
-          {value === 1 ? (
-            <ReactSelect label="Business Type" name="skills_type" placeholder="Means of Identification" />
+          {index === 1 ? (
+            <ReactSelect
+              label="Business Type"
+              value={value.business_type}
+              setFieldValue={setFieldValue}
+              handleChangeInput={handleChangeInput}
+              name="business_type"
+              placeholder="Business Type"
+              options={BUSOptions}
+              errors={errors.business_type}
+            />
           ) : (
-            <ReactSelect label="Skills Type" name="skills_type" placeholder="Means of Identification" />
+            <ReactSelect
+              label="Skills Type"
+              value={value.skills_type}
+              setFieldValue={setFieldValue}
+              handleChangeInput={handleChangeInput}
+              name="skills_type"
+              placeholder="Skills Type"
+              options={MIN0ptions}
+              errors={errors.skills_type}
+            />
           )}
           <InputLabel>
             <Label>Bank Account</Label>
-            <Input name="bank_account" type="text" placeholder="Enter Bank Account" />
+            <Input
+              name="bank_account_number"
+              value={value.bank_account_number}
+              onChange={onChange}
+              type="text"
+              placeholder="Enter Bank Account"
+            />
+            {errors.bank_account_number && <div className="text-danger">{errors.bank_account_number}</div>}
           </InputLabel>
           <ReactSelect
             label="Have you been in any business before now?"
             name="skills_type"
             placeholder="YES or NO"
+            value={value.skills_type}
+            setFieldValue={setFieldValue}
             options={MIN0ptions}
+            errors={errors.skills_type}
           />
-          <ReactSelect label="Bank Name" name="bank_name" placeholder="Select Bank" options={MIN0ptions} />
+          <ReactSelect
+            label="Bank Name"
+            value={value.bank_name}
+            setFieldValue={setFieldValue}
+            name="bank_name"
+            placeholder="Select Bank"
+            options={BANK0ptions}
+            errors={errors.bank_name}
+          />
           <InputLabel>
             <Label>If yes, please provide details</Label>
-            <Input name="bank_account" type="text" placeholder="" />
+            <Input
+              name="previous_business_details"
+              onChange={onChange}
+              value={value.previous_business_details}
+              type="text"
+              placeholder=""
+            />
+            {errors.previous_business_details && <div className="text-danger">{errors.previous_business_details}</div>}
           </InputLabel>
           <TextAreaDiv>
             <Label>Tell us why TredKJ Lifters should fund your business</Label>
-            <StyledTextArea rows="4" type="text" id="company_name" name="tell_us_why" placeholder="State reason" />
+            <StyledTextArea
+              rows="4"
+              value={value.funding_reason}
+              onChange={onChange}
+              type="text"
+              id="funding_reason"
+              name="funding_reason"
+              placeholder="State reason"
+            />
+            {errors.funding_reason && <div className="text-danger">{errors.funding_reason}</div>}
           </TextAreaDiv>
         </InputDiv>
-        <div className="pre_next_div">
-          <Button>Previous</Button>
-          <div className="flex_space_btw">
-            <LinkButton>Save & finish later</LinkButton>
-            <ContinueButton color="primary" padding="16px 36px">
-              Continue
-            </ContinueButton>
-          </div>
-        </div>
       </div>
     </AppDetailsContainer>
   );

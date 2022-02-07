@@ -3,8 +3,10 @@ import { Link as _Link } from 'react-router-dom';
 
 export const NavWrap = styled.nav``;
 export const Ul = styled.ul`
-  display: flex;
-  justify-content: space-between;
+  display: ${({ collapsed }) => (collapsed === true ? 'column' : 'flex')};
+  justify-content: ${({ collapsed }) => (collapsed === true ? 'center' : 'space-between')};
+  padding: ${({ collapsed }) => (collapsed === true ? '4rem 0' : 'auto')};
+
   align-items: center;
   margin: 0;
   list-style: none;
@@ -12,7 +14,8 @@ export const Ul = styled.ul`
 `;
 
 export const Li = styled.li`
-  padding: 1rem 16px;
+  padding: ${({ collapsed }) => (collapsed === true ? '2rem 0' : '1rem 16px')};
+  text-align: ${({ collapsed }) => (collapsed === true ? 'center' : 'auto')};
 `;
 
 export const Link = styled(_Link)`
@@ -30,4 +33,14 @@ export const Link = styled(_Link)`
     transition: 0.3s;
   }
   text-transform: capitalize;
+`;
+export const FloatingNavWrap = styled.nav`
+  display: ${({ collapsed }) => (collapsed === true ? 'block' : 'none')};
+  .floating_nav {
+    -webkit-transition: all 0.9s;
+    -moz-transition: all 0.9s;
+    -o-transition: all 0.9s;
+    -ms-transition: all 0.9s;
+    transition: all 0.9s;
+  }
 `;

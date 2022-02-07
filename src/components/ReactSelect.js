@@ -2,9 +2,13 @@ import React from 'react';
 import Select from 'react-select';
 import { InputLabel, Label } from './Input';
 
-const ReactSelect = ({ options, colourStyles, label, placeholder, className, name, onChange, onInputChange }) => {
+const ReactSelect = ({ options, colourStyles, label, placeholder, className, name, setFieldValue, errors, value }) => {
+  const handleChange = (option) => {
+    setFieldValue(name, option.value);
+  };
+
   return (
-    <InputLabel >
+    <InputLabel>
       <Label>{label}</Label>
       <Select
         name={name}
@@ -12,10 +16,11 @@ const ReactSelect = ({ options, colourStyles, label, placeholder, className, nam
         styles={colourStyles}
         placeholder={placeholder}
         className={className}
+        defaultValue="nig"
         isSearchable
-        onChange={onChange}
-        onInputChange={onInputChange}
+        onChange={handleChange}
       />
+      {errors && <div className="text-danger">{errors}</div>}
     </InputLabel>
   );
 };

@@ -5,6 +5,10 @@ const Container = styled.section`
   width: 100%;
   height: 100%;
   background: #f9f9fa;
+
+  @media screen and (max-width: 960px) {
+  padding: 6rem 2rem;
+  }
 `;
 
 export const DivTitle = styled.div`
@@ -22,6 +26,10 @@ export const DivTitle = styled.div`
     align-items: center;
     text-align: center;
     color: ${({ theme }) => theme.colors.colorGreenSecondary};
+
+    @media screen and (max-width: 960px) {
+      font-size: 35px;
+    }
   }
 
   h6 {
