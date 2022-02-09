@@ -12,7 +12,8 @@ const HeroPage = () => {
           <div>
             <h4>TREDKJ LIFTERS</h4>
             <h3>
-              The lift you need for <span>THE BOSS LIFE</span>
+              The lift you need <br />
+              for <span>THE BOSS LIFE</span>
             </h3>
             <h6>
               We are the first lift you need for your business. We fund, consult with and advice you on your business

@@ -19,6 +19,14 @@ const HeroContainer = styled.main`
   @media screen and (max-width: 600px) {
     padding: 6rem 2rem 4rem;
   }
+
+  @media screen and (max-width: 400px) {
+    padding: 4rem 2rem 4rem;
+  }
+
+  @media screen and (max-width: 780px) and (min-width: 600px) {
+    padding: 8rem 4rem 4rem;
+  }
 `;
 
 export const HeroImage = styled.img`
@@ -32,15 +40,20 @@ export const HeroImage = styled.img`
 `;
 export const HeroSripeImg = styled.img`
   position: absolute;
-  top: 31%;
-  width: 80%;
+  top: 33%;
+  width: 78%;
   height: auto;
-  left: 20%;
+  left: 59%;
+  transform: translate(-50%, -50%);
 
-  @media screen and (max-width: 900px) and (min-width: 600px) {
+  @media screen and (max-width: 1200px) and (min-width: 400px) {
     display: none;
   }
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 400px) {
+    display: none;
+    top: 42%;
+  }
+  @media screen and (min-width: 1300px) {
     display: none;
   }
 `;
@@ -58,7 +71,7 @@ export const HeroContents = styled.div`
 
   h4 {
     font-family: Lato;
-    font-size: 28px;
+    font-size: 2rem;
     font-style: normal;
     font-weight: 900;
     line-height: 42px;
@@ -73,7 +86,7 @@ export const HeroContents = styled.div`
   h3 {
     position: relative;
     font-family: Lato;
-    font-size: 62px;
+    font-size: 4.42rem;
     font-style: normal;
     font-weight: 700;
     line-height: 70px;
@@ -85,7 +98,10 @@ export const HeroContents = styled.div`
       font-weight: 800;
     }
     @media screen and (max-width: 1200px) {
-      font-size: 40px;
+    }
+    @media screen and (max-width: 600px) {
+      font-size: 3.5rem;
+      line-height: 54px;
     }
   }
 
@@ -98,6 +114,9 @@ export const HeroContents = styled.div`
     letter-spacing: 0em;
     text-align: left;
     color: #282828;
+    @media screen and (max-width: 600px) {
+      margin-top: 3rem;
+    }
   }
 
   .contents_btn {

@@ -74,13 +74,13 @@ const ForgotPassword = () => {
             <Link to="/">Back to Home</Link>
           </BackHomeLinkDiv>
         </Col>
-        <Col xs={15} sm={15} md={15} lg={15} style={{ padding: '3rem 5rem 5rem' }}>
+        <Col xs={15} sm={15} md={15} lg={15} className="col_style">
           <div className="align_item_center">
             <Img src={companyLogo} alt="company logo" />
           </div>
           <div className="form_container">
             <Form className="styled_form" onSubmit={formik.handleSubmit}>
-              <h4>Forgot Password</h4>
+              <h4>Forgot  Password?</h4>
               <InputDiv>
                 <div className="form-group">
                   <Label>Email</Label>
@@ -94,7 +94,7 @@ const ForgotPassword = () => {
                 </div>
               </InputDiv>
               <BtnDiv>
-                <Button type="submit" color="primary" width="fullWidth">
+                <Button type="submit" color="primary" width="fullWidth" padding="10px 20px">
                   Reset
                 </Button>
               </BtnDiv>

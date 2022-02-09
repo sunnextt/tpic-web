@@ -14,6 +14,7 @@ ${normalize()}
     box-sizing: border-box;
 }
 
+
 html {
     font-size: 62.5%;
     @media only screen and (min-width: 900px) {
@@ -28,7 +29,7 @@ html {
 body {
     transition: all 0.05s linear;
     width: 100%;
-    height: 100vh;
+    height: 100%;
     line-height: 2.1rem;
     font-style: normal;
     font-weight: 400;

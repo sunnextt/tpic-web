@@ -4,6 +4,9 @@ import image from 'assets/png/maskcoilimg.png';
 import { Link as _Link } from 'react-router-dom';
 
 const LoginContainer = styled.main`
+  width: 100%;
+  height: 100%;
+
   .align_item_center {
     display: flex;
     align-items: center;
@@ -144,6 +147,10 @@ export const Img = styled.img`
 export const Form = styled.form`
   width: 70%;
   margin: 0 auto;
+
+  @media screen and (max-width: 600px) {
+    width: 100%;
+  }
 `;
 
 export const InputDiv = styled.div`

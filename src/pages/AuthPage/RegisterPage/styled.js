@@ -4,6 +4,10 @@ import image from 'assets/png/maskcoilimg.png';
 import { Link as _Link } from 'react-router-dom';
 
 const RegisterContainer = styled.main`
+  display: flex;
+  width: 100%;
+  height: 100%;
+
   .align_item_center {
     display: flex;
     align-items: center;
@@ -48,12 +52,14 @@ const RegisterContainer = styled.main`
       text-align: center;
       color: #004221;
     }
+
   }
 `;
 
 export const LinkToSignin = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   padding: 0px;
 
@@ -64,7 +70,6 @@ export const LinkToSignin = styled.div`
     font-size: 13.3232px;
     line-height: 16px;
     color: #03014c;
-    width: 50%;
     padding: 0 2rem;
   }
 `;
@@ -95,6 +100,13 @@ export const InputLabel = styled.div`
   display: flex;
   flex-direction: column;
   width: 45%;
+
+  @media screen and (max-width: 900px) {
+    width: 100%;
+  }
+  @media screen and (max-width: 600px) {
+    width: 100%;
+  }
 `;
 export const Label = styled.label`
   font-family: Lato;
@@ -103,7 +115,7 @@ export const Label = styled.label`
   font-size: 13.3232px;
   line-height: 16px;
   color: #282828;
-  padding: 0 0 .5rem;
+  padding: 0 0 0.5rem;
 `;
 
 export const Img1 = styled.img`
@@ -138,6 +150,13 @@ export const InputDiv = styled.div`
   justify-content: space-between;
   align-items: center;
   gap: 1rem;
+  @media screen and (max-width: 900px) {
+    width: 100%;
+  }
+  @media screen and (max-width: 600px) {
+    width: 100%;
+    padding: 2rem 0;
+  }
 `;
 
 export const Input = styled.input`
@@ -153,7 +172,7 @@ export const Input = styled.input`
   border-radius: 8px;
   padding: 12px 0.75rem;
   width: 100%;
-    color: #282828;
+  color: #282828;
 
   &::placeholder {
     color: #282828;
@@ -175,12 +194,28 @@ export const CheckboxDiv = styled.div`
   justify-content: space-between;
   flex-wrap: wrap;
   width: 90%;
+
+  @media screen and (max-width: 600px) {
+    width: 100%;
+  }
 `;
 export const BtnDiv = styled.div`
   padding: 1rem 2rem;
   width: 50%;
-  @media screen and (max-width: 600px) {
+  
+  @media screen and (max-width: 900px) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 100%;
+    padding: 2rem 0;
+  }
+  @media screen and (max-width: 600px) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 2rem 0;
   }
 `;
 

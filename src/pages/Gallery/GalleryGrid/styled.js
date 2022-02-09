@@ -3,11 +3,15 @@ import styled from 'styled-components';
 const GalleryGridContainer = styled.div`
   width: 100%;
   display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
+  align-items: center;
+  justify-content: center;
   flex-wrap: wrap;
   gap: 1em;
-  flex: 1; ;
+  flex: 1;
+
+  @media screen and (max-width: 600px) {
+    flex-direction: column;
+  }
 `;
 
 export const CardGrid = styled.div`
@@ -16,6 +20,13 @@ export const CardGrid = styled.div`
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
+
+  @media screen and (max-width: 600px) {
+    width: 100%;
+  }
+  @media screen and (max-width: 900px) and (min-width: 600px) {
+    width: 32%;
+  }
 `;
 export const Card = styled.div`
   width: 100%;
@@ -23,6 +34,9 @@ export const Card = styled.div`
   margin-bottom: 2rem;
   background: #dddddd;
   border-radius: 8px;
+  @media screen and (max-width: 600px) {
+    height: auto;
+  }
 `;
 
 export const Button = styled.button`

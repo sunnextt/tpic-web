@@ -6,6 +6,10 @@ const CUContainer = styled.main`
   padding: 6rem 8rem;
   width: 100%;
   height: 100%;
+
+  @media screen and (max-width: 960px) {
+    padding: 4rem 2rem;
+  }
 `;
 
 export const Row = styled(_Row)`
@@ -25,10 +29,25 @@ export const ContactuHeadling = styled.div`
     line-height: 130%;
     color: #004221;
     text-align: left;
+
+    @media screen and (max-width: 600px) {
+      font-size: 34px;
+      text-align: center;
+    }
+  }
+  @media screen and (max-width: 600px) {
+    padding: 2rem;
   }
 `;
 export const ContactUsContentDiv = styled.div`
   width: 100%;
+
+  @media screen and (max-width: 600px) {
+    padding: 0 2rem;
+  }
+  @media screen and (max-width: 900px) {
+    padding: 0 2rem;
+  }
 
   h5 {
     font-style: normal;
@@ -37,6 +56,10 @@ export const ContactUsContentDiv = styled.div`
     line-height: 41px;
     color: #06040a;
     margin: 4rem 0;
+
+    @media screen and (max-width: 600px) {
+      font-size: 26px;
+    }
   }
 `;
 
@@ -44,6 +67,11 @@ export const InputLabel = styled.div`
   display: flex;
   flex-direction: column;
   width: 45%;
+
+  @media screen and (max-width: 960px) {
+    align-items: flex-start;
+    width: 100%;
+  }
 `;
 export const Label = styled.label`
   font-weight: 500;
@@ -77,12 +105,18 @@ export const StyledTextArea = styled.textarea`
 
   &::placeholder {
     color: #282828;
-      opacity: 0.6;
+    opacity: 0.6;
+  }
+
+  @media screen and (max-width: 600px) {
+    width: 100%;
+    padding-bottom: 0.5em;
+    font-size: 14px;
   }
 `;
 
 export const Input = styled.input`
-  font-weight: normal;
+  font-weight: 600;
   font-size: 18px;
   line-height: 32px;
   appearance: none;
@@ -98,6 +132,9 @@ export const Input = styled.input`
   border-bottom: 1px solid #ebe5db;
   margin-bottom: ${10 / 16}em;
   background: transparent;
+  color: #282828;
+  opacity: 0.6;
+
   &:focus,
   &:active {
     border-color: #1e96c8;
@@ -106,9 +143,14 @@ export const Input = styled.input`
 
   &::placeholder {
     color: #282828;
-    opacity: 0.6;
+    opacity: 0.4;
   }
 
+  @media screen and (max-width: 600px) {
+    width: 100%;
+    padding-bottom: 0.5em;
+    font-size: 14px;
+  }
 `;
 
 export const TextAreaDiv = styled.div`
@@ -132,6 +174,10 @@ export const CheckboxBtn = styled.div`
   flex-wrap: wrap;
   width: 90%;
   margin-bottom: 4rem;
+
+  @media screen and (max-width: 600px) {
+    gap: 2rem;
+  }
 `;
 
 export const Button = styled(StyleButton)``;

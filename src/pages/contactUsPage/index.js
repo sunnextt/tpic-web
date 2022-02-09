@@ -50,12 +50,12 @@ const ConatctPage = () => {
   return (
     <CUContainer>
       <Row>
-        <Col xs={8} sm={8} md={8} lg={8}>
+        <Col xs={24} sm={24} md={8} lg={8}>
           <ContactuHeadling>
             <h4>Feel free to contact us</h4>
           </ContactuHeadling>
         </Col>
-        <Col xs={16} sm={16} md={16} lg={16}>
+        <Col xs={24} sm={24} md={16} lg={16}>
           <ContactUsContentDiv>
             <h5>Send us a message</h5>
             <Row>

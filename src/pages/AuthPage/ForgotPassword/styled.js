@@ -4,6 +4,9 @@ import image from 'assets/png/maskcoilimg.png';
 import { Link as _Link } from 'react-router-dom';
 
 const LoginContainer = styled.main`
+  width: 100%;
+  height: 100vh;
+
   .align_item_center {
     display: flex;
     align-items: center;
@@ -49,6 +52,10 @@ const LoginContainer = styled.main`
       line-height: 32px;
       text-align: center;
       color: #004221;
+
+      @media screen and (max-width: 900px) {
+        font-size: 20px;
+      }
     }
   }
 
@@ -67,6 +74,10 @@ const LoginContainer = styled.main`
       font-size: 13.3232px;
       line-height: 16px;
     }
+  }
+
+  .col_style {
+    padding: 3rem 1rem 5rem;
   }
 `;
 
@@ -96,7 +107,8 @@ export const SideImageCon = styled.div`
 export const BackHomeLinkDiv = styled.div`
   position: absolute;
   bottom: 80px;
-  left: 60px;
+  left: 25px;
+  width: 100%;
 
   a {
     color: #ffffff;
@@ -107,6 +119,9 @@ export const BackHomeLinkDiv = styled.div`
     &:hover {
       color: #ffb400;
       transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1);
+    }
+    @media screen and (max-width: 900px) {
+      font-size: 18px;
     }
   }
 `;
@@ -144,6 +159,10 @@ export const Img = styled.img`
 export const Form = styled.form`
   width: 70%;
   margin: 0 auto;
+
+  @media screen and (max-width: 900px) {
+    width: 100%;
+  }
 `;
 
 export const InputDiv = styled.div`
@@ -169,6 +188,10 @@ export const Input = styled.input`
   padding: 16px 0.75rem;
   width: 100%;
   color: #282828;
+
+  @media screen and (max-width: 900px) {
+    padding: 10px 0.75rem;
+  }
 
   &::placeholder {
     color: #282828;

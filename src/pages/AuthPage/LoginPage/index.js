@@ -25,6 +25,7 @@ import { useDispatch } from 'react-redux';
 import { clearMessage } from 'redux/slice/MessageSlice';
 import { login } from 'redux/slice/AuthSlice';
 import { Spin } from 'antd';
+import { useMediaQuery } from 'usehooks-ts';
 
 const validationSchema = function (values) {
   return Yup.object().shape({
@@ -63,6 +64,7 @@ const getErrorsFromValidationError = (validationError) => {
 };
 
 const Login = () => {
+  const matches = useMediaQuery('(max-width: 600px)');
   const [value, setCheckbox] = useState(true);
   const [loading, setLoading] = useState(false);
   const [ErrorMessage, setErrorMessage] = useState('');
@@ -109,76 +111,140 @@ const Login = () => {
 
   return (
     <LoginContainer>
-      <Row>
-        <Col xs={9} sm={9} md={9} lg={9} className="side_column">
-          <SideImageCon>
-            <Img1 src={Image1} alt="img" />
-            <Img2 src={Image2} alt="img" />
-          </SideImageCon>
-          <BackHomeLinkDiv>
-            <Link to="/">Back to Home</Link>
-          </BackHomeLinkDiv>
-        </Col>
-        <Col xs={15} sm={15} md={15} lg={15} style={{ padding: '3rem 5rem 5rem' }}>
-          <div className="align_item_center">
-            <Img src={companyLogo} alt="company logo" />
-          </div>
-          <div className="form_container">
-            <Form className="styled_form" onSubmit={formik.handleSubmit}>
-              <h4>Login</h4>
-              <div className="text-danger">{ErrorMessage && ErrorMessage}</div>
-              <InputDiv>
-                <div className="form-group">
-                  <Input
-                    name="email"
-                    placeholder="Enter Email address"
-                    onChange={formik.handleChange}
-                    value={formik.values.email}
+      {matches ? (
+        <Row>
+          <Col span={24} style={{ padding: matches ? ' 3rem 1rem' : '3rem 5rem 5rem' }}>
+            <div className="align_item_center">
+              <Img src={companyLogo} alt="company logo" />
+            </div>
+            <div className="form_container">
+              <Form className="styled_form" onSubmit={formik.handleSubmit}>
+                <h4>Login</h4>
+                <div className="text-danger">{ErrorMessage && ErrorMessage}</div>
+                <InputDiv>
+                  <div className="form-group">
+                    <Input
+                      name="email"
+                      placeholder="Enter Email address"
+                      onChange={formik.handleChange}
+                      value={formik.values.email}
+                    />
+                    <div className="text-danger">{formik.errors.email ? formik.errors.email : null}</div>
+                  </div>
+                  <div className="form-group">
+                    <Input
+                      name="password"
+                      onChange={formik.handleChange}
+                      value={formik.values.password}
+                      placeholder="Password"
+                    />
+                    <div className="text-danger">{formik.errors.password ? formik.errors.password : null}</div>
+                  </div>
+                </InputDiv>
+                <div className="flex_space_btw">
+                  <Checkbox
+                    label="Remember Me"
+                    name="remember_me"
+                    value={value}
+                    checked={value}
+                    onClick={formik.handleReset}
+                    onChange={({ target }) => setCheckbox(!value)}
                   />
-                  <div className="text-danger">{formik.errors.email ? formik.errors.email : null}</div>
+                  <div>
+                    <Link to="/forgotpassword">Forgot Password?</Link>
+                  </div>
                 </div>
-                <div className="form-group">
-                  <Input
-                    name="password"
-                    onChange={formik.handleChange}
-                    value={formik.values.password}
-                    placeholder="Password"
+                <BtnDiv>
+                  <Button loading="disabled" type="submit" color="primary" width="fullWidth" padding="14px 20px">
+                    Login to Continue
+                  </Button>
+                </BtnDiv>
+                {loading && (
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <Spin />
+                  </div>
+                )}
+                <LinkToSignin>
+                  <h6>
+                    Don’t have an account ?<Link to="/register"> Register</Link>
+                  </h6>
+                </LinkToSignin>
+              </Form>
+            </div>
+          </Col>
+        </Row>
+      ) : (
+        <Row>
+          <Col xs={9} sm={9} md={9} lg={9} className="side_column">
+            <SideImageCon>
+              <Img1 src={Image1} alt="img" />
+              <Img2 src={Image2} alt="img" />
+            </SideImageCon>
+            <BackHomeLinkDiv>
+              <Link to="/">Back to Home</Link>
+            </BackHomeLinkDiv>
+          </Col>
+          <Col xs={15} sm={15} md={15} lg={15} style={{ padding: '3rem 5rem 5rem' }}>
+            <div className="align_item_center">
+              <Img src={companyLogo} alt="company logo" />
+            </div>
+            <div className="form_container">
+              <Form className="styled_form" onSubmit={formik.handleSubmit}>
+                <h4>Login</h4>
+                <div className="text-danger">{ErrorMessage && ErrorMessage}</div>
+                <InputDiv>
+                  <div className="form-group">
+                    <Input
+                      name="email"
+                      placeholder="Enter Email address"
+                      onChange={formik.handleChange}
+                      value={formik.values.email}
+                    />
+                    <div className="text-danger">{formik.errors.email ? formik.errors.email : null}</div>
+                  </div>
+                  <div className="form-group">
+                    <Input
+                      name="password"
+                      onChange={formik.handleChange}
+                      value={formik.values.password}
+                      placeholder="Password"
+                    />
+                    <div className="text-danger">{formik.errors.password ? formik.errors.password : null}</div>
+                  </div>
+                </InputDiv>
+                <div className="flex_space_btw">
+                  <Checkbox
+                    label="Remember Me"
+                    name="remember_me"
+                    value={value}
+                    checked={value}
+                    onClick={formik.handleReset}
+                    onChange={({ target }) => setCheckbox(!value)}
                   />
-                  <div className="text-danger">{formik.errors.password ? formik.errors.password : null}</div>
+                  <div>
+                    <Link to="/forgotpassword">Forgot Password?</Link>
+                  </div>
                 </div>
-              </InputDiv>
-              <div className="flex_space_btw">
-                <Checkbox
-                  label="Remember Me"
-                  name="remember_me"
-                  value={value}
-                  checked={value}
-                  onClick={formik.handleReset}
-                  onChange={({ target }) => setCheckbox(!value)}
-                />
-                <div>
-                  <Link to="/forgotpassword">Forgot Password?</Link>
-                </div>
-              </div>
-              <BtnDiv>
-                <Button loading="disabled" type="submit" color="primary" width="fullWidth">
-                  Login to Continue
-                </Button>
-              </BtnDiv>
-              {loading && (
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <Spin />
-                </div>
-              )}
-              <LinkToSignin>
-                <h6>
-                  Don’t have an account ?<Link to="/register"> Register</Link>
-                </h6>
-              </LinkToSignin>
-            </Form>
-          </div>
-        </Col>
-      </Row>
+                <BtnDiv>
+                  <Button loading="disabled" type="submit" color="primary" width="fullWidth">
+                    Login to Continue
+                  </Button>
+                </BtnDiv>
+                {loading && (
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <Spin />
+                  </div>
+                )}
+                <LinkToSignin>
+                  <h6>
+                    Don’t have an account ?<Link to="/register"> Register</Link>
+                  </h6>
+                </LinkToSignin>
+              </Form>
+            </div>
+          </Col>
+        </Row>
+      )}
     </LoginContainer>
   );
 };

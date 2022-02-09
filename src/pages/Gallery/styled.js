@@ -16,6 +16,10 @@ const GalleryPageContainer = styled.main`
       text-align: left;
     }
   }
+
+  @media screen and (max-width: 960px) {
+    padding: 4rem 2rem;
+  }
 `;
 
 export default GalleryPageContainer;
