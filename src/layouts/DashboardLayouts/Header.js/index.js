@@ -4,6 +4,8 @@ import { Layout } from 'antd';
 import BrandLogo from './BrandLogo/BrandLogo';
 import { AuthProfile } from './styled';
 import { useSelector } from 'react-redux';
+import { AiOutlineMenuFold, AiOutlineMenuUnfold } from 'react-icons/ai';
+
 const { Header } = Layout;
 
 const style = {
@@ -18,15 +20,22 @@ const style = {
   height: '80px',
 };
 
-const TopHeader = () => {
+const TopHeader = ({ collapsed, toggle, Breakpoint }) => {
   const { user: currentUser } = useSelector((state) => state.auth);
-
   const { data } = currentUser || {};
 
   const username = `${data && data.first_name} ${data && data.last_name}`;
 
   return (
     <Header className="header" style={style}>
+      {Breakpoint ? (
+        <>
+          {React.createElement(collapsed ? AiOutlineMenuFold : AiOutlineMenuUnfold, {
+            className: 'trigger',
+            onClick: toggle,
+          })}
+        </>
+      ) : null}
       <BrandLogo />
       <AuthProfile>
         <Avatar name={username} size={40} round />

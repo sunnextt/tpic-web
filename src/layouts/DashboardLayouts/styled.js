@@ -5,6 +5,20 @@ const MainLayout = styled(_Layout)`
   background: #f4f4f4;
   height: 100%;
 
+  .trigger {
+    font-size: 20px;
+    line-height: 64px;
+    cursor: pointer;
+    transition: color 0.3s;
+    position: absolute;
+    left: 10px;
+    color: #ffffff;
+
+    &:hover {
+      color: #ffb400;
+    }
+  }
+
   .ant-menu-inline.ant-menu-root .ant-menu-item > .ant-menu-title-content,
   .ant-menu-inline.ant-menu-root .ant-menu-submenu-title > .ant-menu-title-content {
     font-family: 'Lato', sans-serif;

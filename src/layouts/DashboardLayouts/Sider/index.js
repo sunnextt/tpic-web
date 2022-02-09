@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Layout, Menu } from 'antd';
 import { generatePath, useLocation } from 'react-router-dom';
 
@@ -8,7 +8,7 @@ import { logout } from 'redux/slice/AuthSlice';
 import eventBus from 'utils/common/EventBus';
 const { Sider } = Layout;
 
-const ASide = () => {
+const ASide = ({ collapsed, onBreakpoint, onCollapse }) => {
   let path = generatePath('/dashboard');
   const location = useLocation();
   const pathName = location.pathname;
@@ -35,7 +35,18 @@ const ASide = () => {
   }, [logOut]);
 
   return (
-    <Sider width={269} className="site-layout-background" style={{ minHeight: 'calc(100vh - 64px)', marginTop: 64 }}>
+    <Sider
+      width={269}
+      trigger={null}
+      collapsible
+      collapsed={collapsed}
+      className="site-layout-background"
+      style={{ minHeight: 'calc(100vh - 64px)', marginTop: 64 }}
+      breakpoint="lg"
+      collapsedWidth="0"
+      onBreakpoint={onBreakpoint}
+      onCollapse={onCollapse}
+    >
       <Menu
         mode="inline"
         defaultSelectedKeys={[`${mainPathSplit.length === 1 ? 1 : 2}`]}
