@@ -43,9 +43,10 @@ const NewsLetterWrapper = styled.div`
     position: relative;
     margin-bottom: 20px;
     background-color: transparent;
-    width: 100%;
+    width: 60%;
 
     @media screen and (max-width: 600px) {
+      width: 100%;
     }
   }
 
