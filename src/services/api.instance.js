@@ -2,7 +2,7 @@ import axios from 'axios';
 import ExpirySession from 'utils/expirysession';
 
 const instance = axios.create({
-  baseURL: 'http://178.128.253.236:8080/api/v1/user',
+  baseURL: 'https://api.tredkjlifters.com/api/v1/user',
   headers: {
     Accept: 'application/json',
     'Content-Type': 'application/json',
