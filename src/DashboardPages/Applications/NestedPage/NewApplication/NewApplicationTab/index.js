@@ -90,11 +90,13 @@ const AppTab = () => {
     setApplication_reason(value);
   };
 
+  const amount = 10000
+
   const config = {
     reference: new Date().getTime(),
     name: `${data && data.first_name} ${data && data.last_name}`,
     email: data && data.email,
-    amount: 10000,
+    amount,
     publicKey,
   };
 
