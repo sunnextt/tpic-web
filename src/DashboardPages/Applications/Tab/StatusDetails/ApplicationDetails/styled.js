@@ -10,13 +10,16 @@ const AppDetailsContainer = styled.div`
     display: flex;
     flex-direction: column;
     width: 80%;
+    @media screen and (max-width: 960px) {
+      width: 100%;
+    }
   }
 
   .application_reason {
     display: flex;
     justify-content: flex-start;
     margin: 0 8px;
-    gap: 5rem
+    gap: 5rem;
   }
 
   .pre_next_div {
@@ -28,7 +31,7 @@ const AppDetailsContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 4rem
+    gap: 4rem;
   }
 
   .react-select-container {

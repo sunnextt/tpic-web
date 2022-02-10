@@ -18,6 +18,10 @@ const FlexUploadDiv = styled.div`
     text-align: left;
     color: #abafb3;
   }
+
+  @media screen and (max-width: 600px) {
+    gap: 1rem;
+  }
 `;
 
 const FileUploadWrap = styled.div`
@@ -53,6 +57,15 @@ const Span = styled.span`
     padding: 0;
     text-transform: capitalize;
     line-height: 20px;
+  }
+
+  @media screen and (max-width: 600px) {
+    font-size: 14px;
+    padding: 10px 16px;
+
+    h6 {
+      font-size: 18px;
+    }
   }
 `;
 
@@ -115,6 +128,21 @@ const ButtonUpload = styled.button`
   color: #abafb3;
   cursor: pointer;
   font-style: normal;
+  @media screen and (max-width: 600px) {
+    font-size: 14px;
+    padding: 10px 1rem;
+    width: 100px;
+  }
+`;
+
+const UpDiv = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 3rem;
+  @media screen and (max-width: 600px) {
+    gap: 1rem;
+  }
 `;
 
 const FileUpload = ({
@@ -130,10 +158,8 @@ const FileUpload = ({
   setFieldValue,
 }) => {
   const onStart = (file) => {
-    console.log(setFieldValue);
-    setFieldValue(name, file)
+    setFieldValue(name, file);
   };
-
 
   return (
     <FileUploadWrap>
@@ -153,14 +179,14 @@ export const UploadButton = ({ uploadProps, label, component, name, className, s
       <Label>{label}</Label>
       <FlexUploadDiv>
         <UploadInput placeholder={filename ? filename : ''} />
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: '3rem' }}>
+        <UpDiv>
           <Upload {...uploadProps} component={component} name={name} className={className} style={style}>
             <ButtonUpload>{children}</ButtonUpload>
           </Upload>
           <Span color={status} background={status}>
             <h6>{status}</h6>
           </Span>
-        </div>
+        </UpDiv>
       </FlexUploadDiv>
     </FileUploadWrap>
   );

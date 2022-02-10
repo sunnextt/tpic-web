@@ -18,11 +18,10 @@ const Application = () => {
         <PageHeader className="ant-page-header" title="Applications" />
         <Button
           color="primary"
-          width="30%"
           radius="50px"
           fontSize="18px"
           lineHeight="21.6px"
-          padding="16px"
+          padding="16px 26px"
           height="50px"
           onClick={handleClick}
         >

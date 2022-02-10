@@ -9,7 +9,7 @@ const styleConfig = {
   completedBgColor: '#00A953',
   inactiveBgColor: '#FFFFFF',
   circleFontSize: 20,
-  labelFontSize: 16,
+  // labelFontSize: 16,
   borderRadius: 50,
   fontWeight: 600,
   size: 40,
@@ -41,10 +41,10 @@ const styleConfig = {
 //   fontWeight: React.ReactText;
 // }
 
-const connectorStyleConfig = {
+const ConnectorStyleProps = {
   disabledColor: '#cccccc',
   activeColor: '#00A953',
-  completedColor: '#00A953',
+  completedColor: '#a10308',
   size: 10,
   style: 'solid',
 };
@@ -62,10 +62,15 @@ const connectorStyleConfig = {
 const StepperWrap = ({ active }) => {
   return (
     <Stepper
-      steps={[{ label: 'Sumitted' }, { label: 'In Review' }, { label: 'Approved' }, { label: 'Funds Disbursed' }]}
-      activeStep={1}
+      steps={[
+        { label: 'Sumitted', completed: 'true' },
+        { label: 'In Review', completed: 'true' },
+        { label: 'Approved', completed: false },
+        { label: 'Funds Disbursed', completed: false },
+      ]}
+      activeStep={2}
       styleConfig={styleConfig}
-      connectorStyleConfig={connectorStyleConfig}
+      connectorStyleConfig={ConnectorStyleProps}
     />
   );
 };

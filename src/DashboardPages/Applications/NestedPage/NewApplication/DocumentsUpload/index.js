@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import FileUpload from 'components/FileUpload';
-import { Button } from 'antd';
-import { Button as ContinueButton } from 'components/Button';
-import { LinkButton } from 'components/Button/styled';
+import { useMediaQuery } from 'usehooks-ts';
 
 import DocumentsUploadContainer from './styled';
 
-const style = {
-  width: '80%',
-  position: 'relative',
-};
-
 const DocumentsUpload = ({ handleNext, handleSave, handlePrevious, setFieldValue, value }) => {
+  const matches = useMediaQuery('(max-width: 600px)');
+
+  const style = {
+    width: matches ? '100%' : '80%',
+    position: 'relative',
+  };
+
   const uploadProps = {
     multiple: false,
     beforeUpload(file) {},

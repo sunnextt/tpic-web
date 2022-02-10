@@ -32,8 +32,9 @@ const Container = styled.main`
     margin: 0 2rem 0 0 ;
     cursor: pointer;
 
-    @media screen and (max-width: 768px) {
+     @media screen and (max-width: 768px) {
       margin: 0 1rem;
+      padding: 6px 0rem 10px 0;
     }
   }
 
@@ -54,6 +55,7 @@ export const HeaderDiv = styled.div`
   align-items: 'center';
   justify-content: space-between;
   margin-bottom: 2rem;
+  flex-wrap: wrap;
 `;
 
 export default Container;

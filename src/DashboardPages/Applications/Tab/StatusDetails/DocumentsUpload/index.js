@@ -11,23 +11,11 @@ const style = {
 const DocumentsUpload = () => {
   const [fileDetails, setFileDetails] = useState([]);
 
-  console.log(fileDetails.filename);
-
   const uploadProps = {
-    // action: "/upload.do",
     multiple: false,
-    onStart(file) {
-      // console.log(file, file.name);
-    },
-    onSuccess(ret, file) {
-      // console.log('onSuccess', ret, file.name);
-    },
-    onError(err) {
-      // console.log('onError', err);
-    },
-    onProgress({ percent }, file) {
-      // console.log('onProgress', `${percent}%`, file.name);
-    },
+    // onStart(file) {
+    //   setFileDetails({ file: file, filename: file.name });
+    // },
     beforeUpload(file) {
       setFileDetails({ file: file, filename: file.name });
     },

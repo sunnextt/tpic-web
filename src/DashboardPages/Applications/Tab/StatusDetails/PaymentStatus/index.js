@@ -1,13 +1,16 @@
 import { Col, Row } from 'antd';
 import { StatusButton } from 'components/Button/styled';
 import React from 'react';
+import { useMediaQuery } from 'usehooks-ts';
 import PaymentStatusContainer, { ApplicationFeeDiv, FundDiv } from './styled';
 
 const PaymentStatus = () => {
+  const matches = useMediaQuery('(max-width: 760px)');
+
   return (
     <PaymentStatusContainer>
       <Row>
-        <Col xs={11} sm={11} md={11} lg={11}>
+        <Col xs={24} sm={24} md={11} lg={11}>
           <ApplicationFeeDiv>
             <h6 className="header">Application Fee</h6>
             <h4 className="fee_amount">N10,000</h4>
@@ -18,10 +21,12 @@ const PaymentStatus = () => {
             <StatusButton color="pending">Pending</StatusButton>
           </ApplicationFeeDiv>
         </Col>
-        <Col xs={1} sm={1} md={1} lg={1}>
-          <div className="divider" />
-        </Col>
-        <Col xs={11} sm={11} md={11} lg={11}>
+        {!matches && (
+          <Col xs={24} sm={1} md={1} lg={1}>
+            <div className="divider" />
+          </Col>
+        )}
+        <Col xs={24} sm={24} md={11} lg={11}>
           <FundDiv>
             <h6 className="header">Funds Requested</h6>
             <h4 className="fee_amount">N300,000</h4>

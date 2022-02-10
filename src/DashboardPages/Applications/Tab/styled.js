@@ -12,7 +12,11 @@ const ApplicationPageWrap = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 4rem
+    gap: 4rem;
+
+      @media screen and (max-width: 600px) {
+    row-gap: 6rem
+  }
   }
 
 
@@ -48,6 +52,7 @@ const ApplicationPageWrap = styled.div`
 
     @media screen and (max-width: 768px) {
       margin: 0 1rem;
+      padding: 6px 1rem 10px 0;
     }
   }
 

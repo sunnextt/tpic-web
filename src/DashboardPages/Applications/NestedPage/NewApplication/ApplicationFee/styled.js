@@ -3,9 +3,6 @@ import styled from 'styled-components';
 const ApplicationFeeContainer = styled.div`
   width: 100%;
 
-  .contents_btn_div {
-    width: 80%;
-  }
   .pre_next_div {
     display: flex;
     align-items: center;
@@ -30,6 +27,7 @@ const ApplicationFeeContainer = styled.div`
 
 export const CardDiv = styled.div`
   margin: 1rem 0;
+  width: 500px;
   h5 {
     font-weight: 600;
     font-size: 13.3232px;
@@ -54,6 +52,10 @@ export const CardDiv = styled.div`
     align-items: center;
     text-align: center;
     color: #717579;
+  }
+
+  @media screen and (max-width: 600px) {
+    width: 100%;
   }
 `;
 export const BtnDiv = styled.div`

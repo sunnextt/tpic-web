@@ -6,6 +6,10 @@ const SettingsContainer = styled.main`
 
 export const Form = styled.form`
   width: 60%;
+
+  @media screen and (max-width: 960px) {
+    width: 100%;
+  }
 `;
 
 export default SettingsContainer;

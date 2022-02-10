@@ -5,7 +5,7 @@ const StatusDetailsContainer = styled.div`
     margin-bottom: 2rem;
   }
   .RFS-ConnectorContainer {
-    top: calc(17px);
+    top: calc(16px);
     left: calc((-50% + 35px) - 15px);
     right: calc((50% + 35px) - 15px);
     position: absolute;

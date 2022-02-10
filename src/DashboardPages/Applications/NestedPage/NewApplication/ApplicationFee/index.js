@@ -1,18 +1,14 @@
-import { Card, Button } from 'antd';
-import { LinkButton } from 'components/Button/styled';
+import { Card } from 'antd';
 import Checkbox from 'components/Checkbox';
-import React, { useState } from 'react';
+import React from 'react';
 import ApplicationFeeContainer, { CardDiv } from './styled';
 
-const ApplicationFee = ({ handleSave, handlePrevious, errors }) => {
-  console.log(errors);
-  const [value, setCheckbox] = useState(true);
-
+const ApplicationFee = ({ isValid, onChange, values }) => {
   return (
     <ApplicationFeeContainer>
       <div className="aligh_item_center">
         <CardDiv>
-          <Card style={{ width: 500 }}>
+          <Card style={{ padding: '0 2rem' }}>
             <h5>Application Fee</h5>
             <h3>N10,000</h3>
             <h6>
@@ -25,11 +21,10 @@ const ApplicationFee = ({ handleSave, handlePrevious, errors }) => {
           path="/terms"
           link=" terms & conditions"
           label="Accept"
-          value={value}
-          checked={value}
-          onChange={({ target }) => setCheckbox(!value)}
+          name="acceptTerms"
+          onChange={onChange}
         />
-        {errors && (
+        {!isValid && (
           <div style={{ marginTop: 20, padding: 10, background: '#FFBABA' }} className="text-danger">
             All the form fields are required
           </div>

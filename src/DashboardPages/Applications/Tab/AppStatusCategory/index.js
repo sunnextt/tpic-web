@@ -20,8 +20,8 @@ const AppStatusTableCard = ({ paymentStatus, appStatus }) => {
  }
 
   return (
-    <TableContainer>
-      <Card bordered={false}>
+    <TableContainer style={{ whiteSpace: 'nowrap' }}>
+      <Card bordered={false} style={{ display: 'inline-block', width: '800px' }}>
         <Card.Grid hoverable={false} style={gridStyle}>
           <h6>App. ID</h6>
           <h5 className="app_id">#P-000441425</h5>

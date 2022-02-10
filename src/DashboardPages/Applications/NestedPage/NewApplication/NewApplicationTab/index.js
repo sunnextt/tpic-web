@@ -1,7 +1,7 @@
 import { Button, PageHeader } from 'antd';
 import AppSuccess from 'DashboardPages/Applications/ApplicationSuccess';
 import TabContainer from 'DashboardPages/Applications/Tab/styled';
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Tabs, TabList, Tab, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import styled from 'styled-components';
@@ -14,8 +14,14 @@ import { Formik } from 'formik';
 import { formInitialValues, validationSchema, validate } from '../FormModel/formInitialValue';
 import { LinkButton } from 'components/Button/styled';
 import { Button as ContinueButton } from 'components/Button';
-import { useDispatch } from 'react-redux';
-import { createApplication, getAllApplication } from 'redux/slice/applicationDataSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { createApplication } from 'redux/slice/applicationDataSlice';
+import { useMediaQuery } from 'usehooks-ts';
+
+import { usePaystackPayment } from 'react-paystack';
+
+import { publicKey } from '../../../../../paystack/PaystackPublickey';
+import { savePaymentHistory } from 'redux/slice/PaymentHistorySlice';
 
 // Tabs === <div>
 // Tablist === ul
@@ -38,12 +44,15 @@ const HeaderDiv = styled.div`
 `;
 
 const AppTab = () => {
+  const matches = useMediaQuery('(max-width: 760px)');
+  const { user: currentUser } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   let length = 3;
   const [success, setSuccess] = useState(false);
   const [tabIndex, setTabIndex] = useState(0);
   const [activeStep, setActiveStep] = useState(0);
   const isLastStep = activeStep === length;
+  const { data } = currentUser || {};
 
   const [application_reason, setApplication_reason] = useState('');
 
@@ -79,6 +88,31 @@ const AppTab = () => {
   const handleChangeInput = (e) => {
     const { value } = e.target;
     setApplication_reason(value);
+  };
+
+  const config = {
+    reference: new Date().getTime(),
+    name: `${data && data.first_name} ${data && data.last_name}`,
+    email: data && data.email,
+    amount: 10000,
+    publicKey,
+  };
+
+  const initializePayment = usePaystackPayment(config);
+
+  const onSuccess = (reference) => {
+    console.log(reference);
+    if (reference.status === 'success') {
+      const configOrder = {
+        name: 'name of order',
+      };
+
+      dispatch(savePaymentHistory(configOrder));
+    }
+  };
+
+  const onClose = () => {
+    console.log('closed');
   };
 
   const handleFormSubmit = (values, actions) => {
@@ -140,11 +174,11 @@ const AppTab = () => {
       })
       .catch((error) => {
         // setLoading(false);
+        initializePayment(onSuccess, onClose);
+
         console.log(error);
       });
   };
-
-  console.log(tabIndex);
 
   return (
     <TabContainer>
@@ -152,7 +186,7 @@ const AppTab = () => {
         <PageHeader className="ant-page-header" title="New Applications" />
       </HeaderDiv>
       <Formik initialValues={formInitialValues} validate={validate(validationSchema)} onSubmit={handleFormSubmit}>
-        {({ setFieldValue, handleSubmit, handleChange, values, errors }) => (
+        {({ setFieldValue, handleSubmit, handleChange, values, errors, isValid }) => (
           <form onSubmit={handleSubmit}>
             <Tabs className="tabs" selectedIndex={tabIndex} onSelect={onSelect}>
               <TabList className="tab_list">
@@ -207,7 +241,7 @@ const AppTab = () => {
                 <ApplicationFee
                   onChange={handleChange}
                   value={values}
-                  errors={errors}
+                  isValid={isValid}
                   setFieldValue={setFieldValue}
                   handlePrevious={previous}
                   handleSave={save}
@@ -217,11 +251,11 @@ const AppTab = () => {
             <div
               className="pre_next_div"
               style={{
-                width: '80%',
+                width: matches ? '100%' : '80%',
                 display: 'flex',
                 flexDirection: 'row',
                 flexWrap: 'wrap',
-                justifyContent: tabIndex !== 0 ? 'space-between' : 'flex-end'
+                justifyContent: tabIndex !== 0 ? 'space-between' : 'flex-end',
               }}
             >
               {tabIndex !== 0 && <Button onClick={previous}>Previous</Button>}

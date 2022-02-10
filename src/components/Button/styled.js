@@ -28,6 +28,10 @@ const ButtonWrap = styled.button`
     transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1);
     text-shadow: nthree;
   }
+
+  @media screen and (max-width: 600px) {
+    font-size: 14px;
+  }
 `;
 
 export const LinkButton = styled.button`

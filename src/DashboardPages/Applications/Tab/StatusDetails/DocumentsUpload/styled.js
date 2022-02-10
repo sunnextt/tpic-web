@@ -5,6 +5,9 @@ const DocumentsUploadContainer = styled.div`
 
   .filecontents {
     width: 100%;
+    @media screen and (max-width: 960px) {
+      width: 100%;
+    }
   }
 
   .pre_next_div {

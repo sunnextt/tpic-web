@@ -17,6 +17,9 @@ const PPCTs = styled.div`
   .form_container {
     width: 80%;
 
+    @media screen and (max-width: 960px) {
+      width: 100%;
+    }
   }
 `;
 
