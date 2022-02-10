@@ -1,5 +1,5 @@
 import { Button, PageHeader } from 'antd';
-import AppSuccess from 'DashboardPages/Applications/ApplicationSuccess';
+// import AppSuccess from 'DashboardPages/Applications/ApplicationSuccess';
 import TabContainer from 'DashboardPages/Applications/Tab/styled';
 import React, { useState, useEffect } from 'react';
 import { Tabs, TabList, Tab, TabPanel } from 'react-tabs';
