@@ -134,6 +134,7 @@ const Login = () => {
                   <div className="form-group">
                     <Input
                       name="password"
+                      type="password"
                       onChange={formik.handleChange}
                       value={formik.values.password}
                       placeholder="Password"

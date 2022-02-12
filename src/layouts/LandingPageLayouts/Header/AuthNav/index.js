@@ -5,7 +5,7 @@ const AuthNav = () => {
   return (
     <AuthNavDiv>
       <Link className="selected" to="/login">
-        login
+        Login
       </Link>
       <Link to="/register">Sign Up</Link>
     </AuthNavDiv>
