@@ -48,7 +48,7 @@ const LoginContainer = styled.main`
       font-family: Lato;
       font-style: normal;
       font-weight: bold;
-      font-size: 27px;
+      font-size: 1.93rem;
       line-height: 32px;
       text-align: center;
       color: #004221;
