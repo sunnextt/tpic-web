@@ -22,6 +22,10 @@ export const Img = styled.img`
   width: 100%;
   /* height: auto; */
   height: ${(props) => props.height || '229px'};
+
+  @media screen and (max-width: 600px) {
+    height: auto;
+  }
 `;
 
 export const CardGrid = styled.div`
