@@ -1,5 +1,5 @@
 import React, { Suspense, useEffect } from 'react';
-// import 'animate.css';
+import 'animate.css';
 import { Route, Routes } from 'react-router-dom';
 
 import './App.css';

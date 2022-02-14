@@ -16,6 +16,23 @@ export const Ul = styled.ul`
 export const Li = styled.li`
   padding: ${({ collapsed }) => (collapsed === true ? '2rem 0' : '1rem 16px')};
   text-align: ${({ collapsed }) => (collapsed === true ? 'center' : 'auto')};
+
+  a {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 150%;
+    color: #282828;
+
+    &:hover {
+      color: #282828;
+      padding: 0 0 1rem 0;
+      border-bottom: 4px solid #00a953;
+      border-radius: 4px;
+      transition: 0.3s;
+    }
+    text-transform: capitalize;
+  }
 `;
 
 export const Link = styled(_Link)`
@@ -34,6 +51,8 @@ export const Link = styled(_Link)`
   }
   text-transform: capitalize;
 `;
+
+
 export const FloatingNavWrap = styled.nav`
   display: ${({ collapsed }) => (collapsed === true ? 'block' : 'none')};
   .floating_nav {

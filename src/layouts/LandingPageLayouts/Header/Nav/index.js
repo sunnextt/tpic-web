@@ -10,7 +10,7 @@ const Nav = ({ collapsed }) => {
           <Link to="/">Home</Link>
         </Li>
         <Li>
-          <Link to="/">About Us</Link>
+          <a href="#about_us">About Us</a>
         </Li>
         <Li>
           <Link to="/gallery">Gallery</Link>

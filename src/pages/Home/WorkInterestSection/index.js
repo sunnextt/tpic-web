@@ -5,7 +5,7 @@ import { BsFillCircleFill } from 'react-icons/bs';
 
 const WorkInterestPage = () => {
   return (
-    <Container>
+    <Container id="about_us">
       <DivTitle className="animate__animated animate__bounce">
         <h4>
           Tired of loans with huge interest?
