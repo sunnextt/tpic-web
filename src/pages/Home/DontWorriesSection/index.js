@@ -1,7 +1,8 @@
 import { Col, Row } from 'antd';
 import React from 'react';
 import DWSectionContainer, { Img, ImgStrip } from './styled';
-import smilingLady from '../../../assets/png/smilingLady.png';
+// import smilingLady from '../../../assets/png/letgetstarted.png';
+import tredkjLogo from '../../../assets/png/letgetstarted.png';
 import goldenStrip from '../../../assets/png/goldenstrip.png';
 
 const DontworriesSection = () => {
@@ -15,7 +16,10 @@ const DontworriesSection = () => {
           lg={10}
           style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
         >
-          <Img src={smilingLady} alt="smilingLady" />
+          <div className="content_logo">
+
+          <Img src={tredkjLogo} alt="tredkjLogo" />
+          </div>
         </Col>
         <Col
           xs={24}

@@ -10,7 +10,6 @@ const HeroPage = () => {
       <Flex>
         <HeroContents>
           <div>
-            <h4>TREDKJ LIFTERS</h4>
             <h3>
               The lift you need <br />
               for <span>THE BOSS LIFE</span>

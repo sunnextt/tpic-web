@@ -6,7 +6,7 @@ import { BsFillCircleFill } from 'react-icons/bs';
 const WorkInterestPage = () => {
   return (
     <Container>
-      <DivTitle>
+      <DivTitle className="animate__animated animate__bounce">
         <h4>
           Tired of loans with huge interest?
           <br /> Look no further
@@ -17,85 +17,72 @@ const WorkInterestPage = () => {
       <DivContents>
         <Row gutter={[24, 24]}>
           <Col xs={24} sm={24} md={12} lg={12}>
-            <div className="col_contents">
+            <div className="col_contents animate__animated animate__fadeInLeft" style={{ alignSelf: 'flex-start' }}>
               <div className="icon_div">
                 <BsFillCircleFill size="36" color="#FFB400" />
               </div>
               <div className="contents_div">
                 <h6>Startups Businesses</h6>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                  dolore magna aliqua.
-                </p>
+                <p>Your every step counts; let’s get started already. Apply!</p>
               </div>
             </div>
           </Col>
           <Col xs={24} sm={24} md={12} lg={12}>
-            <div className="col_contents">
+            <div className="col_contents animate__animated animate__fadeInRight ">
               <div className="icon_div">
                 <BsFillCircleFill size="36" color="#00A953" />
               </div>
               <div className="contents_div">
                 <h6>Expansion</h6>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                  dolore magna aliqua.
-                </p>
+                <p>Growth is inevitable, grow right,grow with time and keep growing. Apply!</p>
               </div>
             </div>
           </Col>
           <Col xs={24} sm={24} md={12} lg={12}>
-            <div className="col_contents">
+            <div className="col_contents animate__animated animate__fadeInLeft">
               <div className="icon_div">
                 <BsFillCircleFill size="36" color="#00A953" />
               </div>
               <div className="contents_div">
                 <h6>Acquisition Learning</h6>
                 <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                  dolore magna aliqua.
+                  All knowledge is valid, more valid is the Skill acquired; the power and control handed to you. Apply!
                 </p>
               </div>
             </div>
           </Col>
           <Col xs={24} sm={24} md={12} lg={12}>
-            <div className="col_contents">
+            <div className="col_contents animate__animated animate__fadeInRight">
               <div className="icon_div">
                 <BsFillCircleFill size="36" color="#FFB400" />
               </div>
               <div className="contents_div">
                 <h6>Side Business for Job Owners</h6>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                  dolore magna aliqua.
-                </p>
+                <p>One job is never enough. Refused to be in the box. Be the Boss. Apply!</p>
               </div>
             </div>
           </Col>
           <Col xs={24} sm={24} md={12} lg={12}>
-            <div className="col_contents">
+            <div className="col_contents animate__animated animate__fadeInLeft">
               <div className="icon_div">
                 <BsFillCircleFill size="36" color="#FFB400" />
               </div>
               <div className="contents_div">
                 <h6>Multiple Income Stream Avenues</h6>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                  dolore magna aliqua.
-                </p>
+                <p>Life should never take you unaware, be equipped with streams of income. Every penny counts.Apply!</p>
               </div>
             </div>
           </Col>
           <Col xs={24} sm={24} md={12} lg={12}>
-            <div className="col_contents">
+            <div className="col_contents animate__animated animate__fadeInRight">
               <div className="icon_div">
                 <BsFillCircleFill size="36" color="#00A953" />
               </div>
               <div className="contents_div">
                 <h6>Tech Gurus</h6>
                 <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                  dolore magna aliqua.
+                  Technology is the new world order. What are you waiting for to apply and take the world like a storm.
+                  Apply!
                 </p>
               </div>
             </div>

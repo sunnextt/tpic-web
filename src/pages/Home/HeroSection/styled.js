@@ -40,7 +40,7 @@ export const HeroImage = styled.img`
 `;
 export const HeroSripeImg = styled.img`
   position: absolute;
-  top: 33%;
+  top: 40%;
   width: 78%;
   height: auto;
   left: 59%;
@@ -63,7 +63,7 @@ export const HeroContents = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: flex-start;
+  justify-content: center;
 
   @media screen and (max-width: 960px) {
     width: 100%;
@@ -94,6 +94,7 @@ export const HeroContents = styled.div`
     text-align: left;
     color: #004221;
     z-index: 1000;
+    /* margin-top: 2rem; */
     span {
       font-weight: 800;
     }

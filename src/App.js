@@ -1,4 +1,5 @@
 import React, { Suspense, useEffect } from 'react';
+// import 'animate.css';
 import { Route, Routes } from 'react-router-dom';
 
 import './App.css';
@@ -19,6 +20,8 @@ import ForgotPassword from 'pages/AuthPage/ForgotPassword';
 import RequireAuth from 'utils/requireAuth';
 import { useDispatch } from 'react-redux';
 import { getAllApplication } from 'redux/slice/applicationDataSlice';
+import Terms from 'pages/Terms';
+import TermsLayout from 'layouts/TermsLayout';
 
 function App() {
   const dispatch = useDispatch();
@@ -95,6 +98,14 @@ function App() {
             <AuthLayout>
               <Login />
             </AuthLayout>
+          }
+        />
+        <Route
+          path="/terms"
+          element={
+            <TermsLayout>
+              <Terms />
+            </TermsLayout>
           }
         />
         <Route

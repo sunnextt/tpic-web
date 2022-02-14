@@ -45,12 +45,17 @@ export const DivContents = styled.div`
   .col_contents {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     flex-direction: row;
     background: #ffffff;
     box-shadow: 0px 7px 25px rgba(143, 134, 196, 0.03);
     border-radius: 14px;
     padding: 1rem;
+/* 
+    @media screen and (min-width: 600px) {
+      display: flex;
+      justify-content: center;
+    } */
   }
 
   .icon_div {
@@ -67,6 +72,7 @@ export const DivContents = styled.div`
     line-height: 32px;
     letter-spacing: 0em;
     color: ${({ theme }) => theme.colors.darkColorSecondary};
+    text-align: left;
   }
 
   p {

@@ -10,8 +10,8 @@ const WhatWillDo = () => {
   return (
     <WWDContainer>
       <Row>
-        <Col xs={24} sm={24} md={24} lg={12} xl={12} >
-          <div className="content_one">
+        <Col xs={24} sm={24} md={24} lg={12} xl={12}>
+          <div className="content_one animate__animated animate__fadeInDown">
             <h4>We provide you with your first step-needs to entrepreneurship </h4>
             <h6>
               We are all about growth, support, entrepreneurship, smart working, impact on both local and global level,
@@ -20,10 +20,10 @@ const WhatWillDo = () => {
             </h6>
           </div>
         </Col>
-        <Col xs={24} sm={24} md={24} lg={12} xl={12} >
-          <div className="content_two">
+        <Col xs={24} sm={24} md={24} lg={12} xl={12}>
+          <div className="content_two animate__animated animate__fadeInDown">
             <h4>
-              <FrameImg src={Frame} alt="frame"/>
+              <FrameImg src={Frame} alt="frame" />
               We are solutions
             </h4>
             <h6>

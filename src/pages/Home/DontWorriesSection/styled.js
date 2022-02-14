@@ -6,6 +6,10 @@ const DWSectionContainer = styled.section`
   background: ${({ theme }) => theme.colors.colorGreenPrimary};
   color: ${({ theme }) => theme.colors.colorWhite};
 
+  .content_logo {
+    background-color: white;
+  }
+
   .section_contents {
     position: relative;
     display: flex;

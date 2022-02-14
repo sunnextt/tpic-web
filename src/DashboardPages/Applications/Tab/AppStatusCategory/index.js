@@ -24,7 +24,9 @@ const AppStatusTableCard = ({ paymentStatus, appStatus }) => {
       <Card bordered={false} style={{ display: 'inline-block', width: '800px' }}>
         <Card.Grid hoverable={false} style={gridStyle}>
           <h6>App. ID</h6>
-          <h5 className="app_id">#P-000441425</h5>
+          <LinkButton onClick={handleStatusDetails}>
+            <h5 className="app_id">#P-000441425</h5>
+          </LinkButton>
         </Card.Grid>
         <Card.Grid hoverable={false} style={appTypeStyle}>
           <h6>App. Type</h6>

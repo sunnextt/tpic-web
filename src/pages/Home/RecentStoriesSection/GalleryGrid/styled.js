@@ -12,10 +12,22 @@ const GalleryGridContainer = styled.div`
   @media screen and (max-width: 600px) {
     flex-direction: column;
   }
+
+  .btn_gallery {
+    padding: 1rem 0;
+  }
+`;
+
+export const Img = styled.img`
+  width: 100%;
+  /* height: auto; */
+  height: ${(props) => props.height || '229px'};
+
 `;
 
 export const CardGrid = styled.div`
   width: 23.99%;
+  height: auto;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -28,18 +40,19 @@ export const CardGrid = styled.div`
     width: 32%;
   }
 `;
-export const Card = styled.div`
-  width: 100%;
-  height: ${(props) => props.height || '229px'};
-  margin-bottom: 2rem;
-  background: #dddddd;
-  border-radius: 8px;
-  @media screen and (max-width: 600px) {
-    height: auto;
-  }
-`;
+// export const Card = styled.div`
+//   width: 100%;
+//   height: ${(props) => props.height || '229px'};
+//   margin-bottom: 2rem;
+//   background: #dddddd;
+//   border-radius: 8px;
+//   @media screen and (max-width: 600px) {
+//     height: auto;
+//   }
+// `;
 
 export const Button = styled.button`
+  display: inline-block;
   background: #d6e4dd;
   border-radius: 8px;
   font-family: Lato;
