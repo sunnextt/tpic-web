@@ -7,7 +7,7 @@ const GalleryGrid = () => {
       <CardGrid>
         <Img
           height="314px"
-          src="https://images.pexels.com/photos/4067759/pexels-photo-4067759.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+          src="https://images.pexels.com/photos/2157885/pexels-photo-2157885.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
           alt="randon img"
         />
         <div className="btn_gallery">
@@ -16,7 +16,7 @@ const GalleryGrid = () => {
       </CardGrid>
       <CardGrid>
         <Img
-          src="https://images.pexels.com/photos/4067759/pexels-photo-4067759.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+          src="https://images.pexels.com/photos/1234853/pexels-photo-1234853.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
           alt="randon img"
         />
         <div className="btn_gallery">
@@ -26,7 +26,7 @@ const GalleryGrid = () => {
       <CardGrid>
         <Img
           height="314px"
-          src="https://images.pexels.com/photos/4067759/pexels-photo-4067759.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+          src="https://images.pexels.com/photos/278664/pexels-photo-278664.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
           alt="randon img"
         />
         <div className="btn_gallery">
@@ -35,7 +35,7 @@ const GalleryGrid = () => {
       </CardGrid>
       <CardGrid>
         <Img
-          src="https://images.pexels.com/photos/4067759/pexels-photo-4067759.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+          src="https://images.pexels.com/photos/2158562/pexels-photo-2158562.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
           alt="randon img"
         />
         <div className="btn_gallery">
