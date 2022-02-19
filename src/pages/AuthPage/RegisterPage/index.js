@@ -234,7 +234,7 @@ const Register = () => {
                         </div>
                       </div>
                       <BtnDiv>
-                        <Button type="submit" color="primary" padding='14px 20px' width="fullWidth">
+                        <Button type="submit" color="primary" padding="14px 20px" width="fullWidth">
                           Create Account
                         </Button>
                         {loading && (

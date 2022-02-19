@@ -130,6 +130,7 @@ export const formInitialValues = {
   [business_plan.name]: '',
   [passport.name]: '',
   [proof_of_address.name]: '',
+  acceptTerms: false,
 };
 
 export const validationSchema = function (values) {

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-
+import { Link as _Link } from 'react-router-dom';
 const ButtonWrap = styled.button`
   display: block;
   width: ${({ width }) => (width === 'fullWidth' ? '100%' : `${width}`)};
@@ -35,6 +35,25 @@ const ButtonWrap = styled.button`
 `;
 
 export const LinkButton = styled.button`
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  font-family: Lato;
+  font-style: normal;
+  font-weight: 600;
+  font-size: ${({ fontSize }) => (fontSize ? fontSize : '17.9886px')};
+  line-height: 22px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #00a953;
+
+  &:hover {
+    color: #ffb400;
+    transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1);
+  }
+`;
+export const LinkDot = styled(_Link)`
   border: none;
   background-color: transparent;
   cursor: pointer;

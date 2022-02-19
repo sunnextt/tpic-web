@@ -19,9 +19,9 @@ import Dashboard from 'routes';
 import ForgotPassword from 'pages/AuthPage/ForgotPassword';
 import RequireAuth from 'utils/requireAuth';
 import { useDispatch } from 'react-redux';
-import { getAllApplication } from 'redux/slice/applicationDataSlice';
 import Terms from 'pages/Terms';
 import TermsLayout from 'layouts/TermsLayout';
+import { getAllApplication } from 'redux/slice/applicationDataSlice';
 
 function App() {
   const dispatch = useDispatch();

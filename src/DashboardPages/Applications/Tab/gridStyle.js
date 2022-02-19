@@ -1,5 +1,5 @@
 export const gridStyle = {
-  width: '17%',
+  width: '15%',
   textAlign: 'left',
   padding: '1.5rem 1rem',
   boxShadow: 'none',
@@ -14,7 +14,7 @@ export const statusStyle = {
   boxShadow: 'none',
 };
 export const appTypeStyle = {
-  width: '14%',
+  width: '20%',
   textAlign: 'left',
   padding: '1.5rem 1rem',
   boxShadow: 'none',

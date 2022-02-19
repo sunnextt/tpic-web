@@ -10,7 +10,7 @@ const ApplicationsRoute = () => {
     <Routes>
       <Route path="/*" element={<Application />} />
       <Route path="/newapplication" element={<NewApplication />} />
-      <Route path="/statusdetails" element={<StatusDetails />} />
+      <Route path="/statusdetails/:id" element={<StatusDetails />} />
     </Routes>
   );
 };

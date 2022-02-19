@@ -49,7 +49,7 @@ const ASide = ({ collapsed, onBreakpoint, onCollapse }) => {
     >
       <Menu
         mode="inline"
-        defaultSelectedKeys={[`${mainPathSplit.length === 1 ? 1 : 2}`]}
+        defaultSelectedKeys={[`${mainPathSplit.length === 2 ? 2 : mainPathSplit.length !== 3 ? 1 : 1}`]}
         style={{ height: '100%', borderRight: 0, padding: '4rem 0 0 ' }}
       >
         <Menu.Item key="1">

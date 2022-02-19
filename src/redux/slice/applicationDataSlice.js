@@ -2,8 +2,9 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import applicationService from 'services/user.service';
 
 export const getApplicationById = createAsyncThunk('users/application', async ({ id }, { rejectWithValue }) => {
+  console.log('the id:', id);
   try {
-    const response = await applicationService.getApplicationById({ id });
+    const response = await applicationService.getApplicationById(id);
     return response;
   } catch (err) {
     let error = err; // cast the error for access
@@ -86,8 +87,7 @@ export const createApplication = createAsyncThunk(
 );
 
 const initialState = {
-  application: null,
-  userapplication: {},
+  SingleApplication: {},
   userAllapplication: {},
   createapp: {},
   error: null,
@@ -96,11 +96,7 @@ const initialState = {
 const createApplicationSlice = createSlice({
   name: 'Application',
   initialState: initialState,
-  reducers: {
-    createApplication: (state, action) => {
-      state.application = action.payload.data;
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder.addCase(createApplication.fulfilled, (state, { payload }) => {
       state.createapp = payload;
@@ -113,7 +109,7 @@ const createApplicationSlice = createSlice({
       }
     });
     builder.addCase(getApplicationById.fulfilled, (state, { payload }) => {
-      state.userapplication = payload;
+      state.SingleApplication = payload;
     });
     builder.addCase(getApplicationById.rejected, (state, action) => {
       if (action.payload) {

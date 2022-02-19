@@ -166,7 +166,7 @@ const FileUpload = ({
       <Label>{label}</Label>
       <Upload {...uploadProps} component={component} name={name} className={className} style={style} onStart={onStart}>
         <Input placeholder={filename ? filename : ''} />
-        <Button>{children}</Button>
+        <Button type="button">{children}</Button>
       </Upload>
       {description && <span>{description}</span>}
     </FileUploadWrap>
@@ -181,7 +181,7 @@ export const UploadButton = ({ uploadProps, label, component, name, className, s
         <UploadInput placeholder={filename ? filename : ''} />
         <UpDiv>
           <Upload {...uploadProps} component={component} name={name} className={className} style={style}>
-            <ButtonUpload>{children}</ButtonUpload>
+            <ButtonUpload type="button">{children}</ButtonUpload>
           </Upload>
           <Span color={status} background={status}>
             <h6>{status}</h6>

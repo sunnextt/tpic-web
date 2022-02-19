@@ -4,8 +4,13 @@ import { PageHeader } from 'antd';
 import AppTab from './Tab';
 import Button from 'components/Button';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const Application = () => {
+  const {
+    userAllapplication: { data },
+  } = useSelector((state) => state.application);
+
   const Navigate = useNavigate();
 
   const handleClick = () => {
@@ -28,7 +33,7 @@ const Application = () => {
           + New Application
         </Button>
       </HeaderDiv>
-      <AppTab />
+      <AppTab data={data && data} />
     </Container>
   );
 };

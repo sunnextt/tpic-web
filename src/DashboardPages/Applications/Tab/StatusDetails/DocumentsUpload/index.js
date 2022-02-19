@@ -8,7 +8,7 @@ const style = {
   position: 'relative',
 };
 
-const DocumentsUpload = () => {
+const DocumentsUpload = ({data}) => {
   const [fileDetails, setFileDetails] = useState([]);
 
   const uploadProps = {
@@ -31,7 +31,7 @@ const DocumentsUpload = () => {
           className="className"
           uploadProps={uploadProps}
           component="div"
-          filename={fileDetails.filename}
+          filename={data.business_plan}
           status="rejected"
         >
           Choose File
@@ -43,7 +43,7 @@ const DocumentsUpload = () => {
           className="className"
           uploadProps={uploadProps}
           component="div"
-          filename={fileDetails.filename}
+          filename={data.means_of_identification}
           status="approved"
         >
           Choose File
@@ -55,7 +55,7 @@ const DocumentsUpload = () => {
           className="className"
           uploadProps={uploadProps}
           component="div"
-          filename={fileDetails.filename}
+          filename={data.passport}
           status="approved"
         >
           Choose File
@@ -67,7 +67,7 @@ const DocumentsUpload = () => {
           className="className"
           uploadProps={uploadProps}
           component="div"
-          filename={fileDetails.filename}
+          filename={data.proof_of_address}
           status="approved"
         >
           Choose File

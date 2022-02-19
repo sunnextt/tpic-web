@@ -6,7 +6,9 @@ const getAllApplication = async () => {
 };
 
 const getApplicationById = async (id) => {
+  console.log(id);
   const response = await tredjkAuthApi.get(`application/${id}`);
+  console.log(response);
   return response.data;
 };
 const submitApplicationForm = async (
@@ -30,48 +32,32 @@ const submitApplicationForm = async (
   state,
   application_reason,
 ) => {
-  console.log(
-    address,
-    amount_needed,
-    bank_account_number,
-    bank_name,
-    business_plan,
-    country,
-    email,
-    firstname,
-    funding_reason,
-    id_number,
-    lastname,
-    means_of_identification,
-    passport,
-    phone,
-    previous_business_details,
-    previous_business_name,
-    proof_of_address,
-    state,
-    application_reason,
-  );
-  const response = await tredjkAuthApi.post(`application/create`, {
-    address,
-    amount_needed,
-    bank_account_number,
-    bank_name,
-    business_plan,
-    country,
-    email,
-    firstname,
-    funding_reason,
-    id_number,
-    lastname,
-    means_of_identification,
-    passport,
-    phone,
-    previous_business_details,
-    previous_business_name,
-    proof_of_address,
-    state,
-    application_reason,
-  });
+  let formData = new FormData();
+  formData.append('address', address);
+  formData.append('amount_needed', amount_needed);
+  formData.append('bank_account_number', bank_account_number);
+  formData.append('business_plan', business_plan);
+  formData.append('bank_name', bank_name);
+  formData.append('country', country);
+  formData.append('email', email);
+  formData.append('firstname', firstname);
+  formData.append('funding_reason', funding_reason);
+  formData.append('id_number', id_number);
+  formData.append('lastname', lastname);
+  formData.append('phone', phone);
+  formData.append('previous_business_details', previous_business_details);
+  formData.append('previous_business_name', previous_business_name);
+  formData.append('state', state);
+  formData.append('application_reason', application_reason);
+  formData.append('application_reason[reason]', application_reason.reason);
+  formData.append('application_reason[name]', application_reason.name);
+  formData.append('application_reason[type]', application_reason.type);
+  formData.append('means_of_identification', means_of_identification, means_of_identification.name);
+  formData.append('business_plan', business_plan, means_of_identification.name);
+  formData.append('passport', passport, means_of_identification.name);
+  formData.append('proof_of_address', proof_of_address, means_of_identification.name);
+
+  const response = await tredjkAuthApi.post(`application/create`, formData);
   return response.data;
 };
 

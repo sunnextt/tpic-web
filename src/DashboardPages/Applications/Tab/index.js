@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Tabs, TabList, Tab, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import TableCard from './AllStatus.js';
@@ -14,10 +14,26 @@ const CustomTab = ({ children, selectedClassName, className, selected }) => (
 
 CustomTab.tabsRole = 'Tab';
 
-const AppTab = () => {
+const AppTab = ({ data }) => {
+  const [review, setReview] = useState('');
+  const [rejected, setRejected] = useState('');
+  const [approved, setApproved] = useState('');
+
+  useEffect(() => {
+    if (data) {
+      const dataReview = data.filter((data) => data.application_status === 'In Review');
+      const dataRejected = data.filter((data) => data.application_status === 'Rejected');
+      const dataApproved = data.filter((data) => data.application_status === 'Approved');
+      setReview(dataReview);
+      setRejected(dataRejected);
+      setApproved(dataApproved);
+    }
+  }, [data, setReview]);
+
+
   return (
     <TabContainer>
-      <Tabs className="tabs" >
+      <Tabs className="tabs">
         <TabList className="tab_list">
           <CustomTab className="custom_typo" selected="selected">
             All Status
@@ -33,16 +49,16 @@ const AppTab = () => {
           </CustomTab>
         </TabList>
         <TabPanel className="tab_panel" style={{ overflow: 'auto' }}>
-          <TableCard appStatus="incomplete" paymentStatus="pending" />
-        </TabPanel >
+          <TableCard appStatus="incomplete" paymentStatus="pending" data={data} />
+        </TabPanel>
         <TabPanel style={{ overflow: 'auto' }}>
-          <AppStatusTableCard appStatus="incomplete" paymentStatus="pending" />
+          <AppStatusTableCard appStatus="incomplete" paymentStatus="pending" data={review} />
         </TabPanel>
-        <TabPanel  style={{ overflow: 'auto' }}>
-          <AppStatusTableCard appStatus="approved" paymentStatus="successful" />
+        <TabPanel style={{ overflow: 'auto' }}>
+          <AppStatusTableCard appStatus="approved" paymentStatus="successful" data={rejected} />
         </TabPanel>
-        <TabPanel  style={{ overflow: 'auto' }}>
-          <AppStatusTableCard appStatus="rejected" paymentStatus="successful" />
+        <TabPanel style={{ overflow: 'auto' }}>
+          <AppStatusTableCard appStatus="rejected" paymentStatus="successful" data={approved} />
         </TabPanel>
       </Tabs>
     </TabContainer>

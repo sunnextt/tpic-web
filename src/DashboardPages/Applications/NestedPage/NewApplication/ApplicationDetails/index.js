@@ -1,7 +1,5 @@
-import { Button, Radio } from 'antd';
-import { LinkButton } from 'components/Button/styled';
+import { Radio } from 'antd';
 import { Input, InputDiv, InputLabel, Label, StyledTextArea, TextAreaDiv } from 'components/Input';
-import { Button as ContinueButton } from 'components/Button';
 import ReactSelect from 'components/ReactSelect';
 import React, { useState } from 'react';
 import AppDetailsContainer from './styled';
@@ -29,8 +27,13 @@ const ApplicationDetails = ({ handleChangeInput, handlePrevious, onChange, value
   ];
 
   const AMOUNToptions = [
-    { value: '5000', label: '5000' },
-    { value: '20000', label: '20000' },
+    { value: '25000', label: '25000' },
+    { value: '50000', label: '50000' },
+    { value: '75000', label: '75000' },
+    { value: '100000', label: '100000' },
+    { value: '200000', label: '200000' },
+    { value: '500000', label: '500000' },
+    { value: '1000000', label: '1000000' },
   ];
 
   const styles = {
@@ -164,3 +167,7 @@ const ApplicationDetails = ({ handleChangeInput, handlePrevious, onChange, value
 };
 
 export default ApplicationDetails;
+
+// <Amountfees>
+//   <h6>₦25,000 - ₦50,000</h6>
+// </Amountfees>;

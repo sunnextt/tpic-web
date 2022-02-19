@@ -10,6 +10,8 @@ import ApplicationFee from '../ApplicationFee';
 import DocumentsUpload from '../DocumentsUpload';
 import PersonalProfile from '../PersonalProfile';
 
+import { toast, ToastContainer } from 'react-toastify';
+
 import { Formik } from 'formik';
 import { formInitialValues, validationSchema, validate } from '../FormModel/formInitialValue';
 import { LinkButton } from 'components/Button/styled';
@@ -22,11 +24,8 @@ import { usePaystackPayment } from 'react-paystack';
 
 import { publicKey } from '../../../../../paystack/PaystackPublickey';
 import { savePaymentHistory } from 'redux/slice/PaymentHistorySlice';
-
-// Tabs === <div>
-// Tablist === ul
-// Tab === li
-// TabPanel === <div>
+import instance from 'services/api.instance';
+import { formateDate } from 'utils/formatDate';
 
 const CustomTab = ({ children, selectedClassName, className, selected }) => (
   <Tab selectedClassName={selectedClassName} selected={selected}>
@@ -49,6 +48,8 @@ const AppTab = () => {
   const dispatch = useDispatch();
   let length = 3;
   const [success, setSuccess] = useState(false);
+  const [error, setError] = useState('');
+  const [amount, setAmount] = useState(0);
   const [tabIndex, setTabIndex] = useState(0);
   const [activeStep, setActiveStep] = useState(0);
   const isLastStep = activeStep === length;
@@ -57,6 +58,18 @@ const AppTab = () => {
   const [application_reason, setApplication_reason] = useState('');
 
   const onSelect = (index) => setTabIndex(index);
+
+  const toastConfig = {
+    position: 'bottom-center',
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+  };
+
+  const notify = (message) => toast.success(message, toastConfig);
 
   const previous = () => {
     setActiveStep(activeStep - 1);
@@ -90,7 +103,7 @@ const AppTab = () => {
     setApplication_reason(value);
   };
 
-  const amount = 10000
+  console.log(amount);
 
   const config = {
     reference: new Date().getTime(),
@@ -102,24 +115,9 @@ const AppTab = () => {
 
   const initializePayment = usePaystackPayment(config);
 
-  const onSuccess = (reference) => {
-    console.log(reference);
-    if (reference.status === 'success') {
-      const configOrder = {
-        name: 'name of order',
-      };
-
-      dispatch(savePaymentHistory(configOrder));
-    }
-  };
-
-  const onClose = () => {
-    console.log('closed');
-  };
-
-  const handleFormSubmit = (values, actions) => {
-    console.log(values);
+  const handleFormSubmit = (values) => {
     const {
+      amount,
       address,
       amount_needed,
       bank_account_number,
@@ -142,48 +140,94 @@ const AppTab = () => {
       skills_acquisition,
     } = values;
 
-    dispatch(
-      createApplication({
-        address,
-        amount_needed,
-        bank_account_number,
-        bank_name,
-        business_plan,
-        country,
-        email,
-        firstname,
-        funding_reason,
-        id_number,
-        lastname,
-        means_of_identification,
-        passport,
-        phone,
-        previous_business_details,
-        previous_business_name,
-        proof_of_address,
-        state,
-        application_reason: {
-          reason: application_reason,
-          name: previous_business_name ? previous_business_name : skills_acquisition,
-          type: skills_type,
-        },
-      }),
-    )
-      .unwrap()
-      .then((res) => {
-        // setLoading(false);
-        console.log(res);
-      })
-      .catch((error) => {
-        // setLoading(false);
-        initializePayment(onSuccess, onClose);
+    if (amount) {
+      setAmount(amount);
+    }
 
-        console.log(error);
-      });
+    initializePayment(
+      (reference) => {
+        console.log(reference);
+        if (reference.status === 'success') {
+          const date = new Date();
+
+          const configOrder = {
+            user_id: reference.trxref,
+            application_id: '123',
+            payer_name: `${data && data.first_name} ${data && data.last_name}`,
+            amount,
+            payment_reference_no: reference.reference,
+            email: data && data.email,
+            payment_date: formateDate(date),
+          };
+
+          instance
+            .post('application/payment', configOrder)
+            .then((res) => {
+              console.log(res.data);
+              dispatch(savePaymentHistory(res.data));
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+
+          dispatch(
+            createApplication({
+              address,
+              amount_needed,
+              bank_account_number,
+              bank_name,
+              business_plan,
+              country,
+              email,
+              firstname,
+              funding_reason,
+              id_number,
+              lastname,
+              means_of_identification,
+              passport,
+              phone,
+              previous_business_details,
+              previous_business_name,
+              proof_of_address,
+              state,
+              application_reason: {
+                reason: application_reason,
+                name: previous_business_name ? previous_business_name : skills_acquisition,
+                type: skills_type,
+              },
+            }),
+          )
+            .unwrap()
+            .then((res) => {
+              console.log(res);
+              notify(res.message);
+            })
+            .catch((err) => {
+              console.log(err);
+              setError(err.error);
+              notify(err.error);
+            });
+        }
+      },
+      () => {
+        console.log('closed');
+      },
+    );
   };
 
   return (
     <TabContainer>
+      <ToastContainer
+        position="bottom-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <HeaderDiv>
         <PageHeader className="ant-page-header" title="New Applications" />
       </HeaderDiv>
@@ -263,7 +307,12 @@ const AppTab = () => {
               {tabIndex !== 0 && <Button onClick={previous}>Previous</Button>}
               <div className="flex_space_btw">
                 <LinkButton onClick={save}>Save & finish later</LinkButton>
-                <ContinueButton onClick={continueform} type="submit" color="primary" padding="16px 36px">
+                <ContinueButton
+                  onClick={continueform}
+                  type={tabIndex === 3 ? 'submit' : 'button'}
+                  color="primary"
+                  padding="16px 36px"
+                >
                   {tabIndex === 3 ? 'Pay Now' : 'Continue'}
                 </ContinueButton>
               </div>
