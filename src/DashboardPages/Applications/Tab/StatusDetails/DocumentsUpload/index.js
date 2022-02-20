@@ -8,14 +8,12 @@ const style = {
   position: 'relative',
 };
 
-const DocumentsUpload = ({data}) => {
+const DocumentsUpload = ({ data, doc }) => {
   const [fileDetails, setFileDetails] = useState([]);
+  console.log(doc);
 
   const uploadProps = {
     multiple: false,
-    // onStart(file) {
-    //   setFileDetails({ file: file, filename: file.name });
-    // },
     beforeUpload(file) {
       setFileDetails({ file: file, filename: file.name });
     },

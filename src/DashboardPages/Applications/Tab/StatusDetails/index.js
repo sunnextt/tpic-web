@@ -12,7 +12,7 @@ import { PageHeader } from 'antd';
 import Container, { HeaderDiv } from 'DashboardPages/Applications/styled';
 import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { getApplicationById } from 'redux/slice/applicationDataSlice';
+import { getApplicationById, getOneApplicationDocumentById } from 'redux/slice/applicationDataSlice';
 
 const CustomTab = ({ children, selectedClassName, className, selected }) => (
   <Tab selectedClassName={selectedClassName} selected={selected}>
@@ -26,6 +26,7 @@ const StatusDetails = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const [singleData, setSingleData] = useState();
+  const [singleDoc, setSingleDoc] = useState();
 
   React.useEffect(() => {
     dispatch(getApplicationById({ id }))
@@ -37,8 +38,17 @@ const StatusDetails = () => {
       .catch((error) => {
         console.log(error);
       });
+
+    dispatch(getOneApplicationDocumentById({ id }))
+      .unwrap()
+      .then((res) => {
+        setSingleDoc(res.data);
+      })
+
+      .catch((error) => {
+        console.log(error);
+      });
   }, [dispatch, id]);
-  console.log(singleData);
 
   let active = 2;
   return (
@@ -50,7 +60,7 @@ const StatusDetails = () => {
         <StatusDetailsContainer>
           <StatusHeading>Status</StatusHeading>
           <div className="margin_bottom">
-            <StepperWrap active={active} />
+            <StepperWrap active={active} data={singleData} />
           </div>
           <TabWrapper>
             <Tabs className="tabs">
@@ -78,7 +88,7 @@ const StatusDetails = () => {
                 <ApplicationDetails data={singleData} />
               </TabPanel>
               <TabPanel>
-                <DocumentsUpload data={singleData} />
+                <DocumentsUpload data={singleData} doc={singleDoc} />
               </TabPanel>
               <TabPanel>
                 <PaymentStatus data={singleData} />

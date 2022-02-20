@@ -6,12 +6,11 @@ const getAllApplication = async () => {
 };
 
 const getApplicationById = async (id) => {
-  console.log(id);
   const response = await tredjkAuthApi.get(`application/${id}`);
-  console.log(response);
   return response.data;
 };
 const submitApplicationForm = async (
+  application_fees,
   address,
   amount_needed,
   bank_account_number,
@@ -34,6 +33,7 @@ const submitApplicationForm = async (
 ) => {
   let formData = new FormData();
   formData.append('address', address);
+  formData.append('application_fees', application_fees);
   formData.append('amount_needed', amount_needed);
   formData.append('bank_account_number', bank_account_number);
   formData.append('business_plan', business_plan);
@@ -61,10 +61,28 @@ const submitApplicationForm = async (
   return response.data;
 };
 
+const getOneApplicationDocumentById = async (id) => {
+  const response = await tredjkAuthApi.get(`application/document/${id}`);
+  return response.data;
+};
+const updateUserProfile = async (first_name, last_name, email, phone_number, password, password_confirmation) => {
+  const response = await tredjkAuthApi.post(`profile/update`, {
+    first_name,
+    last_name,
+    email,
+    phone_number,
+    password,
+    password_confirmation,
+  });
+  return response.data;
+};
+
 const applicationService = {
   getAllApplication,
   getApplicationById,
   submitApplicationForm,
+  getOneApplicationDocumentById,
+  updateUserProfile,
 };
 
 export default applicationService;

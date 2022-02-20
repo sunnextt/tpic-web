@@ -1,4 +1,5 @@
 import React, { Suspense, useEffect } from 'react';
+import 'react-toastify/dist/ReactToastify.css';
 import 'animate.css';
 import { Route, Routes } from 'react-router-dom';
 

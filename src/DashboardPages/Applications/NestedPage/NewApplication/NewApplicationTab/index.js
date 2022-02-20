@@ -49,7 +49,7 @@ const AppTab = () => {
   let length = 3;
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState('');
-  const [amount, setAmount] = useState(0);
+  const [amountFees, setAmountFees] = useState(0);
   const [tabIndex, setTabIndex] = useState(0);
   const [activeStep, setActiveStep] = useState(0);
   const isLastStep = activeStep === length;
@@ -103,13 +103,11 @@ const AppTab = () => {
     setApplication_reason(value);
   };
 
-  console.log(amount);
-
   const config = {
     reference: new Date().getTime(),
     name: `${data && data.first_name} ${data && data.last_name}`,
     email: data && data.email,
-    amount,
+    amount: amountFees,
     publicKey,
   };
 
@@ -141,78 +139,81 @@ const AppTab = () => {
     } = values;
 
     if (amount) {
-      setAmount(amount);
+      setAmountFees(amount);
     }
 
-    initializePayment(
-      (reference) => {
-        console.log(reference);
-        if (reference.status === 'success') {
-          const date = new Date();
+    if (amountFees !== 0) {
+      console.log(amountFees);
+      initializePayment(
+        (reference) => {
+          console.log(reference);
+          if (reference.status === 'success') {
+            const date = new Date();
 
-          const configOrder = {
-            user_id: reference.trxref,
-            application_id: '123',
-            payer_name: `${data && data.first_name} ${data && data.last_name}`,
-            amount,
-            payment_reference_no: reference.reference,
-            email: data && data.email,
-            payment_date: formateDate(date),
-          };
+            const configOrder = {
+              user_id: reference.trxref,
+              application_id: '123',
+              payer_name: `${data && data.first_name} ${data && data.last_name}`,
+              amount,
+              payment_reference_no: reference.reference,
+              email: data && data.email,
+              payment_date: formateDate(date),
+            };
 
-          instance
-            .post('application/payment', configOrder)
-            .then((res) => {
-              console.log(res.data);
-              dispatch(savePaymentHistory(res.data));
-            })
-            .catch((error) => {
-              console.log(error);
-            });
+            instance
+              .post('application/payment', configOrder)
+              .then((res) => {
+                console.log(res.data);
+                dispatch(savePaymentHistory(res.data));
+              })
+              .catch((error) => {
+                console.log(error);
+              });
 
-          dispatch(
-            createApplication({
-              address,
-              amount_needed,
-              bank_account_number,
-              bank_name,
-              business_plan,
-              country,
-              email,
-              firstname,
-              funding_reason,
-              id_number,
-              lastname,
-              means_of_identification,
-              passport,
-              phone,
-              previous_business_details,
-              previous_business_name,
-              proof_of_address,
-              state,
-              application_reason: {
-                reason: application_reason,
-                name: previous_business_name ? previous_business_name : skills_acquisition,
-                type: skills_type,
-              },
-            }),
-          )
-            .unwrap()
-            .then((res) => {
-              console.log(res);
-              notify(res.message);
-            })
-            .catch((err) => {
-              console.log(err);
-              setError(err.error);
-              notify(err.error);
-            });
-        }
-      },
-      () => {
-        console.log('closed');
-      },
-    );
+            dispatch(
+              createApplication({
+                application_fees: amountFees,
+                address,
+                amount_needed,
+                bank_account_number,
+                bank_name,
+                business_plan,
+                country,
+                email,
+                firstname,
+                funding_reason,
+                id_number,
+                lastname,
+                means_of_identification,
+                passport,
+                phone,
+                previous_business_details,
+                previous_business_name,
+                proof_of_address,
+                state,
+                application_reason: {
+                  reason: application_reason,
+                  name: previous_business_name ? previous_business_name : skills_acquisition,
+                  type: skills_type,
+                },
+              }),
+            )
+              .unwrap()
+              .then((res) => {
+                console.log(res);
+                notify(res.message);
+              })
+              .catch((err) => {
+                console.log(error);
+                setError(err.error);
+              });
+          }
+        },
+        () => {
+          console.log('closed');
+        },
+      );
+    }
   };
 
   return (
@@ -292,6 +293,9 @@ const AppTab = () => {
                   handlePrevious={previous}
                   handleSave={save}
                 />
+                <div className="text-danger" style={{ textAlign: 'center', fontSize: '1rem', fontWeight: 'bold' }}>
+                  {error !== '' && error}
+                </div>
               </TabPanel>
             </Tabs>
             <div

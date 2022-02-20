@@ -2,7 +2,6 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import applicationService from 'services/user.service';
 
 export const getApplicationById = createAsyncThunk('users/application', async ({ id }, { rejectWithValue }) => {
-  console.log('the id:', id);
   try {
     const response = await applicationService.getApplicationById(id);
     return response;
@@ -27,10 +26,49 @@ export const getAllApplication = createAsyncThunk('users/allApplication', async 
     return rejectWithValue(error.response.data);
   }
 });
+
+export const getOneApplicationDocumentById = createAsyncThunk(
+  'users/applicationDocument',
+  async ({ id }, { rejectWithValue }) => {
+    try {
+      const response = await applicationService.getOneApplicationDocumentById(id);
+      return response;
+    } catch (err) {
+      let error = err; // cast the error for access
+      if (!error.response) {
+        throw err;
+      }
+      return rejectWithValue(error.response.data);
+    }
+  },
+);
+export const updateUserProfile = createAsyncThunk(
+  'users/updateUserProfile',
+  async ({ first_name, last_name, email, phone_number, password, password_confirmation }, { rejectWithValue }) => {
+    try {
+      const response = await applicationService.updateUserProfile(
+        first_name,
+        last_name,
+        email,
+        phone_number,
+        password,
+        password_confirmation,
+      );
+      return response;
+    } catch (err) {
+      let error = err; // cast the error for access
+      if (!error.response) {
+        throw err;
+      }
+      return rejectWithValue(error.response.data);
+    }
+  },
+);
+
 export const createApplication = createAsyncThunk(
   'users/createApplication',
   async (
-    {
+    {application_fees,
       address,
       amount_needed,
       bank_account_number,
@@ -55,6 +93,7 @@ export const createApplication = createAsyncThunk(
   ) => {
     try {
       const response = await applicationService.submitApplicationForm(
+        application_fees,
         address,
         amount_needed,
         bank_account_number,
@@ -90,6 +129,8 @@ const initialState = {
   SingleApplication: {},
   userAllapplication: {},
   createapp: {},
+  userDocument: {},
+  updateInfo: {},
   error: null,
 };
 
@@ -122,6 +163,26 @@ const createApplicationSlice = createSlice({
       state.userAllapplication = payload;
     });
     builder.addCase(getAllApplication.rejected, (state, action) => {
+      if (action.payload) {
+        state.error = action.payload.errorMessage;
+      } else {
+        state.error = action.error.message;
+      }
+    });
+    builder.addCase(getOneApplicationDocumentById.fulfilled, (state, { payload }) => {
+      state.userDocument = payload;
+    });
+    builder.addCase(getOneApplicationDocumentById.rejected, (state, action) => {
+      if (action.payload) {
+        state.error = action.payload.errorMessage;
+      } else {
+        state.error = action.error.message;
+      }
+    });
+    builder.addCase(updateUserProfile.fulfilled, (state, { payload }) => {
+      state.updateInfo = payload;
+    });
+    builder.addCase(updateUserProfile.rejected, (state, action) => {
       if (action.payload) {
         state.error = action.payload.errorMessage;
       } else {

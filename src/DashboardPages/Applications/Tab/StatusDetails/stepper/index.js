@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Stepper } from 'react-form-stepper';
+import { StepKey } from 'utils/getStepKey';
 
 const styleConfig = {
   activeTextColor: '#ffffff',
@@ -59,16 +60,19 @@ const ConnectorStyleProps = {
 //   style: string;
 // }
 
-const StepperWrap = ({ active }) => {
+const StepperWrap = ({ active, data }) => {
+  const [ActiveSstep, SetActiveSstep] = useState();
+
+  useEffect(() => {
+    if (data) {
+      SetActiveSstep(data.application_status);
+    }
+  }, [data]);
+
   return (
     <Stepper
-      steps={[
-        { label: 'Sumitted', completed: 'true' },
-        { label: 'In Review', completed: 'true' },
-        { label: 'Approved', completed: false },
-        { label: 'Funds Disbursed', completed: false },
-      ]}
-      activeStep={2}
+      steps={[{ label: 'Sumitted' }, { label: 'In Review' }, { label: 'Approved' }, { label: 'Funds Disbursed' }]}
+      activeStep={StepKey(ActiveSstep)}
       styleConfig={styleConfig}
       connectorStyleConfig={ConnectorStyleProps}
     />
