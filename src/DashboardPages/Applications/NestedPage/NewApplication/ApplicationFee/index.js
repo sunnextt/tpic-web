@@ -1,23 +1,28 @@
 import { Card } from 'antd';
-import Checkbox from 'components/Checkbox';
 import React, { useEffect, useState } from 'react';
 import { getfeesAmount } from 'utils/getFeesAmount';
 import ApplicationFeeContainer, { CardDiv } from './styled';
 
-const ApplicationFee = ({ isValid, onChange, value, setFieldValue }) => {
+const ApplicationFee = ({ value, setFieldValue }) => {
   const [valueAmount, setValueAmount] = useState(0);
 
   useEffect(() => {
     if (value) {
-      setValueAmount(value.amount_needed);
+      if (value.acceptTerms === true) {
+        setValueAmount(getfeesAmount(value.amount_needed));
+
+        if (valueAmount !== 0) {
+          setFieldValue('amount', valueAmount);
+        }
+      }
     }
-  }, [value]);
+  }, [setFieldValue, value, valueAmount]);
 
   useEffect(() => {
-    if (valueAmount) {
-      setFieldValue('amount', getfeesAmount(valueAmount));
+    if (valueAmount !== 0) {
+      setFieldValue('amount', valueAmount);
     }
-  }, [setFieldValue, valueAmount]);
+  }, [setFieldValue, value.acceptTerms, valueAmount]);
 
   return (
     <ApplicationFeeContainer>
@@ -32,19 +37,6 @@ const ApplicationFee = ({ isValid, onChange, value, setFieldValue }) => {
             </h6>
           </Card>
         </CardDiv>
-        <Checkbox
-          path="/terms"
-          link=" terms & conditions"
-          label="Accept"
-          name="acceptTerms"
-          onChange={onChange}
-          value={value.acceptTerms}
-        />
-        {!isValid && (
-          <div style={{ marginTop: 20, padding: 10, background: '#FFBABA' }} className="text-danger">
-            All the form fields are required
-          </div>
-        )}
       </div>
     </ApplicationFeeContainer>
   );

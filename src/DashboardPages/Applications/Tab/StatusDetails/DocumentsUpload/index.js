@@ -9,7 +9,7 @@ const style = {
 };
 
 const DocumentsUpload = ({ data, doc }) => {
-  const [fileDetails, setFileDetails] = useState([]);
+  const [setFileDetails] = useState([]);
   console.log(doc);
 
   const uploadProps = {

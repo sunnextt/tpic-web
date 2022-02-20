@@ -1,12 +1,11 @@
-import { Button as ContinueButton } from 'components/Button';
 import { Formdiv, Input, InputDiv, InputLabel, Label } from 'components/Input';
 import ReactSelect from 'components/ReactSelect';
 import React from 'react';
-import PPCTs, { LinkButton, SaveAndContBtnDiv } from './styled';
+import PPCTs from './styled';
 
 const colourStyles = {};
 
-const PersonalProfile = ({ handleNext, handleSave, onChange, value, errors, setFieldValue }) => {
+const PersonalProfile = ({ onChange, value, errors, setFieldValue }) => {
   const stateOptions = [
     { value: 'lag', label: 'Lagos' },
     { value: 'oy', label: 'oyo' },

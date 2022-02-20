@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import FileUpload from 'components/FileUpload';
 import { useMediaQuery } from 'usehooks-ts';
 

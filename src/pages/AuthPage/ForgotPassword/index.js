@@ -1,5 +1,5 @@
 import { Col, Row } from 'antd';
-import React, { useState } from 'react';
+import React from 'react';
 import LoginContainer, {
   Form,
   Img,
@@ -49,7 +49,6 @@ const getErrorsFromValidationError = (validationError) => {
 };
 
 const ForgotPassword = () => {
-
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -80,7 +79,7 @@ const ForgotPassword = () => {
           </div>
           <div className="form_container">
             <Form className="styled_form" onSubmit={formik.handleSubmit}>
-              <h4>Forgot  Password?</h4>
+              <h4>Forgot Password?</h4>
               <InputDiv>
                 <div className="form-group">
                   <Label>Email</Label>

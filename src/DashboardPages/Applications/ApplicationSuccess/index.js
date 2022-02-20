@@ -13,7 +13,9 @@ const AppSuccess = () => {
             Thank you for applying your application will be reviewed by our team. You can always check back anytime to
             see the status of your application.
           </h6>
-          <Button padding="16px 36px">View Status</Button>
+          <Button padding="16px 36px" href="/dashboard">
+            View Status
+          </Button>
         </div>
       </Card>
     </AppSuccessContainer>

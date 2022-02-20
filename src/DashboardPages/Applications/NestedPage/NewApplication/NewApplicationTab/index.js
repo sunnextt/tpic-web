@@ -1,5 +1,5 @@
 import { Button, PageHeader } from 'antd';
-// import AppSuccess from 'DashboardPages/Applications/ApplicationSuccess';
+import AppSuccess from 'DashboardPages/Applications/ApplicationSuccess';
 import TabContainer from 'DashboardPages/Applications/Tab/styled';
 import React, { useState, useEffect } from 'react';
 import { Tabs, TabList, Tab, TabPanel } from 'react-tabs';
@@ -9,6 +9,8 @@ import ApplicationDetails from '../ApplicationDetails';
 import ApplicationFee from '../ApplicationFee';
 import DocumentsUpload from '../DocumentsUpload';
 import PersonalProfile from '../PersonalProfile';
+
+import Checkbox from 'components/Checkbox';
 
 import { toast, ToastContainer } from 'react-toastify';
 
@@ -76,7 +78,7 @@ const AppTab = () => {
     setTabIndex(activeStep - 1);
   };
   const save = () => {
-    setSuccess(true);
+    // setSuccess(true);
   };
   const continueform = () => {
     if (isLastStep) {
@@ -87,10 +89,6 @@ const AppTab = () => {
       setTabIndex(activeStep + 1);
     }
   };
-
-  if (success) {
-    console.log('save');
-  }
 
   useEffect(() => {
     if (tabIndex) {
@@ -113,7 +111,7 @@ const AppTab = () => {
 
   const initializePayment = usePaystackPayment(config);
 
-  const handleFormSubmit = (values) => {
+  const handleFormSubmit = async (values) => {
     const {
       amount,
       address,
@@ -138,15 +136,9 @@ const AppTab = () => {
       skills_acquisition,
     } = values;
 
-    if (amount) {
-      setAmountFees(amount);
-    }
-
     if (amountFees !== 0) {
-      console.log(amountFees);
       initializePayment(
         (reference) => {
-          console.log(reference);
           if (reference.status === 'success') {
             const date = new Date();
 
@@ -163,7 +155,6 @@ const AppTab = () => {
             instance
               .post('application/payment', configOrder)
               .then((res) => {
-                console.log(res.data);
                 dispatch(savePaymentHistory(res.data));
               })
               .catch((error) => {
@@ -200,21 +191,24 @@ const AppTab = () => {
             )
               .unwrap()
               .then((res) => {
-                console.log(res);
                 notify(res.message);
+                setSuccess(true);
               })
               .catch((err) => {
-                console.log(error);
                 setError(err.error);
               });
           }
         },
         () => {
-          console.log('closed');
+          setSuccess(true);
         },
       );
     }
   };
+
+  if (success) {
+    return <AppSuccess />;
+  }
 
   return (
     <TabContainer>
@@ -257,7 +251,6 @@ const AppTab = () => {
                   errors={errors}
                   setFieldValue={setFieldValue}
                   handlePrevious={previous}
-                  handleSave={save}
                   handleNext={continueform}
                 />
               </TabPanel>
@@ -289,10 +282,35 @@ const AppTab = () => {
                   onChange={handleChange}
                   value={values}
                   isValid={isValid}
+                  errors={errors}
                   setFieldValue={setFieldValue}
                   handlePrevious={previous}
                   handleSave={save}
                 />
+                <div
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    marginBottom: '2rem',
+                  }}
+                >
+                  <Checkbox
+                    path="/terms"
+                    link=" terms & conditions"
+                    label="Accept"
+                    name="acceptTerms"
+                    onChange={handleChange}
+                    value={values.acceptTerms}
+                  />
+                  {!isValid && (
+                    <div style={{ marginTop: 20, padding: 10, background: '#FFBABA' }} className="text-danger">
+                      All the form fields are required
+                    </div>
+                  )}
+                  {isValid && setAmountFees(values.amount)}
+                </div>
                 <div className="text-danger" style={{ textAlign: 'center', fontSize: '1rem', fontWeight: 'bold' }}>
                   {error !== '' && error}
                 </div>

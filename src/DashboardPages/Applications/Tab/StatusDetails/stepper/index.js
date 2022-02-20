@@ -16,31 +16,7 @@ const styleConfig = {
   size: 40,
 };
 
-// export interface StepperProps extends React.HTMLProps<HTMLDivElement> {
-//   steps?: StepDTO[];
-//   activeStep?: number;
-//   connectorStateColors?: boolean;
-//   stepClassName?: string;
-//   styleConfig?: StepStyleDTO;
-//   connectorStyleConfig?: ConnectorStyleProps;
-//   hideConnectors?: boolean | 'inactive';
-//   nonLinear?: boolean;
-// }
 
-// export interface StepStyleDTO {
-//   [key: string]: any;
-//   activeBgColor: string;
-//   activeTextColor: string;
-//   completedBgColor: string;
-//   completedTextColor: strsing;
-//   inactiveBgColor: string;
-//   inactiveTextColor: string;
-//   size: React.ReactText;
-//   circleFontSize: React.ReactText;
-//   labelFontSize: React.ReactText;
-//   borderRadius: React.ReactText;
-//   fontWeight: React.ReactText;
-// }
 
 const ConnectorStyleProps = {
   disabledColor: '#cccccc',
@@ -49,16 +25,6 @@ const ConnectorStyleProps = {
   size: 10,
   style: 'solid',
 };
-
-// export interface ConnectorStyleProps {
-//   [key: string]: any;
-//   disabledColor: string;
-//   activeColor: string;
-//   completedColor: string;
-//   size: React.ReactText;
-//   stepSize?: React.ReactText;
-//   style: string;
-// }
 
 const StepperWrap = ({ active, data }) => {
   const [ActiveSstep, SetActiveSstep] = useState();
