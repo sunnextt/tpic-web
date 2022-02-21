@@ -25,17 +25,21 @@ CustomTab.tabsRole = 'Tab';
 const StatusDetails = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
   const [singleData, setSingleData] = useState();
   const [singleDoc, setSingleDoc] = useState();
 
   React.useEffect(() => {
+    setLoading(true);
     dispatch(getApplicationById({ id }))
       .unwrap()
       .then((res) => {
+        setLoading(false);
         setSingleData(res.data);
       })
 
       .catch((error) => {
+        setLoading(false);
         console.log(error);
       });
 
@@ -51,6 +55,10 @@ const StatusDetails = () => {
   }, [dispatch, id]);
 
   let active = 2;
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
   return (
     <Container>
       <HeaderDiv>

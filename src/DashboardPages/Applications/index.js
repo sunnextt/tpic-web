@@ -29,6 +29,7 @@ const Application = () => {
           padding="16px 26px"
           height="50px"
           onClick={handleClick}
+          disabled={data !== undefined || null || '' || [] || (data !== {} && 'disabled')}
         >
           + New Application
         </Button>
