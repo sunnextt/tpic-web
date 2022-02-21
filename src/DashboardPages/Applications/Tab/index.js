@@ -49,16 +49,16 @@ const AppTab = ({ data }) => {
           </CustomTab>
         </TabList>
         <TabPanel className="tab_panel" style={{ overflow: 'auto' }}>
-          <TableCard appStatus="incomplete" paymentStatus="pending" data={data} />
+          <TableCard  data={data} />
         </TabPanel>
         <TabPanel style={{ overflow: 'auto' }}>
-          <AppStatusTableCard appStatus="incomplete" paymentStatus="pending" data={review} />
+          <AppStatusTableCard  data={review} />
         </TabPanel>
         <TabPanel style={{ overflow: 'auto' }}>
-          <AppStatusTableCard appStatus="approved" paymentStatus="successful" data={rejected} />
+          <AppStatusTableCard  data={rejected} />
         </TabPanel>
         <TabPanel style={{ overflow: 'auto' }}>
-          <AppStatusTableCard appStatus="rejected" paymentStatus="successful" data={approved} />
+          <AppStatusTableCard  data={approved} />
         </TabPanel>
       </Tabs>
     </TabContainer>

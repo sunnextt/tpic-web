@@ -30,7 +30,7 @@ const ApplicationFee = ({ value, setFieldValue }) => {
         <CardDiv>
           <Card style={{ padding: '0 2rem' }}>
             <h5>Application Fee</h5>
-            <h3>₦{value ? getfeesAmount(value.amount_needed) : 0}</h3>
+            <h3>₦{new Intl.NumberFormat().format(value ? getfeesAmount(value.amount_needed) : 0)}</h3>
             <h6>
               The application fee allows us process your application and run background checks. The fee is
               non-refundable.

@@ -22,9 +22,9 @@ const TableCard = ({ data }) => {
               <Card bordered={false} style={{ display: 'inline-block', width: '100%', minWidth: '879px' }}>
                 <Card.Grid hoverable={false} style={gridStyle}>
                   <h6>App. ID</h6>
-                  <LinkButton onClick={handleStatusDetails}>
+                  <LinkDot to={`/dashboard/statusdetails/${data.id}`}>
                     <h5 className="app_id">{data.id_number}</h5>
-                  </LinkButton>
+                  </LinkDot>
                 </Card.Grid>
                 <Card.Grid hoverable={false} style={appTypeStyle}>
                   <h6>App. Type</h6>
@@ -36,7 +36,7 @@ const TableCard = ({ data }) => {
                 </Card.Grid>
                 <Card.Grid hoverable={false} style={gridStyle}>
                   <h6>Fund Requested</h6>
-                  <h5>NGN {data.amount_needed}</h5>
+                  <h5>NGN {new Intl.NumberFormat().format(data.amount_needed)}</h5>
                 </Card.Grid>
                 <Card.Grid hoverable={false} style={paymentStyle}>
                   <h6>Payment</h6>

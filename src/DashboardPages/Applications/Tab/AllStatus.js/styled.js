@@ -45,6 +45,19 @@ const TableContainer = styled.div`
     text-align: center;
     text-transform: capitalize;
   }
+
+  .successful {
+    color: #00a953;
+    background: #deffe7;
+    padding: 8px 20px;
+    border-radius: 8px;
+    border: none;
+    margin-top: 1.5rem;
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 16px;
+    text-align: center;
+  }
   .review {
     color: #2db3ff;
     background: #e4f5ff;

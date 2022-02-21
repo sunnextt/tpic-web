@@ -13,7 +13,9 @@ const PaymentStatus = ({ data }) => {
         <Col xs={24} sm={24} md={11} lg={11}>
           <ApplicationFeeDiv>
             <h6 className="header">Application Fee</h6>
-            <h4 className="fee_amount">₦{data.application_fees === null ? 0 : data.application_fees}</h4>
+            <h4 className="fee_amount">
+              ₦{new Intl.NumberFormat().format(data.amount_needed === null ? 0 : data.amount_needed)}
+            </h4>
             <h6 className="fee_content">
               The application fee allows us process your application and run background checks. The fee is
               non-refundable.
@@ -29,7 +31,9 @@ const PaymentStatus = ({ data }) => {
         <Col xs={24} sm={24} md={11} lg={11}>
           <FundDiv>
             <h6 className="header">Funds Requested</h6>
-            <h4 className="fee_amount">₦{data.amount_needed === null ? 0 : data.amount_needed}</h4>
+            <h4 className="fee_amount">
+              ₦{new Intl.NumberFormat().format(data.amount_needed === null ? 0 : data.amount_needed)}
+            </h4>
             <div>
               <span className="fee_content">
                 If approved, disbursment takes between 2 to 5 working days. If by then you havnt recieved your funds.{' '}
