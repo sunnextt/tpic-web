@@ -101,7 +101,7 @@ const AppTab = () => {
     setApplication_reason(value);
   };
 
-  console.log(data)
+  console.log(data);
 
   const config = {
     reference: new Date().getTime(),
@@ -146,7 +146,7 @@ const AppTab = () => {
 
             const configOrder = {
               user_id: data.id,
-              application_id:reference.trxref,
+              application_id: reference.trxref,
               payer_name: `${data && data.first_name} ${data && data.last_name}`,
               amount,
               payment_reference_no: reference.reference,
@@ -202,7 +202,7 @@ const AppTab = () => {
           }
         },
         () => {
-          setSuccess(true);
+          // console.log('close')
         },
       );
     }

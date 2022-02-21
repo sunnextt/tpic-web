@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Container, { HeaderDiv } from './styled';
 import { PageHeader } from 'antd';
 import AppTab from './Tab';
@@ -13,9 +13,19 @@ const Application = () => {
 
   const Navigate = useNavigate();
 
+  const [ddata, setDdata] = useState('');
+
   const handleClick = () => {
     Navigate('newapplication');
   };
+
+  useEffect(() => {
+    setDdata(data);
+  }, [data]);
+
+  console.log(ddata ? ddata.length : null);
+  if (ddata === '') {
+  }
 
   return (
     <Container>
@@ -29,7 +39,7 @@ const Application = () => {
           padding="16px 26px"
           height="50px"
           onClick={handleClick}
-          disabled={data !== undefined || null || '' || [] || (data !== {} && 'disabled')}
+          disabled={ddata && ddata.length > 0 ? 'disabled' : null}
         >
           + New Application
         </Button>

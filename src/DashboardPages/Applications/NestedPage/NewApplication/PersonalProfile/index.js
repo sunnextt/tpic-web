@@ -7,17 +7,21 @@ const colourStyles = {};
 
 const PersonalProfile = ({ onChange, value, errors, setFieldValue }) => {
   const stateOptions = [
-    { value: 'lag', label: 'Lagos' },
-    { value: 'oy', label: 'oyo' },
+    { value: 'lagOS', label: 'Lagos' },
+    { value: 'oyo', label: 'Oyo' },
   ];
   const NIN0ptions = [
-    { value: 'idcard', label: 'NIN' },
-    { value: 'ip', label: 'international passport' },
+    { value: 'NIN', label: 'NIN' },
+    { value: 'international passport', label: 'International passport' },
+    { value: 'Diver License', label: 'Diver License' },
   ];
 
   const countryoptions = [
-    { value: 'nig', label: 'Nigeria' },
-    { value: 'gha', label: 'Ghana' },
+    { value: 'Nigeria', label: 'Nigeria' },
+    { value: 'Ghana', label: 'Ghana' },
+    { value: 'South Africa', label: 'South Africa' },
+    { value: 'UK', label: 'UK' },
+    { value: 'USA', label: 'USA' },
   ];
 
   return (

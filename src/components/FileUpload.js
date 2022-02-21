@@ -85,6 +85,7 @@ const Input = styled.input`
   border-radius: 8px;
   padding: 1rem;
   width: 100%;
+  text-transform: capitalize;
 `;
 const Button = styled.button`
   position: absolute;
@@ -113,6 +114,7 @@ const UploadInput = styled.input`
   border-radius: 4px;
   padding: 1rem;
   width: 50%;
+  text-transform: capitalize;
 `;
 
 const ButtonUpload = styled.button`

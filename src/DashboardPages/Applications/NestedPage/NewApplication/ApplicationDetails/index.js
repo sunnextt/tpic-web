@@ -18,12 +18,13 @@ const ApplicationDetails = ({ handleChangeInput, handlePrevious, onChange, value
   ];
 
   const BUSOptions = [
-    { value: '1', label: 'TYPE1' },
-    { value: '2', label: 'TYPE2' },
+    { value: 'Sole proprietorship', label: 'Sole proprietorship' },
+    { value: 'Private Limited Company (Ltd)', label: 'Private Limited Company (Ltd)' },
+    { value: 'Private Unlimited Company', label: 'Private Unlimited Company' },
   ];
   const BANK0ptions = [
-    { value: '1', label: 'UBA' },
-    { value: '2', label: 'GTB' },
+    { value: 'UBA', label: 'UBA' },
+    { value: 'GTB', label: 'GTB' },
   ];
 
   const AMOUNToptions = [
@@ -84,7 +85,7 @@ const ApplicationDetails = ({ handleChangeInput, handlePrevious, onChange, value
             options={AMOUNToptions}
             errors={errors.amount_needed}
           />
-          {index === 1 ? (
+          {index === 'Business Venture' ? (
             <ReactSelect
               label="Business Type"
               value={value.business_type}
