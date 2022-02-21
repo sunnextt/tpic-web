@@ -1,5 +1,5 @@
 import { UploadButton } from 'components/FileUpload';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import DocumentsUploadContainer from './styled';
 
@@ -10,7 +10,7 @@ const style = {
 
 const DocumentsUpload = ({ data, doc }) => {
   const [setFileDetails] = useState([]);
-  console.log(doc);
+  const [document, setDocument] = useState('');
 
   const uploadProps = {
     multiple: false,
@@ -19,57 +19,32 @@ const DocumentsUpload = ({ data, doc }) => {
     },
   };
 
+  useEffect(() => {
+    if (data) {
+      setDocument(data.documents);
+    }
+  }, [data]);
+
   return (
     <DocumentsUploadContainer>
       <div className="filecontents">
-        <UploadButton
-          label="Business Plan"
-          name="name"
-          style={style}
-          className="className"
-          uploadProps={uploadProps}
-          component="div"
-          filename={data.business_plan}
-          status="rejected"
-        >
-          Choose File
-        </UploadButton>
-        <UploadButton
-          label="Means of Identifcation"
-          name="name"
-          style={style}
-          className="className"
-          uploadProps={uploadProps}
-          component="div"
-          filename={data.means_of_identification}
-          status="approved"
-        >
-          Choose File
-        </UploadButton>
-        <UploadButton
-          label="Passport Photograph (Taken in the last two months)"
-          name="name"
-          style={style}
-          className="className"
-          uploadProps={uploadProps}
-          component="div"
-          filename={data.passport}
-          status="approved"
-        >
-          Choose File
-        </UploadButton>
-        <UploadButton
-          label="Proof of Address (Recent utility bill)"
-          name="name"
-          style={style}
-          className="className"
-          uploadProps={uploadProps}
-          component="div"
-          filename={data.proof_of_address}
-          status="approved"
-        >
-          Choose File
-        </UploadButton>
+        {document
+          ? document.map((file) => (
+              <UploadButton
+                key={file.id}
+                label={file.document_type}
+                name="name"
+                style={style}
+                className="className"
+                uploadProps={uploadProps}
+                component="div"
+                filename={file.document}
+                status={file.document_status}
+              >
+                Choose File
+              </UploadButton>
+            ))
+          : null}
       </div>
     </DocumentsUploadContainer>
   );

@@ -7,6 +7,8 @@ import PaymentStatusContainer, { ApplicationFeeDiv, FundDiv } from './styled';
 const PaymentStatus = ({ data }) => {
   const matches = useMediaQuery('(max-width: 760px)');
 
+  console.log(data);
+
   return (
     <PaymentStatusContainer>
       <Row>
@@ -14,7 +16,7 @@ const PaymentStatus = ({ data }) => {
           <ApplicationFeeDiv>
             <h6 className="header">Application Fee</h6>
             <h4 className="fee_amount">
-              ₦{new Intl.NumberFormat().format(data.amount_needed === null ? 0 : data.amount_needed)}
+              ₦{new Intl.NumberFormat().format(data.application_fees === null ? 0 : data.application_fees)}
             </h4>
             <h6 className="fee_content">
               The application fee allows us process your application and run background checks. The fee is

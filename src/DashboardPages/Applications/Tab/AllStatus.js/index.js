@@ -2,17 +2,11 @@ import React from 'react';
 import { Card } from 'antd';
 import TableContainer from './styled';
 import { BsThreeDotsVertical } from 'react-icons/bs';
-import { LinkButton, LinkDot } from 'components/Button/styled';
+import { LinkDot } from 'components/Button/styled';
 import { gridStyle, statusStyle, appTypeStyle, paymentStyle } from '../gridStyle.js';
-import { useNavigate } from 'react-router-dom';
 import { formateDate } from 'utils/formatDate';
 
 const TableCard = ({ data }) => {
-  const Navigate = useNavigate();
-
-  const handleStatusDetails = () => {
-    Navigate('statusdetails');
-  };
 
   return (
     <>

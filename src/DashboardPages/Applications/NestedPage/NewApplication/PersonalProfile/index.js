@@ -7,7 +7,7 @@ const colourStyles = {};
 
 const PersonalProfile = ({ onChange, value, errors, setFieldValue }) => {
   const stateOptions = [
-    { value: 'lagOS', label: 'Lagos' },
+    { value: 'lagos', label: 'Lagos' },
     { value: 'oyo', label: 'Oyo' },
   ];
   const NIN0ptions = [
