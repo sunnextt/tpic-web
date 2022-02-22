@@ -21,10 +21,8 @@ const style = {
 };
 
 const TopHeader = ({ collapsed, toggle, Breakpoint }) => {
-  const { user: currentUser } = useSelector((state) => state.auth);
-  const { data } = currentUser || {};
-
-  const username = `${data && data.first_name} ${data && data.last_name}`;
+  const { userProfile } = useSelector((state) => state.application);
+  const { data: profileData } = userProfile;
 
   return (
     <Header className="header" style={style}>
@@ -37,10 +35,16 @@ const TopHeader = ({ collapsed, toggle, Breakpoint }) => {
         </>
       ) : null}
       <BrandLogo />
-      <AuthProfile>
-        <Avatar name={username} size={40} round />
-        <h6>{username}</h6>
-      </AuthProfile>
+      {profileData ? (
+        <AuthProfile>
+          <Avatar
+            name={`${profileData && profileData.first_name} ${profileData && profileData.last_name}`}
+            size={40}
+            round
+          />
+          <h6>{`${profileData && profileData.first_name} ${profileData && profileData.last_name}`}</h6>
+        </AuthProfile>
+      ) : null}
     </Header>
   );
 };
