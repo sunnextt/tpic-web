@@ -1,21 +1,28 @@
 import { PageHeader } from 'antd';
 import Button from 'components/Button';
 import { Input, InputDiv, InputLabel, Label } from 'components/Input';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import SettingsContainer, { Form } from './styled';
 import { useMediaQuery } from 'usehooks-ts';
 import { useDispatch, useSelector } from 'react-redux';
 import { ToastContainer, toast } from 'react-toastify';
 import { updateUserProfile } from 'redux/slice/applicationDataSlice';
 
-const SettingsPage = () => {
+const SettingsPage = ({ data }) => {
+  const { user: currentUser } = useSelector((state) => state.auth);
+  const { data: initialData } = currentUser || {};
+
   const dispatch = useDispatch();
   const matches = useMediaQuery('(max-width: 600px)');
-  const { user: currentUser } = useSelector((state) => state.auth);
-
   const [error, setError] = useState('');
 
-  const { data } = currentUser || {};
+  const [profileData, setProfileData] = useState('');
+
+  useEffect(() => {
+    if (data) {
+      setProfileData(data);
+    }
+  }, [data]);
 
   const notify = (message) =>
     // eslint-disable-next-line no-template-curly-in-string
@@ -30,15 +37,17 @@ const SettingsPage = () => {
     });
 
   const [profile, setProfile] = useState({
-    first_name: data ? data.first_name : '',
-    last_name: data ? data.last_name : '',
-    email: data ? data.email : '',
-    phone_number: data ? data.phone_number : '',
+    first_name: profileData ? profileData.first_name : initialData.first_name,
+    last_name: profileData ? profileData.last_name : initialData.last_name,
+    email: profileData ? profileData.email : initialData.email,
+    phone_number: profileData ? profileData.phone_number : initialData.phone_number,
     password: '',
     password_confirmation: '',
   });
 
   const { first_name, last_name, email, phone_number, password, password_confirmation } = profile;
+
+  console.log(profile.first_name);
 
   const handleChangeInput = (e) => {
     const { name, value } = e.target;
@@ -91,22 +100,41 @@ const SettingsPage = () => {
         <InputDiv>
           <InputLabel width={matches ? 'fullWidth' : '48%'}>
             <Label>First Name</Label>
-            <Input name="first_name" type="text" placeholder={data && data.first_name} onChange={handleChangeInput} />
+            <Input
+              name="first_name"
+              type="text"
+              defaultValue={data && data.first_name}
+              placeholder={profileData && profileData.first_name}
+              onChange={handleChangeInput}
+            />
           </InputLabel>
           <InputLabel width={matches ? 'fullWidth' : '48%'}>
             <Label>Last Name</Label>
-            <Input name="last_name" type="text" placeholder={data && data.last_name} onChange={handleChangeInput} />
+            <Input
+              name="last_name"
+              type="text"
+              defaultValue={profileData && profileData.last_name}
+              placeholder={profileData && profileData.last_name}
+              onChange={handleChangeInput}
+            />
           </InputLabel>
           <InputLabel width={matches ? 'fullWidth' : '48%'}>
             <Label>Email Address</Label>
-            <Input name="email" type="text" placeholder={data && data.email} onChange={handleChangeInput} />
+            <Input
+              name="email"
+              type="text"
+              defaultValue={profileData && profileData.email}
+              placeholder={profileData && profileData.email}
+              onChange={handleChangeInput}
+            />
           </InputLabel>
           <InputLabel width={matches ? 'fullWidth' : '48%'}>
             <Label>Phone Number</Label>
             <Input
               name="phone_number"
               type="text"
-              placeholder={data && data.phone_number}
+              defaultValue={profileData && profileData.phone_number}
+              placeholder={profileData && profileData.phone_number}
               onChange={handleChangeInput}
             />
           </InputLabel>

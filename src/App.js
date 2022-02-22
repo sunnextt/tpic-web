@@ -22,7 +22,7 @@ import RequireAuth from 'utils/requireAuth';
 import { useDispatch } from 'react-redux';
 import Terms from 'pages/Terms';
 import TermsLayout from 'layouts/TermsLayout';
-import { getAllApplication } from 'redux/slice/applicationDataSlice';
+import { getAllApplication, getUserProfile } from 'redux/slice/applicationDataSlice';
 
 function App() {
   const dispatch = useDispatch();
@@ -31,6 +31,7 @@ function App() {
 
   useEffect(() => {
     dispatch(getAllApplication(id));
+    dispatch(getUserProfile(id));
   }, [dispatch]);
 
   return (

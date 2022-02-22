@@ -9,6 +9,7 @@ const ApplicationDetails = ({ handleChangeInput, handlePrevious, onChange, value
 
   const handleindex = (e) => {
     handleChangeInput(e);
+    setFieldValue('reason', e.target.value);
     setIndex(e.target.value);
   };
 
@@ -40,12 +41,12 @@ const ApplicationDetails = ({ handleChangeInput, handlePrevious, onChange, value
   const styles = {
     width: '100%',
   };
-
+  
   return (
     <AppDetailsContainer>
       <div className="styled_form">
         <div className="application_reason">
-          <Radio.Group name="reason" onChange={handleindex} value={index}>
+          <Radio.Group name="reason" onChange={handleindex} value={value.reason}>
             <Radio value="Business Venture">Business Venture</Radio>
             <Radio value="Skills Aquisition">Skills Aquisition</Radio>
           </Radio.Group>
@@ -68,7 +69,7 @@ const ApplicationDetails = ({ handleChangeInput, handlePrevious, onChange, value
               name="skills_acquisition"
               value={value.skills_acquisition}
               setFieldValue={setFieldValue}
-              placeholder="Select Skills"
+              placeholder={value.skills_acquisition ? value.skills_acquisition : 'Select Skills'}
               label="Skills Aquisition"
               options={MIN0ptions}
               errors={errors.skills_acquisition}
@@ -79,7 +80,7 @@ const ApplicationDetails = ({ handleChangeInput, handlePrevious, onChange, value
             name="amount_needed"
             value={value.amount_needed}
             setFieldValue={setFieldValue}
-            placeholder="NGN"
+            placeholder={value.amount_needed ? value.amount_needed : 'NGN'}
             colourStyles={styles}
             width="300px"
             options={AMOUNToptions}
@@ -92,7 +93,7 @@ const ApplicationDetails = ({ handleChangeInput, handlePrevious, onChange, value
               setFieldValue={setFieldValue}
               handleChangeInput={handleChangeInput}
               name="business_type"
-              placeholder="Business Type"
+              placeholder={value.business_type ? value.business_type : 'Business Type'}
               options={BUSOptions}
               errors={errors.business_type}
             />
@@ -102,7 +103,7 @@ const ApplicationDetails = ({ handleChangeInput, handlePrevious, onChange, value
               value={value.skills_type}
               setFieldValue={setFieldValue}
               handleChangeInput={handleChangeInput}
-              name="skills_type"
+              name={value.skills_type ? value.skills_type : 'skills_type'}
               placeholder="Skills Type"
               options={MIN0ptions}
               errors={errors.skills_type}
@@ -121,18 +122,18 @@ const ApplicationDetails = ({ handleChangeInput, handlePrevious, onChange, value
           </InputLabel>
           <ReactSelect
             label="Have you been in any business before now?"
-            name="skills_type"
-            placeholder="YES or NO"
-            value={value.skills_type}
+            name="any_previous_business"
+            placeholder={value.any_previous_business ? value.any_previous_business : 'YES or NO'}
+            value={value.any_previous_business}
             setFieldValue={setFieldValue}
             options={MIN0ptions}
-            errors={errors.skills_type}
+            errors={errors.any_previous_business}
           />
           <ReactSelect
             label="Bank Name"
             value={value.bank_name}
             setFieldValue={setFieldValue}
-            name="bank_name"
+            name={value.bank_name ? value.bank_name : 'bank_name'}
             placeholder="Select Bank"
             options={BANK0ptions}
             errors={errors.bank_name}

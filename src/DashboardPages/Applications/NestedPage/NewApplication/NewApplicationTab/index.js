@@ -101,8 +101,6 @@ const AppTab = () => {
     setApplication_reason(value);
   };
 
-  console.log(data);
-
   const config = {
     reference: new Date().getTime(),
     name: `${data && data.first_name} ${data && data.last_name}`,
@@ -135,6 +133,8 @@ const AppTab = () => {
       proof_of_address,
       state,
       skills_type,
+      business_type,
+      any_previous_business,  
       skills_acquisition,
     } = values;
 
@@ -157,47 +157,50 @@ const AppTab = () => {
             instance
               .post('application/payment', configOrder)
               .then((res) => {
+                dispatch(
+                  createApplication({
+                    application_fees: amountFees,
+                    any_previous_business,
+                    business_type,
+                    address,
+                    amount_needed,
+                    bank_account_number,
+                    bank_name,
+                    business_plan,
+                    country,
+                    email,
+                    firstname,
+                    funding_reason,
+                    id_number,
+                    lastname,
+                    means_of_identification,
+                    passport,
+                    phone,
+                    previous_business_details,
+                    previous_business_name,
+                    proof_of_address,
+                    state,
+                    application_reason: {
+                      reason: application_reason,
+                      name: previous_business_name ? previous_business_name : skills_acquisition,
+                      type: business_type ? business_type : skills_type,
+                    },
+                  }),
+                )
+                  .unwrap()
+                  .then((res) => {
+                    notify(res.message);
+                    console.log(res);
+                    setSuccess(true);
+                  })
+                  .catch((err) => {
+                    setError(err.error);
+                    console.log(err);
+                  });
                 dispatch(savePaymentHistory(res.data));
               })
               .catch((error) => {
                 console.log(error);
-              });
-
-            dispatch(
-              createApplication({
-                application_fees: amountFees,
-                address,
-                amount_needed,
-                bank_account_number,
-                bank_name,
-                business_plan,
-                country,
-                email,
-                firstname,
-                funding_reason,
-                id_number,
-                lastname,
-                means_of_identification,
-                passport,
-                phone,
-                previous_business_details,
-                previous_business_name,
-                proof_of_address,
-                state,
-                application_reason: {
-                  reason: application_reason,
-                  name: previous_business_name ? previous_business_name : skills_acquisition,
-                  type: skills_type,
-                },
-              }),
-            )
-              .unwrap()
-              .then((res) => {
-                notify(res.message);
-                setSuccess(true);
-              })
-              .catch((err) => {
-                setError(err.error);
               });
           }
         },

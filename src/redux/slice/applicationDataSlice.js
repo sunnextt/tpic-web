@@ -42,6 +42,18 @@ export const getOneApplicationDocumentById = createAsyncThunk(
     }
   },
 );
+export const getUserProfile = createAsyncThunk('users/UserProfile', async ({ id }, { rejectWithValue }) => {
+  try {
+    const response = await applicationService.getUserProfile();
+    return response;
+  } catch (err) {
+    let error = err; // cast the error for access
+    if (!error.response) {
+      throw err;
+    }
+    return rejectWithValue(error.response.data);
+  }
+});
 export const updateUserProfile = createAsyncThunk(
   'users/updateUserProfile',
   async ({ first_name, last_name, email, phone_number, password, password_confirmation }, { rejectWithValue }) => {
@@ -68,7 +80,8 @@ export const updateUserProfile = createAsyncThunk(
 export const createApplication = createAsyncThunk(
   'users/createApplication',
   async (
-    {application_fees,
+    {
+      application_fees,
       address,
       amount_needed,
       bank_account_number,
@@ -87,6 +100,7 @@ export const createApplication = createAsyncThunk(
       previous_business_name,
       proof_of_address,
       state,
+      any_previous_business,
       application_reason,
     },
     { rejectWithValue },
@@ -112,6 +126,7 @@ export const createApplication = createAsyncThunk(
         previous_business_name,
         proof_of_address,
         state,
+        any_previous_business,
         application_reason,
       );
       return response;
@@ -131,6 +146,7 @@ const initialState = {
   createapp: {},
   userDocument: {},
   updateInfo: {},
+  userProfile: {},
   error: null,
 };
 
@@ -173,6 +189,16 @@ const createApplicationSlice = createSlice({
       state.userDocument = payload;
     });
     builder.addCase(getOneApplicationDocumentById.rejected, (state, action) => {
+      if (action.payload) {
+        state.error = action.payload.errorMessage;
+      } else {
+        state.error = action.error.message;
+      }
+    });
+    builder.addCase(getUserProfile.fulfilled, (state, { payload }) => {
+      state.userProfile = payload;
+    });
+    builder.addCase(getUserProfile.rejected, (state, action) => {
       if (action.payload) {
         state.error = action.payload.errorMessage;
       } else {

@@ -28,6 +28,7 @@ const submitApplicationForm = async (
   previous_business_details,
   previous_business_name,
   proof_of_address,
+  any_previous_business,
   state,
   application_reason,
 ) => {
@@ -65,6 +66,11 @@ const getOneApplicationDocumentById = async (id) => {
   const response = await tredjkAuthApi.get(`application/document/${id}`);
   return response.data;
 };
+
+const getUserProfile = async () => {
+  const response = await tredjkAuthApi.get(`profile`);
+  return response.data;
+};
 const updateUserProfile = async (first_name, last_name, email, phone_number, password, password_confirmation) => {
   const response = await tredjkAuthApi.post(`profile/update`, {
     first_name,
@@ -83,6 +89,7 @@ const applicationService = {
   submitApplicationForm,
   getOneApplicationDocumentById,
   updateUserProfile,
+  getUserProfile,
 };
 
 export default applicationService;
