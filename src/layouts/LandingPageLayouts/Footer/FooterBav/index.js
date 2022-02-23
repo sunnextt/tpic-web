@@ -32,6 +32,9 @@ const Nav = () => {
               <Li>
                 <Link to="/contactus">Contact Us</Link>
               </Li>
+              <Li>
+                <Link to="/privacy policy">Privacy Policy</Link>
+              </Li>
             </Ul>
           </NavDiv>
           <SocialDiv>

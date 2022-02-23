@@ -7,7 +7,6 @@ import { gridStyle, statusStyle, appTypeStyle, paymentStyle } from '../gridStyle
 import { formateDate } from 'utils/formatDate';
 
 const TableCard = ({ data }) => {
-
   return (
     <>
       {data
@@ -30,7 +29,9 @@ const TableCard = ({ data }) => {
                 </Card.Grid>
                 <Card.Grid hoverable={false} style={gridStyle}>
                   <h6>Fund Requested</h6>
-                  <h5>NGN {new Intl.NumberFormat().format(data.amount_needed)}</h5>
+                  <h5>
+                    {new Intl.NumberFormat('en-NG', { style: 'currency', currency: 'NGN' }).format(data.amount_needed)}
+                  </h5>
                 </Card.Grid>
                 <Card.Grid hoverable={false} style={paymentStyle}>
                   <h6>Payment</h6>

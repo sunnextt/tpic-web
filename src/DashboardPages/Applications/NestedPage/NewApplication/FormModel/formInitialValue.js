@@ -133,6 +133,10 @@ export const formInitialValues = {
   reason: '',
   business_type: '',
   any_previous_business: '',
+  guardian_fullname: '',
+  guardian_email: '',
+  guardian_phone: '',
+  guardian_address: '',
   acceptTerms: false,
 };
 
@@ -158,6 +162,10 @@ export const validationSchema = function (values) {
     [business_plan.name]: Yup.string().required(`${business_plan.requiredErrorMsg}`),
     [passport.name]: Yup.string().required(`${passport.requiredErrorMsg}`),
     [proof_of_address.name]: Yup.string().required(`${proof_of_address.requiredErrorMsg}`),
+    guardian_fullname: Yup.string().required('Field is required'),
+    guardian_email: Yup.string().required('Field is required'),
+    guardian_phone: Yup.string().required('Field is required'),
+    guardian_address: Yup.string().required('Field is required'),
     acceptTerms: Yup.bool().oneOf([true], 'Accept Terms is required'),
   });
 };

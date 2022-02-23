@@ -29,6 +29,10 @@ const submitApplicationForm = async (
   previous_business_name,
   proof_of_address,
   any_previous_business,
+  guardian_fullname,
+  guardian_email,
+  guardian_phone,
+  guardian_address,
   state,
   application_reason,
 ) => {
@@ -45,7 +49,10 @@ const submitApplicationForm = async (
   formData.append('funding_reason', funding_reason);
   formData.append('id_number', id_number);
   formData.append('lastname', lastname);
-  formData.append('phone', phone);
+  formData.append('guardian_fullname', guardian_fullname);
+  formData.append('guardian_email', guardian_email);
+  formData.append('guardian_phone', guardian_phone);
+  formData.append('guardian_address', guardian_address);
   formData.append('previous_business_details', previous_business_details);
   formData.append('previous_business_name', previous_business_name);
   formData.append('state', state);

@@ -21,6 +21,15 @@ const PPCTs = styled.div`
       width: 100%;
     }
   }
+
+  .guardian_header {
+    font-family: Lato;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 1.6rem;
+    line-height: 41px;
+    color: #06040a;
+  }
 `;
 
 export const SaveAndContBtnDiv = styled.div`

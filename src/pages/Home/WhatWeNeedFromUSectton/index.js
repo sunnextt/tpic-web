@@ -8,8 +8,13 @@ import { MdOutlineBusiness } from 'react-icons/md';
 import { SiGooglemybusiness } from 'react-icons/si';
 import { GiRun } from 'react-icons/gi';
 import Button from 'components/Button';
+import { useNavigate } from 'react-router-dom';
 
 const WhatWeNeedFromU = () => {
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate('register');
+  };
   return (
     <WWNFYContainer>
       <Row gutter={[24, 48]} style={{ justifyContent: 'space-between' }}>
@@ -49,7 +54,9 @@ const WhatWeNeedFromU = () => {
               </div>
             </div>
             <div className="content_btn_div">
-              <Button width="40%" color="primary">Get Started</Button>
+              <Button width="40%" color="primary" onClick={handleClick}>
+                Get Started
+              </Button>
             </div>
           </div>
         </Col>

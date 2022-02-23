@@ -4,8 +4,8 @@ import { generatePath, useLocation } from 'react-router-dom';
 
 import { Link } from './styled';
 import { useDispatch } from 'react-redux';
-import { logout } from 'redux/slice/AuthSlice';
 import eventBus from 'utils/common/EventBus';
+import { logout } from 'redux/slice/AuthSlice';
 const { Sider } = Layout;
 
 const ASide = ({ collapsed, onBreakpoint, onCollapse }) => {

@@ -115,14 +115,55 @@ const PersonalProfile = ({ onChange, value, errors, setFieldValue }) => {
               {errors.id_number && <div className="text-danger">{errors.id_number}</div>}
             </InputLabel>
           </InputDiv>
-          {/* <SaveAndContBtnDiv>
-            <LinkButton type="button" onClick={handleSave}>
-              Save & finish later
-            </LinkButton>
-            <ContinueButton type="button" onClick={handleNext} color="primary" padding="16px 36px">
-              Continue
-            </ContinueButton>
-          </SaveAndContBtnDiv> */}
+          <div>
+            <h4 className="guardian_header">Parent/Guardian details</h4>
+            <InputDiv>
+              <InputLabel>
+                <Label>Full Name</Label>
+                <Input
+                  value={value.guardian_fullname}
+                  onChange={onChange}
+                  name="guardian_fullname"
+                  type="text"
+                  placeholder="Enter your Guardian Full name"
+                />
+                {errors.guardian_fullname && <div className="text-danger">{errors.guardian_fullname}</div>}
+              </InputLabel>
+              <InputLabel>
+                <Label>Email</Label>
+                <Input
+                  value={value.guardian_email}
+                  onChange={onChange}
+                  name="guardian_email"
+                  type="email"
+                  placeholder="Enter your Guardian email address"
+                />
+                {errors.guardian_email && <div className="text-danger">{errors.guardian_email}</div>}
+              </InputLabel>
+              <InputLabel>
+                <Label>Phone Number</Label>
+                <Input
+                  value={value.guardian_phone}
+                  onChange={onChange}
+                  name="guardian_phone"
+                  type="text"
+                  placeholder="Enter your guardian phone number"
+                />
+                {errors.guardian_phone && <div className="text-danger">{errors.guardian_phone}</div>}
+              </InputLabel>
+              <InputLabel>
+                <Label>Address</Label>
+                <Input
+                  value={value.guardian_address}
+                  onChange={onChange}
+                  name="guardian_address"
+                  type="text"
+                  placeholder="Enter your guardian address"
+                />
+                {errors.guardian_address && <div className="text-danger">{errors.guardian_address}</div>}
+              </InputLabel>
+            </InputDiv>
+          </div>
         </Formdiv>
       </div>
     </PPCTs>

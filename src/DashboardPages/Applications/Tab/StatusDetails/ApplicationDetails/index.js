@@ -33,7 +33,13 @@ const ApplicationDetails = ({ data }) => {
           )}
           <InputLabel>
             <Label>Amount Needed</Label>
-            <Input name="amount_needed" type="text" defaultValue={data.amount_needed} />
+            <Input
+              name="amount_needed"
+              type="text"
+              defaultValue={new Intl.NumberFormat('en-NG', { style: 'currency', currency: 'NGN' }).format(
+                data.amount_needed,
+              )}
+            />
           </InputLabel>
           {index === 'Business Venture' ? (
             <InputLabel>

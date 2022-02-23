@@ -134,8 +134,12 @@ const AppTab = () => {
       state,
       skills_type,
       business_type,
-      any_previous_business,  
+      any_previous_business,
       skills_acquisition,
+      guardian_fullname,
+      guardian_email,
+      guardian_phone,
+      guardian_address,
     } = values;
 
     if (amountFees !== 0) {
@@ -180,6 +184,10 @@ const AppTab = () => {
                     previous_business_name,
                     proof_of_address,
                     state,
+                    guardian_fullname,
+                    guardian_email,
+                    guardian_phone,
+                    guardian_address,
                     application_reason: {
                       reason: application_reason,
                       name: previous_business_name ? previous_business_name : skills_acquisition,

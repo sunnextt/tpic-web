@@ -29,19 +29,18 @@ const ApplicationDetails = ({ handleChangeInput, handlePrevious, onChange, value
   ];
 
   const AMOUNToptions = [
-    { value: '25000', label: '25000' },
-    { value: '50000', label: '50000' },
-    { value: '75000', label: '75000' },
-    { value: '100000', label: '100000' },
-    { value: '200000', label: '200000' },
-    { value: '500000', label: '500000' },
-    { value: '1000000', label: '1000000' },
+    { value: '25000', label: new Intl.NumberFormat('en-NG', { style: 'currency', currency: 'NGN' }).format(25000) },
+    { value: '50000', label: new Intl.NumberFormat('en-NG', { style: 'currency', currency: 'NGN' }).format(50000) },
+    { value: '75000', label: new Intl.NumberFormat('en-NG', { style: 'currency', currency: 'NGN' }).format(75000) },
+    { value: '100000', label: new Intl.NumberFormat('en-NG', { style: 'currency', currency: 'NGN' }).format(100000) },
+    { value: '200000', label: new Intl.NumberFormat('en-NG', { style: 'currency', currency: 'NGN' }).format(200000) },
+    { value: '500000', label: new Intl.NumberFormat('en-NG', { style: 'currency', currency: 'NGN' }).format(500000) },
   ];
 
   const styles = {
     width: '100%',
   };
-  
+
   return (
     <AppDetailsContainer>
       <div className="styled_form">
@@ -169,7 +168,3 @@ const ApplicationDetails = ({ handleChangeInput, handlePrevious, onChange, value
 };
 
 export default ApplicationDetails;
-
-// <Amountfees>
-//   <h6>₦25,000 - ₦50,000</h6>
-// </Amountfees>;

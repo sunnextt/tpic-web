@@ -3,8 +3,13 @@ import HeroContainer, { Button, Flex, PlayButton, HeroContents, HeroImage, HeroS
 import Hero from '../../../assets/png/hero.png';
 import Herostripe from '../../../assets/png/Herostrip.png';
 import { BsPlayCircleFill } from 'react-icons/bs';
+import { useNavigate } from 'react-router-dom';
 
 const HeroPage = () => {
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate('register');
+  };
   return (
     <HeroContainer>
       <Flex>
@@ -21,7 +26,7 @@ const HeroPage = () => {
             <HeroSripeImg src={Herostripe} alt="vector" />
           </div>
           <div className="contents_btn">
-            <Button>Register</Button>
+            <Button onClick={handleClick}>Register</Button>
             <PlayButton type="link">
               <BsPlayCircleFill size="36    " color="#00A953" />
               Watch Videos

@@ -102,6 +102,10 @@ export const createApplication = createAsyncThunk(
       state,
       any_previous_business,
       application_reason,
+      guardian_fullname,
+      guardian_email,
+      guardian_phone,
+      guardian_address,
     },
     { rejectWithValue },
   ) => {
@@ -128,6 +132,10 @@ export const createApplication = createAsyncThunk(
         state,
         any_previous_business,
         application_reason,
+        guardian_fullname,
+        guardian_email,
+        guardian_phone,
+        guardian_address,
       );
       return response;
     } catch (err) {

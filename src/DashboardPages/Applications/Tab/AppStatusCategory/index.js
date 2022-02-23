@@ -14,7 +14,6 @@ const AppStatusTableCard = ({ data }) => {
     Navigate('statusdetails');
   };
 
-
   return (
     <>
       {data ? (
@@ -37,7 +36,9 @@ const AppStatusTableCard = ({ data }) => {
               </Card.Grid>
               <Card.Grid hoverable={false} style={gridStyle}>
                 <h6>Fund Requested</h6>
-                <h5>NGN {data.amount_needed}</h5>
+                <h5>
+                  {new Intl.NumberFormat('en-NG', { style: 'currency', currency: 'NGN' }).format(data.amount_needed)}
+                </h5>
               </Card.Grid>
               <Card.Grid hoverable={false} style={paymentStyle}>
                 <h6>Payment</h6>
