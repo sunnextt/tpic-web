@@ -221,7 +221,7 @@ const Register = () => {
                     <CheckboxDiv>
                       <div className=" form-check">
                         <Checkbox
-                          path="/terms"
+                          path="/docs/terms.pdf"
                           link=" terms & conditions"
                           label="Accept"
                           name="acceptTerms"

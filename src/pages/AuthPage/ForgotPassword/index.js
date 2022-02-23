@@ -21,6 +21,8 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
 import { forgotpassword } from 'redux/slice/AuthSlice';
+import { useMediaQuery } from 'usehooks-ts';
+
 
 const validationSchema = function (values) {
   return Yup.object().shape({
@@ -51,6 +53,8 @@ const getErrorsFromValidationError = (validationError) => {
 };
 
 const ForgotPassword = () => {
+    const matches = useMediaQuery('(max-width: 600px)');
+
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
@@ -91,45 +95,78 @@ const ForgotPassword = () => {
 
   return (
     <LoginContainer>
-      <Row>
-        <Col xs={9} sm={9} md={9} lg={9} className="side_column">
-          <SideImageCon>
-            <Img1 src={Image1} alt="img" />
-            <Img2 src={Image2} alt="img" />
-          </SideImageCon>
-          <BackHomeLinkDiv>
-            <Link to="/">Back to Home</Link>
-          </BackHomeLinkDiv>
-        </Col>
-        <Col xs={15} sm={15} md={15} lg={15} className="col_style">
-          <div className="align_item_center">
-            <Img src={companyLogo} alt="company logo" />
-          </div>
-          <div className="form_container">
-            <Form className="styled_form" onSubmit={formik.handleSubmit}>
-              <h4>Forgot Password?</h4>
-              <InputDiv>
-                <div className="form-group">
-                  <Label>Email</Label>
-                  <Input
-                    name="email"
-                    placeholder="Enter Email address"
-                    onChange={formik.handleChange}
-                    value={formik.values.email}
-                  />
-                  <div className="text-danger">{formik.errors.email ? formik.errors.email : null}</div>
-                  <div className="text-danger">{error !== '' ? 'please provide valid email' : null}</div>
-                </div>
-              </InputDiv>
-              <BtnDiv>
-                <Button type="submit" color="primary" width="fullWidth" padding="10px 20px">
-                  Reset
-                </Button>
-              </BtnDiv>
-            </Form>
-          </div>
-        </Col>
-      </Row>
+      {matches ? (
+        <Row align="middle">
+          <Col xs={24} sm={24} md={24} lg={24} className="col_style_mobile">
+            <div className="align_item_center">
+              <Img src={companyLogo} alt="company logo" />
+            </div>
+            <div className="form_container">
+              <Form className="styled_form" onSubmit={formik.handleSubmit}>
+                <h4>Forgot Password?</h4>
+                <InputDiv>
+                  <div className="form-group">
+                    <Label>Email</Label>
+                    <Input
+                      name="email"
+                      placeholder="Enter Email address"
+                      onChange={formik.handleChange}
+                      value={formik.values.email}
+                    />
+                    <div className="text-danger">{formik.errors.email ? formik.errors.email : null}</div>
+                    <div className="text-danger">{error !== '' ? 'please provide valid email' : null}</div>
+                  </div>
+                </InputDiv>
+                <BtnDiv>
+                  <Button type="submit" color="primary" width="fullWidth" padding="10px 20px">
+                    Reset
+                  </Button>
+                </BtnDiv>
+              </Form>
+            </div>
+          </Col>
+        </Row>
+      ) : (
+        <Row>
+          <Col xs={9} sm={9} md={9} lg={9} className="side_column">
+            <SideImageCon>
+              <Img1 src={Image1} alt="img" />
+              <Img2 src={Image2} alt="img" />
+            </SideImageCon>
+            <BackHomeLinkDiv>
+              <Link to="/">Back to Home</Link>
+            </BackHomeLinkDiv>
+          </Col>
+          <Col xs={15} sm={15} md={15} lg={15} className="col_style">
+            <div className="align_item_center">
+              <Img src={companyLogo} alt="company logo" />
+            </div>
+            <div className="form_container">
+              <Form className="styled_form" onSubmit={formik.handleSubmit}>
+                <h4>Forgot Password?</h4>
+                <InputDiv>
+                  <div className="form-group">
+                    <Label>Email</Label>
+                    <Input
+                      name="email"
+                      placeholder="Enter Email address"
+                      onChange={formik.handleChange}
+                      value={formik.values.email}
+                    />
+                    <div className="text-danger">{formik.errors.email ? formik.errors.email : null}</div>
+                    <div className="text-danger">{error !== '' ? 'please provide valid email' : null}</div>
+                  </div>
+                </InputDiv>
+                <BtnDiv>
+                  <Button type="submit" color="primary" width="fullWidth" padding="10px 20px">
+                    Reset
+                  </Button>
+                </BtnDiv>
+              </Form>
+            </div>
+          </Col>
+        </Row>
+      )}
     </LoginContainer>
   );
 };

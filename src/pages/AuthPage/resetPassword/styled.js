@@ -44,6 +44,10 @@ const LoginContainer = styled.main`
     border-radius: 8px;
     padding: 2rem;
 
+    @media screen and (max-width: 600px) {
+      width: 80%;
+    }
+
     h4 {
       font-family: Lato;
       font-style: normal;

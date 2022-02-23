@@ -1,4 +1,4 @@
-import { Button, PageHeader } from 'antd';
+import { Button, PageHeader, Spin } from 'antd';
 import AppSuccess from 'DashboardPages/Applications/ApplicationSuccess';
 import TabContainer from 'DashboardPages/Applications/Tab/styled';
 import React, { useState, useEffect } from 'react';
@@ -49,6 +49,7 @@ const AppTab = () => {
   const { user: currentUser } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   let length = 3;
+  const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState('');
   const [amountFees, setAmountFees] = useState(0);
@@ -146,6 +147,7 @@ const AppTab = () => {
       initializePayment(
         (reference) => {
           if (reference.status === 'success') {
+            setLoading(true);
             const date = new Date();
 
             const configOrder = {
@@ -199,6 +201,7 @@ const AppTab = () => {
                     notify(res.message);
                     console.log(res);
                     setSuccess(true);
+                    setLoading(false);
                   })
                   .catch((err) => {
                     if (err) {
@@ -213,6 +216,7 @@ const AppTab = () => {
                           err.errors.guardian_email ||
                           err.errors.guardian_phone;
                         setError(error);
+                        setLoading(false);
                       } else {
                         console.log(err);
                       }
@@ -342,6 +346,11 @@ const AppTab = () => {
                 <div className="text-danger" style={{ textAlign: 'center', fontSize: '1rem', fontWeight: 'bold' }}>
                   {error !== '' && error}
                 </div>
+                {loading && (
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <Spin />
+                  </div>
+                )}
               </TabPanel>
             </Tabs>
             <div

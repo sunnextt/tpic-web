@@ -40,9 +40,13 @@ const LoginContainer = styled.main`
 
   .form_container {
     background: #ffffff;
-    width: 100%;
+    width: 60%;
     border-radius: 8px;
     padding: 2rem;
+
+    @media screen and (max-width: 600px) {
+      width: 80%;
+    }
 
     h4 {
       font-family: Lato;
@@ -78,6 +82,14 @@ const LoginContainer = styled.main`
 
   .col_style {
     padding: 3rem 1rem 5rem;
+  }
+
+  .col_style_mobile {
+    padding: 3rem 1rem 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
   }
 `;
 
