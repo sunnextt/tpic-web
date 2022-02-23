@@ -232,7 +232,7 @@ const AppTab = () => {
     }
   };
 
-  if (success === true) {
+  if (success) {
     return <AppSuccess />;
   }
 
