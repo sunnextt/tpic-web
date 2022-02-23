@@ -20,8 +20,6 @@ const ASide = ({ collapsed, onBreakpoint, onCollapse }) => {
 
   const logOut = useCallback(() => {
     dispatch(logout());
-    // Navigate('/login');
-    window.location.reload();
   }, [dispatch]);
 
   useEffect(() => {

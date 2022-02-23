@@ -33,7 +33,7 @@ const Nav = () => {
                 <Link to="/contactus">Contact Us</Link>
               </Li>
               <Li>
-                <Link to="/privacy policy">Privacy Policy</Link>
+                <Link to="/privacy-policy">Privacy Policy</Link>
               </Li>
             </Ul>
           </NavDiv>
@@ -61,7 +61,7 @@ const Nav = () => {
           </SocialDiv>
           <div className="copyright_div">
             <span className="copyright">TredKJ Lifters. @ 2022. All rights reserved</span>
-            <a href="/terms">Terms and Condtions</a>
+            <a href="/docs/terms.pdf">Terms and Condtions</a>
           </div>
         </Col>
       </Row>

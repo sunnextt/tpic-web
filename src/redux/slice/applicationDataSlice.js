@@ -82,6 +82,7 @@ export const createApplication = createAsyncThunk(
   async (
     {
       application_fees,
+      any_previous_business,
       address,
       amount_needed,
       bank_account_number,
@@ -100,18 +101,18 @@ export const createApplication = createAsyncThunk(
       previous_business_name,
       proof_of_address,
       state,
-      any_previous_business,
-      application_reason,
       guardian_fullname,
       guardian_email,
       guardian_phone,
       guardian_address,
+      application_reason,
     },
     { rejectWithValue },
   ) => {
     try {
       const response = await applicationService.submitApplicationForm(
         application_fees,
+        any_previous_business,
         address,
         amount_needed,
         bank_account_number,
@@ -130,12 +131,11 @@ export const createApplication = createAsyncThunk(
         previous_business_name,
         proof_of_address,
         state,
-        any_previous_business,
-        application_reason,
         guardian_fullname,
         guardian_email,
         guardian_phone,
         guardian_address,
+        application_reason,
       );
       return response;
     } catch (err) {

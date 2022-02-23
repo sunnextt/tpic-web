@@ -1,15 +1,13 @@
 import React from 'react';
-import Nav from './FooterBav';
 import FooterWrapper from './styled';
 
 const Footer = () => {
   return (
     <FooterWrapper>
-      <div className="divider">
-        <hr />
-      </div>
       <div>
-        <Nav />
+        <div className="copyright_div" style={{ textAlign: 'center' }}>
+          <span className="copyright">TredKJ Lifters. @ 2022. All rights reserved</span>
+        </div>
       </div>
     </FooterWrapper>
   );

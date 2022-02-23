@@ -11,6 +11,7 @@ const getApplicationById = async (id) => {
 };
 const submitApplicationForm = async (
   application_fees,
+  any_previous_business,
   address,
   amount_needed,
   bank_account_number,
@@ -28,17 +29,16 @@ const submitApplicationForm = async (
   previous_business_details,
   previous_business_name,
   proof_of_address,
-  any_previous_business,
+  state,
   guardian_fullname,
   guardian_email,
   guardian_phone,
   guardian_address,
-  state,
   application_reason,
 ) => {
   let formData = new FormData();
-  formData.append('address', address);
   formData.append('application_fees', application_fees);
+  formData.append('address', address);
   formData.append('amount_needed', amount_needed);
   formData.append('bank_account_number', bank_account_number);
   formData.append('business_plan', business_plan);
@@ -51,6 +51,7 @@ const submitApplicationForm = async (
   formData.append('lastname', lastname);
   formData.append('guardian_fullname', guardian_fullname);
   formData.append('guardian_email', guardian_email);
+  formData.append('phone', phone);
   formData.append('guardian_phone', guardian_phone);
   formData.append('guardian_address', guardian_address);
   formData.append('previous_business_details', previous_business_details);

@@ -27,12 +27,12 @@ const login = async (email, password) => {
 };
 
 const forgotpassword = async email => {
-  const response = await tredjkAuthApi.post('password/forget', { email });
+  const response = await tredjkAuthApi.post('send/password-reset-link', { email });
   return response.data;
 };
 
 const resetpassword = async (token, password_confirmation, password) => {
-  const response = await tredjkAuthApi.post('password/reset', { token, password_confirmation, password });
+  const response = await tredjkAuthApi.post('reset-password', { token, password_confirmation, password });
   return response.data;
 };
 

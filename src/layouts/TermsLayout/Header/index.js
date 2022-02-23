@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import HeaderContainer from './styled';
 import { Drawer } from 'antd';
-// import { useMediaQuery } from 'usehooks-ts';
 import BrandLogo from './BrandLogo/BrandLogo';
 import Nav, { FloatingNav } from './Nav';
 import AuthNav from './AuthNav';
 import { useMediaQuery } from 'usehooks-ts';
-import { AiOutlineMenuFold, AiOutlineMenuUnfold } from 'react-icons/ai';
+import { FcMenu } from 'react-icons/fc';
 
 const Header = () => {
   const matches = useMediaQuery('(min-width: 960px)');
@@ -17,9 +16,9 @@ const Header = () => {
     setCollapsed(!collapsed);
   };
 
-    const onClose = () => {
-      setCollapsed(false);
-    };
+  const onClose = () => {
+    setCollapsed(false);
+  };
 
   return (
     <HeaderContainer>
@@ -32,7 +31,7 @@ const Header = () => {
       ) : (
         <>
           <AuthNav />
-          {React.createElement(collapsed ? AiOutlineMenuFold : AiOutlineMenuUnfold, {
+          {React.createElement(collapsed ? FcMenu : FcMenu, {
             className: 'trigger',
             onClick: toggle,
           })}

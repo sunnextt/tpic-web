@@ -7,7 +7,7 @@ const Nav = ({ collapsed }) => {
     <NavWrap collapsed={collapsed}>
       <Ul>
         <Li>
-          <Link to="/">Home</Link>
+          <Link to="/">Home</Link> 
         </Li>
         <Li>
           <Link to="/">About Us</Link>

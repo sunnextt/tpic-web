@@ -97,7 +97,6 @@ const Login = () => {
           setLoading(false);
 
           Navigate('/dashboard');
-          window.location.reload();
         })
         .catch((error) => {
           setLoading(false);

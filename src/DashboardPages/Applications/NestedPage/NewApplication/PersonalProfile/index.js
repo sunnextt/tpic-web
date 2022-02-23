@@ -135,7 +135,7 @@ const PersonalProfile = ({ onChange, value, errors, setFieldValue }) => {
                   value={value.guardian_email}
                   onChange={onChange}
                   name="guardian_email"
-                  type="email"
+                  type="text"
                   placeholder="Enter your Guardian email address"
                 />
                 {errors.guardian_email && <div className="text-danger">{errors.guardian_email}</div>}

@@ -1,30 +1,23 @@
 import { Col, Row } from 'antd';
 import React, { useState } from 'react';
-import LoginContainer, {
-  Form,
-  Img,
-  Img1,
-  Img2,
-  Input,
-  InputDiv,
-  Link,
-  SideImageCon,
-  BtnDiv,
-  BackHomeLinkDiv,
-  Label,
-} from './styled';
+import LoginContainer, { Form, Img, Input, InputDiv, Link, BtnDiv, Label } from './styled';
 import companyLogo from '../../../assets/png/letgetstarted.png';
-import Image1 from '../../../assets/png/Image1.png';
-import Image2 from '../../../assets/png/Image3.png';
 import Button from 'components/Button';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
-import { forgotpassword } from 'redux/slice/AuthSlice';
+import { resetpassword } from 'redux/slice/AuthSlice';
+import useQuery from '../../../utils/useQuery/index';
 
 const validationSchema = function (values) {
   return Yup.object().shape({
-    email: Yup.string().email('Invalid email address').required('Email is required!'),
+    password: Yup.string()
+      .required('Password is required')
+      .min(6, 'Password must be at least 6 characters')
+      .max(40, 'Password must not exceed 40 characters'),
+    password_confirmation: Yup.string()
+      .required('Confirm Password is required')
+      .oneOf([Yup.ref('password'), null], 'Confirm Password does not match'),
   });
 };
 
@@ -50,8 +43,10 @@ const getErrorsFromValidationError = (validationError) => {
   }, {});
 };
 
-const ForgotPassword = () => {
-  const [success, setSuccess] = useState(false);
+const ResetPassword = () => {
+  let query = useQuery();
+  const token = query.get('token');
+  const [successReset, setSuccessReset] = useState(false);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
@@ -60,16 +55,18 @@ const ForgotPassword = () => {
   const formik = useFormik({
     initialValues: {
       email: '',
+      password_confirmation: '',
     },
     validationSchema,
     validate: validate(validationSchema),
     onSubmit: (data) => {
+      setLoading(true);
       console.log(data.email);
-      dispatch(forgotpassword({ email: data.email }))
+      dispatch(resetpassword({ token, email: data.email, password_confirmation: data.password_confirmation }))
         .unwrap()
         .then((res) => {
           console.log(res);
-          setSuccess(true);
+          setSuccessReset(true);
         })
         .catch((err) => {
           setError(err);
@@ -78,12 +75,21 @@ const ForgotPassword = () => {
     },
   });
 
-  if (success) {
+  const styles = {
+    color: '#f1c40f',
+  };
+
+  if (successReset) {
     return (
       <div>
         <div className="signup_header">
           <h2>Password Reset</h2>
-          <h6>A message has been sent to you by email with instructions on how to reset your password.</h6>
+          <h6>
+            Congratulations! Your new password has now been set.{' '}
+            <a style={styles} href="/login">
+              Go to account
+            </a>
+          </h6>
         </div>
       </div>
     );
@@ -91,34 +97,36 @@ const ForgotPassword = () => {
 
   return (
     <LoginContainer>
-      <Row>
-        <Col xs={9} sm={9} md={9} lg={9} className="side_column">
-          <SideImageCon>
-            <Img1 src={Image1} alt="img" />
-            <Img2 src={Image2} alt="img" />
-          </SideImageCon>
-          <BackHomeLinkDiv>
-            <Link to="/">Back to Home</Link>
-          </BackHomeLinkDiv>
-        </Col>
-        <Col xs={15} sm={15} md={15} lg={15} className="col_style">
+      <Row align="middle">
+        <Col xs={24} sm={24} md={24} lg={24} className="col_style">
           <div className="align_item_center">
             <Img src={companyLogo} alt="company logo" />
           </div>
           <div className="form_container">
             <Form className="styled_form" onSubmit={formik.handleSubmit}>
-              <h4>Forgot Password?</h4>
+              <h4>Reset Password?</h4>
               <InputDiv>
                 <div className="form-group">
-                  <Label>Email</Label>
+                  <Label>Password</Label>
                   <Input
-                    name="email"
+                    name="password"
+                    placeholder="Enter your new password"
+                    onChange={formik.handleChange}
+                    value={formik.values.password}
+                  />
+                  <div className="text-danger">{formik.errors.password ? formik.errors.password : null}</div>
+                </div>
+                <div className="form-group">
+                  <Label>Confirm Password</Label>
+                  <Input
+                    name="password_confirmation"
                     placeholder="Enter Email address"
                     onChange={formik.handleChange}
-                    value={formik.values.email}
+                    value={formik.values.password_confirmation}
                   />
-                  <div className="text-danger">{formik.errors.email ? formik.errors.email : null}</div>
-                  <div className="text-danger">{error !== '' ? 'please provide valid email' : null}</div>
+                  <div className="text-danger">
+                    {formik.errors.password_confirmation ? formik.errors.password_confirmation : null}
+                  </div>
                 </div>
               </InputDiv>
               <BtnDiv>
@@ -134,4 +142,4 @@ const ForgotPassword = () => {
   );
 };
 
-export default ForgotPassword;
+export default ResetPassword;

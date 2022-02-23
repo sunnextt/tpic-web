@@ -1,5 +1,5 @@
 import React from 'react';
-import useQuery from 'utilities/useQuery';
+import useQuery from '../useQuery/index';
 const { useLocation, Navigate } = require('react-router-dom');
 
 function RequireToken({ children }) {
@@ -12,7 +12,7 @@ function RequireToken({ children }) {
 
   if (!token) {
 
-    return <Navigate to="/forgotpassword" state={{ from: location }} replace />;
+    return <Navigate to="/reset-password" state={{ from: location }} replace />;
   }
   return children;
 }

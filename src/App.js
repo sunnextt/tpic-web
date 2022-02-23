@@ -20,9 +20,11 @@ import Dashboard from 'routes';
 import ForgotPassword from 'pages/AuthPage/ForgotPassword';
 import RequireAuth from 'utils/requireAuth';
 import { useDispatch } from 'react-redux';
-import Terms from 'pages/Terms';
 import TermsLayout from 'layouts/TermsLayout';
 import { getAllApplication, getUserProfile } from 'redux/slice/applicationDataSlice';
+import PrivacyPolicy from 'pages/privacyPolicy';
+import RequireToken from 'utils/requireToken';
+import ResetPassword from 'pages/AuthPage/resetPassword';
 
 function App() {
   const dispatch = useDispatch();
@@ -103,10 +105,10 @@ function App() {
           }
         />
         <Route
-          path="/terms"
+          path="/privacy-policy"
           element={
             <TermsLayout>
-              <Terms />
+              <PrivacyPolicy />
             </TermsLayout>
           }
         />
@@ -115,6 +117,17 @@ function App() {
           element={
             <AuthLayout>
               <ForgotPassword />
+            </AuthLayout>
+          }
+        />
+        <Route
+          exact
+          path="reset-password"
+          element={
+            <AuthLayout>
+              <RequireToken>
+                <ResetPassword />
+              </RequireToken>
             </AuthLayout>
           }
         />

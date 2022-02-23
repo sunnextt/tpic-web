@@ -165,7 +165,6 @@ const AppTab = () => {
                   createApplication({
                     application_fees: amountFees,
                     any_previous_business,
-                    business_type,
                     address,
                     amount_needed,
                     bank_account_number,
@@ -202,8 +201,22 @@ const AppTab = () => {
                     setSuccess(true);
                   })
                   .catch((err) => {
-                    setError(err.error);
-                    console.log(err);
+                    if (err) {
+                      let error;
+                      if (err.error) {
+                        error = err.error;
+                        setError(error);
+                      } else if (err.errors) {
+                        error =
+                          (err.errors && err.errors.email) ||
+                          err.errors.phone ||
+                          err.errors.guardian_email ||
+                          err.errors.guardian_phone;
+                        setError(error);
+                      } else {
+                        console.log(err);
+                      }
+                    }
                   });
                 dispatch(savePaymentHistory(res.data));
               })
@@ -219,9 +232,11 @@ const AppTab = () => {
     }
   };
 
-  if (success) {
+  if (success === true) {
     return <AppSuccess />;
   }
+
+  console.log(error);
 
   return (
     <TabContainer>
@@ -310,7 +325,7 @@ const AppTab = () => {
                   }}
                 >
                   <Checkbox
-                    path="/terms"
+                    path="/docs/application-terms.pdf"
                     link=" terms & conditions"
                     label="Accept"
                     name="acceptTerms"

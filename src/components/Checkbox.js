@@ -96,7 +96,7 @@ export default function Checkbox({ value, onChange, name, id, label, disabled, l
     <Label htmlFor={id} disabled={disabled}>
       <span>
         {label}
-        {link && <Link to={path}>{link}</Link>}
+        {link && <Link target="_blank" to={path}>{link}</Link>}
       </span>
       <Input
         id={id}
