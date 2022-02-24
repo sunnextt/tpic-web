@@ -160,72 +160,71 @@ const AppTab = () => {
               payment_date: formateDate(date),
             };
 
-            instance
-              .post('application/payment', configOrder)
+            dispatch(
+              createApplication({
+                application_fees: amountFees,
+                any_previous_business,
+                address,
+                amount_needed,
+                bank_account_number,
+                bank_name,
+                business_plan,
+                country,
+                email,
+                firstname,
+                funding_reason,
+                id_number,
+                lastname,
+                means_of_identification,
+                passport,
+                phone,
+                previous_business_details,
+                previous_business_name,
+                proof_of_address,
+                state,
+                guardian_fullname,
+                guardian_email,
+                guardian_phone,
+                guardian_address,
+                application_reason: {
+                  reason: application_reason,
+                  name: previous_business_name ? previous_business_name : skills_acquisition,
+                  type: business_type ? business_type : skills_type,
+                },
+              }),
+            )
+              .unwrap()
               .then((res) => {
-                dispatch(
-                  createApplication({
-                    application_fees: amountFees,
-                    any_previous_business,
-                    address,
-                    amount_needed,
-                    bank_account_number,
-                    bank_name,
-                    business_plan,
-                    country,
-                    email,
-                    firstname,
-                    funding_reason,
-                    id_number,
-                    lastname,
-                    means_of_identification,
-                    passport,
-                    phone,
-                    previous_business_details,
-                    previous_business_name,
-                    proof_of_address,
-                    state,
-                    guardian_fullname,
-                    guardian_email,
-                    guardian_phone,
-                    guardian_address,
-                    application_reason: {
-                      reason: application_reason,
-                      name: previous_business_name ? previous_business_name : skills_acquisition,
-                      type: business_type ? business_type : skills_type,
-                    },
-                  }),
-                )
-                  .unwrap()
+                notify(res.message);
+                instance
+                  .post('application/payment', configOrder)
                   .then((res) => {
-                    notify(res.message);
                     console.log(res);
                     setSuccess(true);
                     setLoading(false);
                   })
-                  .catch((err) => {
-                    if (err) {
-                      let error;
-                      if (err.error) {
-                        error = err.error;
-                        setError(error);
-                      } else if (err.errors) {
-                        error =
-                          (err.errors && err.errors.email) ||
-                          err.errors.phone ||
-                          err.errors.guardian_email ||
-                          err.errors.guardian_phone;
-                        setError(error);
-                        setLoading(false);
-                      } else {
-                        console.log(err);
-                      }
-                    }
+                  .catch((error) => {
+                    setLoading(false);
+                    console.log(error);
                   });
-                dispatch(savePaymentHistory(res.data));
               })
-              .catch((error) => {
-                console.log(error);
+              .catch((err) => {
+                if (err) {
+                  let error;
+                  if (err.error) {
+                    error = err.error;
+                    setError(error);
+                  } else if (err.errors) {
+                    error =
+                      (err.errors && err.errors.email) ||
+                      err.errors.phone ||
+                      err.errors.guardian_email ||
+                      err.errors.guardian_phone;
+                    setError(error);
+                  } else {
+                    console.log(err);
+                  }
+                }
               });
           }
         },

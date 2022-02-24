@@ -40,12 +40,12 @@ const LoginContainer = styled.main`
 
   .form_container {
     background: #ffffff;
-    width: 60%;
+    width: 80%;
     border-radius: 8px;
     padding: 2rem;
 
     @media screen and (max-width: 600px) {
-      width: 80%;
+      width: 90%;
     }
 
     h4 {
@@ -82,6 +82,10 @@ const LoginContainer = styled.main`
 
   .col_style {
     padding: 3rem 1rem 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
   }
 
   .col_style_mobile {
