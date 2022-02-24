@@ -7,8 +7,6 @@ import PaymentStatusContainer, { ApplicationFeeDiv, FundDiv } from './styled';
 const PaymentStatus = ({ data }) => {
   const matches = useMediaQuery('(max-width: 760px)');
 
-  console.log(data);
-
   return (
     <PaymentStatusContainer>
       <Row>
