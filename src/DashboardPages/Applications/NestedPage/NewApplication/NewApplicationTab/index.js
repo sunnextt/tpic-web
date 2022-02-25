@@ -114,7 +114,7 @@ const AppTab = () => {
     reference: new Date().getTime(),
     name: `${data && data.first_name} ${data && data.last_name}`,
     email: data && data.email,
-    amount: amountFees,
+    amount: amountFees * 100,
     publicKey,
   };
 
