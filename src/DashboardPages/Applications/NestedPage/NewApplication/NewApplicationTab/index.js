@@ -25,7 +25,6 @@ import { useMediaQuery } from 'usehooks-ts';
 import { usePaystackPayment } from 'react-paystack';
 
 import { publicKey } from '../../../../../paystack/PaystackPublickey';
-import { savePaymentHistory } from 'redux/slice/PaymentHistorySlice';
 import instance from 'services/api.instance';
 import { formateDate } from 'utils/formatDate';
 import axios from 'axios';
