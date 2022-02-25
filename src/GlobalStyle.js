@@ -135,6 +135,27 @@ a {
     display: block;
 }
 
+.alert {
+    border-width: 0;
+    font-size: 12px;
+    padding: 14px 14px 12px 14px;
+    font-weight: 400;
+}
+
+
+.alert-danger {
+    background-color: #EB1E32;
+    border-color: #EB1E32;
+    color: #FFF;
+}
+
+.alert {
+    padding: 14px;
+    margin-bottom: 24px;
+    border: 1px solid transparent;
+    border-radius: 0;
+}
+
 `;
 
 export default GlobalStyle;

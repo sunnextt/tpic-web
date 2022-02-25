@@ -1,6 +1,6 @@
-import { Col, Row } from 'antd';
-import React, { useState } from 'react';
-import LoginContainer, { Form, Img, Input, InputDiv, Link, BtnDiv, Label } from './styled';
+import { Card, Col, Row, Spin } from 'antd';
+import React, { useEffect, useState } from 'react';
+import LoginContainer, { Form, Img, Input, InputDiv, Link, BtnDiv, Label, ResetContainer, LinkDiv } from './styled';
 import companyLogo from '../../../assets/png/letgetstarted.png';
 import Button from 'components/Button';
 import { useFormik } from 'formik';
@@ -8,6 +8,7 @@ import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
 import { resetpassword } from 'redux/slice/AuthSlice';
 import useQuery from '../../../utils/useQuery/index';
+import { useNavigate } from 'react-router-dom';
 
 const validationSchema = function (values) {
   return Yup.object().shape({
@@ -45,6 +46,7 @@ const getErrorsFromValidationError = (validationError) => {
 
 const ResetPassword = () => {
   let query = useQuery();
+  const navigate = useNavigate();
   const token = query.get('token');
   const [successReset, setSuccessReset] = useState(false);
   const [error, setError] = useState('');
@@ -54,15 +56,14 @@ const ResetPassword = () => {
 
   const formik = useFormik({
     initialValues: {
-      email: '',
+      password: '',
       password_confirmation: '',
     },
     validationSchema,
     validate: validate(validationSchema),
     onSubmit: (data) => {
       setLoading(true);
-      console.log(data.email);
-      dispatch(resetpassword({ token, email: data.email, password_confirmation: data.password_confirmation }))
+      dispatch(resetpassword({ token, password: data.password, password_confirmation: data.password_confirmation }))
         .unwrap()
         .then((res) => {
           console.log(res);
@@ -75,23 +76,25 @@ const ResetPassword = () => {
     },
   });
 
-  const styles = {
-    color: '#f1c40f',
-  };
+  useEffect(() => {
+    if (error) {
+      navigate('/forgotpassword', { state: error });
+    }
+  }, [error, navigate]);
 
   if (successReset) {
     return (
-      <div>
-        <div className="signup_header">
-          <h2>Password Reset</h2>
-          <h6>
-            Congratulations! Your new password has now been set.{' '}
-            <a style={styles} href="/login">
-              Go to account
-            </a>
-          </h6>
-        </div>
-      </div>
+      <ResetContainer>
+        <Card style={{ width: 712, background: '#00A953', paddingTop: '2rem', paddingBottom: '2rem' }}>
+          <div className="card_contents">
+            <h4 style={{ textAlign: 'center' }}>Password Reset</h4>
+            <h6> Congratulations! Your new password has now been set.</h6>
+            <LinkDiv>
+              <Link to="/">Go to account</Link>
+            </LinkDiv>
+          </div>
+        </Card>
+      </ResetContainer>
     );
   }
 
@@ -99,9 +102,6 @@ const ResetPassword = () => {
     <LoginContainer>
       <Row align="middle">
         <Col xs={24} sm={24} md={24} lg={24} className="col_style">
-          <div className="align_item_center">
-            <Img src={companyLogo} alt="company logo" />
-          </div>
           <div className="form_container">
             <Form className="styled_form" onSubmit={formik.handleSubmit}>
               <h4>Reset Password?</h4>
@@ -134,6 +134,11 @@ const ResetPassword = () => {
                   Reset
                 </Button>
               </BtnDiv>
+              {loading && (
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <Spin />
+                </div>
+              )}
             </Form>
           </div>
         </Col>

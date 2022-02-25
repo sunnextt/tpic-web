@@ -232,4 +232,59 @@ export const BtnDiv = styled.div`
 
 export const Link = styled(_Link)``;
 
+export const LinkDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  a {
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 1.714rem;
+    line-height: 29px;
+
+    &:hover {
+      color: #ffb400;
+      transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1);
+    }
+    @media screen and (max-width: 900px) {
+      font-size: 18px;
+    }
+  }
+`;
+
+export const ResetContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 4rem 0 0;
+  height: 100%;
+
+  .card_contents {
+    width: 72%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    row-gap: 1rem;
+  }
+  h4 {
+    font-weight: bold;
+    font-size: 27px;
+    line-height: 32px;
+    color: #ffffff;
+  }
+
+  h6 {
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 150%;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #ffffff;
+  }
+`;
+
 export default LoginContainer;

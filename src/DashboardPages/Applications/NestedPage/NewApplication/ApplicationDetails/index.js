@@ -1,11 +1,22 @@
 import { Radio } from 'antd';
 import { Input, InputDiv, InputLabel, Label, StyledTextArea, TextAreaDiv } from 'components/Input';
 import ReactSelect from 'components/ReactSelect';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import AppDetailsContainer from './styled';
+import axios from 'axios';
 
-const ApplicationDetails = ({ handleChangeInput, handlePrevious, onChange, value, errors, setFieldValue }) => {
+const ApplicationDetails = ({ handleChangeInput, bankData, onChange, value, errors, setFieldValue }) => {
   const [index, setIndex] = useState('');
+  const [banks, setBanks] = React.useState(null);
+  const [bankList, setBankList] = React.useState(null);
+
+  const baseURL = 'https://api.paystack.co/bank';
+
+  React.useEffect(() => {
+    axios.get(baseURL).then(({ data }) => {
+      setBanks(data.data);
+    });
+  }, []);
 
   const handleindex = (e) => {
     handleChangeInput(e);
@@ -23,10 +34,19 @@ const ApplicationDetails = ({ handleChangeInput, handlePrevious, onChange, value
     { value: 'Private Limited Company (Ltd)', label: 'Private Limited Company (Ltd)' },
     { value: 'Private Unlimited Company', label: 'Private Unlimited Company' },
   ];
-  const BANK0ptions = [
-    { value: 'UBA', label: 'UBA' },
-    { value: 'GTB', label: 'GTB' },
-  ];
+
+  console.log(bankData);
+
+  useEffect(() => {
+    let ModifiedData = bankData.map((list) => {
+      return {
+        value: list.code,
+        label: list.name,
+      };
+    });
+
+    setBankList(ModifiedData);
+  }, [bankData]);
 
   const AMOUNToptions = [
     { value: '25000', label: new Intl.NumberFormat('en-NG', { style: 'currency', currency: 'NGN' }).format(25000) },
@@ -134,7 +154,7 @@ const ApplicationDetails = ({ handleChangeInput, handlePrevious, onChange, value
             setFieldValue={setFieldValue}
             name={value.bank_name ? value.bank_name : 'bank_name'}
             placeholder="Select Bank"
-            options={BANK0ptions}
+            options={bankList}
             errors={errors.bank_name}
           />
           <InputLabel>

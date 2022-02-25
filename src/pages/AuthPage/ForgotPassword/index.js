@@ -1,5 +1,5 @@
-import { Col, Row } from 'antd';
-import React, { useState } from 'react';
+import { Card, Col, Row, Spin } from 'antd';
+import React, { useEffect, useState } from 'react';
 import LoginContainer, {
   Form,
   Img,
@@ -12,6 +12,8 @@ import LoginContainer, {
   BtnDiv,
   BackHomeLinkDiv,
   Label,
+  ResetContainer,
+  LinkDiv,
 } from './styled';
 import companyLogo from '../../../assets/png/letgetstarted.png';
 import Image1 from '../../../assets/png/Image1.png';
@@ -22,7 +24,7 @@ import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
 import { forgotpassword } from 'redux/slice/AuthSlice';
 import { useMediaQuery } from 'usehooks-ts';
-
+import { useLocation, useParams, useSearchParams } from 'react-router-dom';
 
 const validationSchema = function (values) {
   return Yup.object().shape({
@@ -53,9 +55,10 @@ const getErrorsFromValidationError = (validationError) => {
 };
 
 const ForgotPassword = () => {
-    const matches = useMediaQuery('(max-width: 600px)');
+  let { state } = useLocation();
 
   const [success, setSuccess] = useState(false);
+  const [message, setMessage] = useState(false);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
@@ -68,6 +71,7 @@ const ForgotPassword = () => {
     validationSchema,
     validate: validate(validationSchema),
     onSubmit: (data) => {
+      setMessage(false);
       console.log(data.email);
       dispatch(forgotpassword({ email: data.email }))
         .unwrap()
@@ -82,91 +86,67 @@ const ForgotPassword = () => {
     },
   });
 
+  useEffect(() => {
+    if (state.message === 'Rejected') {
+      setMessage(true);
+    }
+  }, [state.message]);
+
+  console.log(message);
+
   if (success) {
     return (
-      <div>
-        <div className="signup_header">
-          <h2>Password Reset</h2>
-          <h6>A message has been sent to you by email with instructions on how to reset your password.</h6>
-        </div>
-      </div>
+      <ResetContainer>
+        <Card style={{ width: 712, background: '#00A953', paddingTop: '2rem', paddingBottom: '2rem' }}>
+          <div className="card_contents">
+            <h4 style={{ textAlign: 'center' }}>Password Reset</h4>
+            <h6>A message has been sent to you by email with instructions on how to reset your password.</h6>
+            <LinkDiv>
+              <Link to="/">Back to Home</Link>
+            </LinkDiv>
+          </div>
+        </Card>
+      </ResetContainer>
     );
   }
 
   return (
     <LoginContainer>
-      {matches ? (
-        <Row align="middle">
-          <Col xs={24} sm={24} md={24} lg={24} className="col_style_mobile">
-            <div className="align_item_center">
-              <Img src={companyLogo} alt="company logo" />
-            </div>
-            <div className="form_container">
-              <Form className="styled_form" onSubmit={formik.handleSubmit}>
-                <h4>Forgot Password?</h4>
-                <InputDiv>
-                  <div className="form-group">
-                    <Label>Email</Label>
-                    <Input
-                      name="email"
-                      placeholder="Enter Email address"
-                      onChange={formik.handleChange}
-                      value={formik.values.email}
-                    />
-                    <div className="text-danger">{formik.errors.email ? formik.errors.email : null}</div>
-                    <div className="text-danger">{error !== '' ? 'please provide valid email' : null}</div>
-                  </div>
-                </InputDiv>
-                <BtnDiv>
-                  <Button type="submit" color="primary" width="fullWidth" padding="10px 20px">
-                    Reset
-                  </Button>
-                </BtnDiv>
-              </Form>
-            </div>
-          </Col>
-        </Row>
-      ) : (
-        <Row>
-          <Col xs={9} sm={9} md={9} lg={9} className="side_column">
-            <SideImageCon>
-              <Img1 src={Image1} alt="img" />
-              <Img2 src={Image2} alt="img" />
-            </SideImageCon>
-            <BackHomeLinkDiv>
-              <Link to="/">Back to Home</Link>
-            </BackHomeLinkDiv>
-          </Col>
-          <Col xs={15} sm={15} md={15} lg={15} className="col_style">
-            <div className="align_item_center">
-              <Img src={companyLogo} alt="company logo" />
-            </div>
-            <div className="form_container">
-              <Form className="styled_form" onSubmit={formik.handleSubmit}>
-                <h4>Forgot Password?</h4>
-                <InputDiv>
-                  <div className="form-group">
-                    <Label>Email</Label>
-                    <Input
-                      name="email"
-                      placeholder="Enter Email address"
-                      onChange={formik.handleChange}
-                      value={formik.values.email}
-                    />
-                    <div className="text-danger">{formik.errors.email ? formik.errors.email : null}</div>
-                    <div className="text-danger">{error !== '' ? 'please provide valid email' : null}</div>
-                  </div>
-                </InputDiv>
-                <BtnDiv>
-                  <Button type="submit" color="primary" width="fullWidth" padding="10px 20px">
-                    Reset
-                  </Button>
-                </BtnDiv>
-              </Form>
-            </div>
-          </Col>
-        </Row>
-      )}
+      <Row align="middle">
+        <Col xs={24} sm={24} md={24} lg={24} className="col_style">
+          <div className="form_container">
+            <Form className="styled_form" onSubmit={formik.handleSubmit}>
+              <h4>Forgot Password?</h4>
+              {message && (
+                <div className="alert alert-danger">Your password reset link is not valid, or already used.</div>
+              )}
+              <InputDiv>
+                <div className="form-group">
+                  <Label>Email</Label>
+                  <Input
+                    name="email"
+                    placeholder="Enter Email address"
+                    onChange={formik.handleChange}
+                    value={formik.values.email}
+                  />
+                  <div className="text-danger">{formik.errors.email ? formik.errors.email : null}</div>
+                  <div className="text-danger">{error !== '' ? 'please provide valid email' : null}</div>
+                </div>
+              </InputDiv>
+              <BtnDiv>
+                <Button type="submit" color="primary" width="fullWidth" padding="10px 20px">
+                  Reset
+                </Button>
+              </BtnDiv>
+              {loading && (
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <Spin />
+                </div>
+              )}
+            </Form>
+          </div>
+        </Col>
+      </Row>
     </LoginContainer>
   );
 };

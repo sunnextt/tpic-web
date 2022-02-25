@@ -115,20 +115,20 @@ function App() {
         <Route
           path="/forgotpassword"
           element={
-            <AuthLayout>
+            <TermsLayout>
               <ForgotPassword />
-            </AuthLayout>
+            </TermsLayout>
           }
         />
         <Route
           exact
-          path="reset-password"
+          path="/reset/password"
           element={
-            <AuthLayout>
+            <TermsLayout>
               <RequireToken>
                 <ResetPassword />
               </RequireToken>
-            </AuthLayout>
+            </TermsLayout>
           }
         />
         <Route

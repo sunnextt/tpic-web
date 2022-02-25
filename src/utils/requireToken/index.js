@@ -7,12 +7,8 @@ function RequireToken({ children }) {
 
   let location = useLocation();
   const token = query.get('token');
-
-  console.log(token);
-
   if (!token) {
-
-    return <Navigate to="/reset-password" state={{ from: location }} replace />;
+    return <Navigate to="/forgotpassword" state={{ from: location }} replace />;
   }
   return children;
 }

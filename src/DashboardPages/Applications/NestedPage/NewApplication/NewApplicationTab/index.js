@@ -28,6 +28,7 @@ import { publicKey } from '../../../../../paystack/PaystackPublickey';
 import { savePaymentHistory } from 'redux/slice/PaymentHistorySlice';
 import instance from 'services/api.instance';
 import { formateDate } from 'utils/formatDate';
+import axios from 'axios';
 
 const CustomTab = ({ children, selectedClassName, className, selected }) => (
   <Tab selectedClassName={selectedClassName} selected={selected}>
@@ -44,7 +45,15 @@ const HeaderDiv = styled.div`
   margin-bottom: 2rem;
 `;
 
+const baseURL = 'https://api.paystack.co/bank';
 const AppTab = () => {
+  const [banks, setBanks] = React.useState(null);
+
+  React.useEffect(() => {
+    axios.get(baseURL).then((response) => {
+      setBanks(response.data.data);
+    });
+  }, []);
   const matches = useMediaQuery('(max-width: 760px)');
   const { user: currentUser } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
@@ -290,6 +299,7 @@ const AppTab = () => {
                   onChange={handleChange}
                   value={values}
                   errors={errors}
+                  bankData={banks ? banks : null}
                   handleChangeInput={handleChangeInput}
                   handlePrevious={previous}
                   setFieldValue={setFieldValue}
