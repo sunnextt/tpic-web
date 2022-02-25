@@ -3,20 +3,10 @@ import { Input, InputDiv, InputLabel, Label, StyledTextArea, TextAreaDiv } from 
 import ReactSelect from 'components/ReactSelect';
 import React, { useEffect, useState } from 'react';
 import AppDetailsContainer from './styled';
-import axios from 'axios';
 
 const ApplicationDetails = ({ handleChangeInput, bankData, onChange, value, errors, setFieldValue }) => {
   const [index, setIndex] = useState('');
-  const [banks, setBanks] = React.useState(null);
   const [bankList, setBankList] = React.useState(null);
-
-  const baseURL = 'https://api.paystack.co/bank';
-
-  React.useEffect(() => {
-    axios.get(baseURL).then(({ data }) => {
-      setBanks(data.data);
-    });
-  }, []);
 
   const handleindex = (e) => {
     handleChangeInput(e);
@@ -40,7 +30,8 @@ const ApplicationDetails = ({ handleChangeInput, bankData, onChange, value, erro
   useEffect(() => {
     let ModifiedData = bankData.map((list) => {
       return {
-        value: list.code,
+        // value: list.code,
+        value: list.name,
         label: list.name,
       };
     });
