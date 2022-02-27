@@ -95,11 +95,13 @@ const Login = () => {
         .unwrap()
         .then(() => {
           setLoading(false);
+          formik.setSubmitting(false);
 
           Navigate('/dashboard');
         })
         .catch((error) => {
           setLoading(false);
+          formik.setSubmitting(false);
 
           if (error.message === 'Rejected') {
             setErrorMessage('Email or password is incorrect');
@@ -107,6 +109,7 @@ const Login = () => {
         });
     },
   });
+
 
   return (
     <LoginContainer>
@@ -155,7 +158,13 @@ const Login = () => {
                   </div>
                 </div>
                 <BtnDiv>
-                  <Button loading="disabled" type="submit" color="primary" width="fullWidth" padding="14px 20px">
+                  <Button
+                    disabled={formik.isSubmitting}
+                    type="submit"
+                    color="primary"
+                    width="fullWidth"
+                    padding="14px 20px"
+                  >
                     Login to Continue
                   </Button>
                 </BtnDiv>
@@ -227,7 +236,7 @@ const Login = () => {
                   </div>
                 </div>
                 <BtnDiv>
-                  <Button loading="disabled" type="submit" color="primary" width="fullWidth">
+                  <Button disabled={formik.isSubmitting ? true : false} type="submit" color="primary" width="fullWidth">
                     Login to Continue
                   </Button>
                 </BtnDiv>

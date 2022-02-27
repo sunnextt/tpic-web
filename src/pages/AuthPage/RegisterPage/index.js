@@ -115,13 +115,14 @@ const Register = () => {
         .unwrap()
         .then(() => {
           setLoading(false);
+          formik.setSubmitting(false);
 
           Navigate('/dashboard');
           window.location.reload();
         })
         .catch((error) => {
           setLoading(false);
-          console.log(error);
+          formik.setSubmitting(false);
 
           if (error.message === 'Rejected') {
             setErrorMessage('The email has already been taken');
@@ -234,7 +235,13 @@ const Register = () => {
                         </div>
                       </div>
                       <BtnDiv>
-                        <Button type="submit" color="primary" padding="14px 20px" width="fullWidth">
+                        <Button
+                          disabled={formik.isSubmitting}
+                          type="submit"
+                          color="primary"
+                          padding="14px 20px"
+                          width="fullWidth"
+                        >
                           Create Account
                         </Button>
                         {loading && (
@@ -373,7 +380,7 @@ const Register = () => {
                         </div>
                       </div>
                       <BtnDiv>
-                        <Button type="submit" color="primary">
+                        <Button disabled={formik.isSubmitting} type="submit" color="primary">
                           Create Account
                         </Button>
                         {loading && (

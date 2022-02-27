@@ -68,9 +68,12 @@ const ResetPassword = () => {
         .then((res) => {
           console.log(res);
           setSuccessReset(true);
+          formik.setSubmitting(false);
         })
         .catch((err) => {
           setError(err);
+          formik.setSubmitting(false);
+
           setLoading(false);
         });
     },
@@ -130,7 +133,13 @@ const ResetPassword = () => {
                 </div>
               </InputDiv>
               <BtnDiv>
-                <Button type="submit" color="primary" width="fullWidth" padding="10px 20px">
+                <Button
+                  disabled={formik.isSubmitting}
+                  type="submit"
+                  color="primary"
+                  width="fullWidth"
+                  padding="10px 20px"
+                >
                   Reset
                 </Button>
               </BtnDiv>

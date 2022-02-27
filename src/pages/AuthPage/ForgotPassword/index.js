@@ -8,23 +8,17 @@ import LoginContainer, {
   Input,
   InputDiv,
   Link,
-  SideImageCon,
   BtnDiv,
-  BackHomeLinkDiv,
   Label,
   ResetContainer,
   LinkDiv,
 } from './styled';
-import companyLogo from '../../../assets/png/letgetstarted.png';
-import Image1 from '../../../assets/png/Image1.png';
-import Image2 from '../../../assets/png/Image3.png';
 import Button from 'components/Button';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
 import { forgotpassword } from 'redux/slice/AuthSlice';
-import { useMediaQuery } from 'usehooks-ts';
-import { useLocation, useParams, useSearchParams } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 const validationSchema = function (values) {
   return Yup.object().shape({
@@ -56,13 +50,12 @@ const getErrorsFromValidationError = (validationError) => {
 
 const ForgotPassword = () => {
   let { state } = useLocation();
+  const dispatch = useDispatch();
 
   const [success, setSuccess] = useState(false);
   const [message, setMessage] = useState(false);
   const [error, setError] = useState('');
-  const [loading, setLoading] = useState(false);
-
-  const dispatch = useDispatch();
+  const [loading, setLoading] = useState('');
 
   const formik = useFormik({
     initialValues: {
@@ -75,24 +68,26 @@ const ForgotPassword = () => {
       console.log(data.email);
       dispatch(forgotpassword({ email: data.email }))
         .unwrap()
-        .then((res) => {
-          console.log(res);
+        .then(() => {
+          formik.setSubmitting(false);
+
           setSuccess(true);
         })
-        .catch((err) => {
-          setError(err);
+        .catch(() => {
+          formik.setSubmitting(false);
+
           setLoading(false);
         });
     },
   });
 
   useEffect(() => {
-    if (state.message === 'Rejected') {
-      setMessage(true);
+    if (state) {
+      if (state.message === 'Rejected') {
+        setMessage(true);
+      }
     }
-  }, [state.message]);
-
-  console.log(message);
+  }, [state]);
 
   if (success) {
     return (
@@ -134,7 +129,13 @@ const ForgotPassword = () => {
                 </div>
               </InputDiv>
               <BtnDiv>
-                <Button type="submit" color="primary" width="fullWidth" padding="10px 20px">
+                <Button
+                  disabled={formik.isSubmitting}
+                  type="submit"
+                  color="primary"
+                  width="fullWidth"
+                  padding="10px 20px"
+                >
                   Reset
                 </Button>
               </BtnDiv>
