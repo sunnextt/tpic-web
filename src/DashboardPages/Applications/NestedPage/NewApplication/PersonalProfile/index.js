@@ -1,15 +1,27 @@
 import { Formdiv, Input, InputDiv, InputLabel, Label } from 'components/Input';
 import ReactSelect from 'components/ReactSelect';
-import React from 'react';
+import React, { useEffect } from 'react';
 import PPCTs from './styled';
+import state from '../../../../../utils/data/state.json';
 
 const colourStyles = {};
 
 const PersonalProfile = ({ onChange, value, errors, setFieldValue }) => {
-  const stateOptions = [
-    { value: 'lagos', label: 'Lagos' },
-    { value: 'oyo', label: 'Oyo' },
-  ];
+  const [stateList, setStateList] = React.useState(null);
+
+
+  useEffect(() => {
+    let ModifiedData = state.map((list) => {
+      return {
+        // value: list.code,
+        value: list.code,
+        label: list.name,
+      };
+    });
+
+    setStateList(ModifiedData);
+  }, []);
+
   const NIN0ptions = [
     { value: 'NIN', label: 'NIN' },
     { value: 'international passport', label: 'International passport' },
@@ -18,10 +30,10 @@ const PersonalProfile = ({ onChange, value, errors, setFieldValue }) => {
 
   const countryoptions = [
     { value: 'Nigeria', label: 'Nigeria' },
-    { value: 'Ghana', label: 'Ghana' },
-    { value: 'South Africa', label: 'South Africa' },
-    { value: 'UK', label: 'UK' },
-    { value: 'USA', label: 'USA' },
+    // { value: 'Ghana', label: 'Ghana' },
+    // { value: 'South Africa', label: 'South Africa' },
+    // { value: 'UK', label: 'UK' },
+    // { value: 'USA', label: 'USA' },
   ];
 
   return (
@@ -97,7 +109,7 @@ const PersonalProfile = ({ onChange, value, errors, setFieldValue }) => {
               label="state"
               value={value.state}
               setFieldValue={setFieldValue}
-              options={stateOptions}
+              options={stateList}
             />
             <ReactSelect
               value={value.means_of_identification}

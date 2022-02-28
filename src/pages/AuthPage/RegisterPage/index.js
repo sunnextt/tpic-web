@@ -24,7 +24,7 @@ import Checkbox from 'components/Checkbox';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { clearMessage } from 'redux/slice/MessageSlice';
 import { register } from 'redux/slice/AuthSlice';
 import { Spin } from 'antd';
@@ -74,10 +74,11 @@ const getErrorsFromValidationError = (validationError) => {
 
 const Register = () => {
   const matches = useMediaQuery('(max-width: 600px)');
+  const { message } = useSelector((state) => state.message);
 
   const [value] = useState(true);
   const [loading, setLoading] = useState(false);
-  const [ErrorMessage, setErrorMessage] = useState('');
+  const [ErrorMessage, setErrorMessage] = useState(false);
 
   const Navigate = useNavigate();
 
@@ -116,20 +117,26 @@ const Register = () => {
         .then(() => {
           setLoading(false);
           formik.setSubmitting(false);
-
-          Navigate('/dashboard');
           window.location.reload();
+          Navigate('/dashboard');
         })
         .catch((error) => {
           setLoading(false);
           formik.setSubmitting(false);
-
+          console.log(error);
           if (error.message === 'Rejected') {
-            setErrorMessage('The email has already been taken');
+            setErrorMessage(error.message);
           }
         });
     },
   });
+
+  useEffect(() => {
+    if (ErrorMessage === 'Rejected') {
+      setErrorMessage(message);
+    }
+  }, [ErrorMessage, message]);
+
 
   return (
     <RegisterContainer>
@@ -137,7 +144,9 @@ const Register = () => {
         <Row>
           <Col span={24} style={{ padding: matches ? ' 3rem 1rem' : '3rem 5rem 5rem' }}>
             <div className="align_item_center">
-              <Img src={companyLogo} alt="company logo" />
+              <Link to="/" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <Img src={companyLogo} alt="company logo" />
+              </Link>
             </div>
             <div className="form_container">
               <Row>

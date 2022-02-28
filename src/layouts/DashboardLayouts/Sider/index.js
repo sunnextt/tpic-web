@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect} from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { Layout, Menu } from 'antd';
 import { generatePath, useLocation } from 'react-router-dom';
 
@@ -25,7 +25,7 @@ const ASide = ({ collapsed, onBreakpoint, onCollapse }) => {
   useEffect(() => {
     eventBus.on('logout', () => {
       logOut();
-    });
+         });
 
     return () => {
       eventBus.remove('logout');

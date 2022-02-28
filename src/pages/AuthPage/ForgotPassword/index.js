@@ -1,24 +1,13 @@
 import { Card, Col, Row, Spin } from 'antd';
 import React, { useEffect, useState } from 'react';
-import LoginContainer, {
-  Form,
-  Img,
-  Img1,
-  Img2,
-  Input,
-  InputDiv,
-  Link,
-  BtnDiv,
-  Label,
-  ResetContainer,
-  LinkDiv,
-} from './styled';
+import LoginContainer, { Form, Input, InputDiv, Link, BtnDiv, Label, ResetContainer, LinkDiv } from './styled';
 import Button from 'components/Button';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { forgotpassword } from 'redux/slice/AuthSlice';
 import { useLocation } from 'react-router-dom';
+import { clearMessage } from 'redux/slice/MessageSlice';
 
 const validationSchema = function (values) {
   return Yup.object().shape({
@@ -50,12 +39,18 @@ const getErrorsFromValidationError = (validationError) => {
 
 const ForgotPassword = () => {
   let { state } = useLocation();
+  const { message: dataMsg } = useSelector((state) => state.message);
+
   const dispatch = useDispatch();
 
   const [success, setSuccess] = useState(false);
   const [message, setMessage] = useState(false);
-  const [error, setError] = useState('');
+  const [error, setError] = useState(false);
   const [loading, setLoading] = useState('');
+
+  useEffect(() => {
+    dispatch(clearMessage());
+  }, [dispatch]);
 
   const formik = useFormik({
     initialValues: {
@@ -65,17 +60,17 @@ const ForgotPassword = () => {
     validate: validate(validationSchema),
     onSubmit: (data) => {
       setMessage(false);
-      console.log(data.email);
+      setError(false);
+
       dispatch(forgotpassword({ email: data.email }))
         .unwrap()
         .then(() => {
           formik.setSubmitting(false);
-
           setSuccess(true);
         })
-        .catch(() => {
+        .catch((error) => {
           formik.setSubmitting(false);
-
+          setError(error);
           setLoading(false);
         });
     },
@@ -89,6 +84,14 @@ const ForgotPassword = () => {
     }
   }, [state]);
 
+  useEffect(() => {
+    if (error) {
+      if (error.message === 'Rejected') {
+        setError(true);
+      }
+    }
+  }, [dataMsg, error, error.message]);
+
   if (success) {
     return (
       <ResetContainer>
@@ -97,7 +100,7 @@ const ForgotPassword = () => {
             <h4 style={{ textAlign: 'center' }}>Password Reset</h4>
             <h6>A message has been sent to you by email with instructions on how to reset your password.</h6>
             <LinkDiv>
-              <Link to="/">Back to Home</Link>
+              <Link to="/login">Back to Login</Link>
             </LinkDiv>
           </div>
         </Card>
@@ -115,6 +118,8 @@ const ForgotPassword = () => {
               {message && (
                 <div className="alert alert-danger">Your password reset link is not valid, or already used.</div>
               )}
+              {error && <div className="alert alert-danger">please provide valid email</div>}
+
               <InputDiv>
                 <div className="form-group">
                   <Label>Email</Label>
@@ -125,7 +130,6 @@ const ForgotPassword = () => {
                     value={formik.values.email}
                   />
                   <div className="text-danger">{formik.errors.email ? formik.errors.email : null}</div>
-                  <div className="text-danger">{error !== '' ? 'please provide valid email' : null}</div>
                 </div>
               </InputDiv>
               <BtnDiv>
@@ -139,6 +143,11 @@ const ForgotPassword = () => {
                   Reset
                 </Button>
               </BtnDiv>
+              {formik.isSubmitting && (
+                <div style={{ display: 'flex', justifyContent: 'center' }}>
+                  <Spin />
+                </div>
+              )}
               {loading && (
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                   <Spin />

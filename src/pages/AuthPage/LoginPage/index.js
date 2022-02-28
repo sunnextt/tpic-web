@@ -96,8 +96,8 @@ const Login = () => {
         .then(() => {
           setLoading(false);
           formik.setSubmitting(false);
-
           Navigate('/dashboard');
+          window.location.reload();
         })
         .catch((error) => {
           setLoading(false);
@@ -110,14 +110,15 @@ const Login = () => {
     },
   });
 
-
   return (
     <LoginContainer>
       {matches ? (
         <Row>
           <Col span={24} style={{ padding: matches ? ' 3rem 1rem' : '3rem 5rem 5rem' }}>
             <div className="align_item_center">
-              <Img src={companyLogo} alt="company logo" />
+              <Link to="/" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <Img src={companyLogo} alt="company logo" />
+              </Link>
             </div>
             <div className="form_container">
               <Form className="styled_form" onSubmit={formik.handleSubmit}>

@@ -26,7 +26,7 @@ const login = async (email, password) => {
   return response.data;
 };
 
-const forgotpassword = async email => {
+const forgotpassword = async (email) => {
   const response = await tredjkAuthApi.post('send/password-reset-link', { email });
   return response.data;
 };
@@ -38,6 +38,7 @@ const resetpassword = async (token, password_confirmation, password) => {
 
 const logout = () => {
   ExpirySession.clear('user');
+  window.location.reload();
 };
 
 const authService = {
