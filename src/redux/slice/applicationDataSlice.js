@@ -92,7 +92,6 @@ export const createApplication = createAsyncThunk(
       email,
       firstname,
       funding_reason,
-      id_number,
       lastname,
       means_of_identification,
       passport,
@@ -122,7 +121,6 @@ export const createApplication = createAsyncThunk(
         email,
         firstname,
         funding_reason,
-        id_number,
         lastname,
         means_of_identification,
         passport,
@@ -147,6 +145,21 @@ export const createApplication = createAsyncThunk(
     }
   },
 );
+export const SaveApplicationDraft = createAsyncThunk(
+  'users/saveApplicationDraft',
+  async ({ DraftFieldData }, { rejectWithValue }) => {
+    try {
+      const response = await applicationService.saveApplicationFormDraft(DraftFieldData);
+      return response;
+    } catch (err) {
+      let error = err; // cast the error for access
+      if (!error.response) {
+        throw err;
+      }
+      return rejectWithValue(error.response.data);
+    }
+  },
+);
 
 const initialState = {
   SingleApplication: {},
@@ -155,6 +168,7 @@ const initialState = {
   userDocument: {},
   updateInfo: {},
   userProfile: {},
+  saveDraft: {},
   error: null,
 };
 
@@ -167,6 +181,16 @@ const createApplicationSlice = createSlice({
       state.createapp = payload;
     });
     builder.addCase(createApplication.rejected, (state, action) => {
+      if (action.payload) {
+        state.error = action.payload.errorMessage;
+      } else {
+        state.error = action.error.message;
+      }
+    });
+    builder.addCase(SaveApplicationDraft.fulfilled, (state, { payload }) => {
+      state.saveDraft = payload;
+    });
+    builder.addCase(SaveApplicationDraft.rejected, (state, action) => {
       if (action.payload) {
         state.error = action.payload.errorMessage;
       } else {

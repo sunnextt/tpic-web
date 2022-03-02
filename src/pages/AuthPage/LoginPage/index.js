@@ -97,7 +97,7 @@ const Login = () => {
           setLoading(false);
           formik.setSubmitting(false);
           Navigate('/dashboard');
-          window.location.reload();
+          // window.location.reload();
         })
         .catch((error) => {
           setLoading(false);

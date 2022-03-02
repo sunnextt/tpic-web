@@ -28,7 +28,7 @@ const AppTab = ({ data }) => {
       setRejected(dataRejected);
       setApproved(dataApproved);
     }
-  }, [data, setReview]);
+  }, [data]);
 
 
   return (

@@ -1,7 +1,7 @@
 import { Button, PageHeader, Spin } from 'antd';
 import AppSuccess from 'DashboardPages/Applications/ApplicationSuccess';
 import TabContainer from 'DashboardPages/Applications/Tab/styled';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Tabs, TabList, Tab, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import styled from 'styled-components';
@@ -19,7 +19,7 @@ import { formInitialValues, validationSchema, validate } from '../FormModel/form
 import { LinkButton } from 'components/Button/styled';
 import { Button as ContinueButton } from 'components/Button';
 import { useDispatch, useSelector } from 'react-redux';
-import { createApplication } from 'redux/slice/applicationDataSlice';
+import { createApplication, SaveApplicationDraft } from 'redux/slice/applicationDataSlice';
 import { useMediaQuery } from 'usehooks-ts';
 
 import { usePaystackPayment } from 'react-paystack';
@@ -47,6 +47,7 @@ const HeaderDiv = styled.div`
 const baseURL = 'https://api.paystack.co/bank';
 const AppTab = () => {
   const [banks, setBanks] = React.useState(null);
+  const formRef = useRef();
 
   React.useEffect(() => {
     axios.get(baseURL).then((response) => {
@@ -88,6 +89,15 @@ const AppTab = () => {
   };
   const save = () => {
     // setSuccess(true);
+    const DraftFieldData = formRef.current.values;
+    console.log(DraftFieldData);
+    dispatch(SaveApplicationDraft({ DraftFieldData }))
+      .unwrap()
+      .then((res) => {
+        console.log(res);
+        notify(res.message);
+      })
+      .catch((err) => {});
   };
   const continueform = () => {
     if (isLastStep) {
@@ -132,7 +142,6 @@ const AppTab = () => {
       email,
       firstname,
       funding_reason,
-      id_number,
       lastname,
       means_of_identification,
       passport,
@@ -141,14 +150,14 @@ const AppTab = () => {
       previous_business_name,
       proof_of_address,
       state,
-      skills_type,
-      business_type,
+      appResonType,
       any_previous_business,
       skills_acquisition,
       guardian_fullname,
       guardian_email,
       guardian_phone,
       guardian_address,
+      // reason,
     } = values;
 
     if (amountFees !== 0) {
@@ -181,7 +190,6 @@ const AppTab = () => {
                 email,
                 firstname,
                 funding_reason,
-                id_number,
                 lastname,
                 means_of_identification,
                 passport,
@@ -197,7 +205,7 @@ const AppTab = () => {
                 application_reason: {
                   reason: application_reason,
                   name: previous_business_name ? previous_business_name : skills_acquisition,
-                  type: business_type ? business_type : skills_type,
+                  type: appResonType,
                 },
               }),
             )
@@ -246,9 +254,6 @@ const AppTab = () => {
   if (success) {
     return <AppSuccess />;
   }
-
-  console.log(error);
-
   return (
     <TabContainer>
       <ToastContainer
@@ -265,7 +270,12 @@ const AppTab = () => {
       <HeaderDiv>
         <PageHeader className="ant-page-header" title="New Applications" />
       </HeaderDiv>
-      <Formik initialValues={formInitialValues} validate={validate(validationSchema)} onSubmit={handleFormSubmit}>
+      <Formik
+        initialValues={formInitialValues}
+        validate={validate(validationSchema)}
+        onSubmit={handleFormSubmit}
+        innerRef={formRef}
+      >
         {({ setFieldValue, handleSubmit, handleChange, values, errors, isValid }) => (
           <form onSubmit={handleSubmit}>
             <Tabs className="tabs" selectedIndex={tabIndex} onSelect={onSelect}>
@@ -373,7 +383,9 @@ const AppTab = () => {
             >
               {tabIndex !== 0 && <Button onClick={previous}>Previous</Button>}
               <div className="flex_space_btw">
-                <LinkButton onClick={save}>Save & finish later</LinkButton>
+                <LinkButton type="button" onClick={save}>
+                  Save & finish later
+                </LinkButton>
                 <ContinueButton
                   onClick={continueform}
                   type={tabIndex === 3 ? 'submit' : 'button'}

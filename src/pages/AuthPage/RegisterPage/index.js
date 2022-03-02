@@ -117,13 +117,12 @@ const Register = () => {
         .then(() => {
           setLoading(false);
           formik.setSubmitting(false);
-          window.location.reload();
           Navigate('/dashboard');
+          // window.location.reload();
         })
         .catch((error) => {
           setLoading(false);
           formik.setSubmitting(false);
-          console.log(error);
           if (error.message === 'Rejected') {
             setErrorMessage(error.message);
           }

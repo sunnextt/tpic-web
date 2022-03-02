@@ -23,9 +23,6 @@ const Application = () => {
     setDdata(data);
   }, [data]);
 
-  console.log(ddata ? ddata.length : null);
-  if (ddata === '') {
-  }
 
   return (
     <Container>

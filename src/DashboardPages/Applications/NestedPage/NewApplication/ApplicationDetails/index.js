@@ -18,14 +18,22 @@ const ApplicationDetails = ({ handleChangeInput, bankData, onChange, value, erro
     { value: 'yes', label: 'YES' },
     { value: 'no', label: 'NO' },
   ];
+  const SkillsOptions = [
+    { value: 'Barbing', label: 'Barbing' },
+    { value: 'Fashion Design', label: 'Fashion Design' },
+    { value: 'Automobile Repairs', label: 'Automobile Repairs' },
+    { value: 'Painters', label: 'Painters' },
+    { value: 'White-Collar Skill Acquisition Program', label: 'White-Collar Skill Acquisition Program' },
+    { value: 'Information Technology', label: 'Information Technology' },
+    { value: 'Management and Administration', label: 'Management and Administration' },
+    { value: 'Media Skills', label: 'Media Skills' },
+  ];
 
   const BUSOptions = [
     { value: 'Sole proprietorship', label: 'Sole proprietorship' },
     { value: 'Private Limited Company (Ltd)', label: 'Private Limited Company (Ltd)' },
     { value: 'Private Unlimited Company', label: 'Private Unlimited Company' },
   ];
-
-  console.log(bankData);
 
   useEffect(() => {
     let ModifiedData = bankData.map((list) => {
@@ -61,6 +69,8 @@ const ApplicationDetails = ({ handleChangeInput, bankData, onChange, value, erro
             <Radio value="Skills Aquisition">Skills Aquisition</Radio>
           </Radio.Group>
         </div>
+        {errors.reason && <div className="text-danger">{errors.reason}</div>}
+
         <InputDiv>
           {index === 'Business Venture' ? (
             <InputLabel>
@@ -99,24 +109,24 @@ const ApplicationDetails = ({ handleChangeInput, bankData, onChange, value, erro
           {index === 'Business Venture' ? (
             <ReactSelect
               label="Business Type"
-              value={value.business_type}
+              value={value.appResonType}
               setFieldValue={setFieldValue}
               handleChangeInput={handleChangeInput}
-              name="business_type"
-              placeholder={value.business_type ? value.business_type : 'Business Type'}
+              name="appResonType"
+              placeholder={value.appResonType ? value.appResonType : 'Business Type'}
               options={BUSOptions}
-              errors={errors.business_type}
+              errors={errors.appResonType}
             />
           ) : (
             <ReactSelect
               label="Skills Type"
-              value={value.skills_type}
+              value={value.appResonType}
               setFieldValue={setFieldValue}
               handleChangeInput={handleChangeInput}
-              name={value.skills_type ? value.skills_type : 'skills_type'}
-              placeholder="Skills Type"
-              options={MIN0ptions}
-              errors={errors.skills_type}
+              name="appResonType"
+              placeholder={value.appResonType  ? value.appResonType : 'Skills Type'}
+              options={SkillsOptions}
+              errors={errors.appResonType}
             />
           )}
           <InputLabel>
