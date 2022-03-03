@@ -9,6 +9,7 @@ import ApplicationDetails from '../ApplicationDetails';
 import ApplicationFee from '../ApplicationFee';
 import DocumentsUpload from '../DocumentsUpload';
 import PersonalProfile from '../PersonalProfile';
+import tredjkAuthApi from '../../../../../services/api.instance';
 
 import Checkbox from 'components/Checkbox';
 
@@ -45,17 +46,31 @@ const HeaderDiv = styled.div`
 `;
 
 const baseURL = 'https://api.paystack.co/bank';
+
 const AppTab = () => {
   const [banks, setBanks] = React.useState(null);
   const formRef = useRef();
 
   React.useEffect(() => {
-    axios.get(baseURL).then((response) => {
-      setBanks(response.data.data);
+    axios.get(baseURL).then(({ data }) => {
+      let bdata = data.data;
+
+      let ModifiedData = bdata.map((list) => {
+        return {
+          // value: list.code,
+          value: list.name,
+          label: list.name,
+        };
+      });
+
+      setBanks(ModifiedData);
     });
   }, []);
+
   const matches = useMediaQuery('(max-width: 760px)');
   const { user: currentUser } = useSelector((state) => state.auth);
+  const { DraftData } = useSelector((state) => state.application);
+
   const dispatch = useDispatch();
   let length = 3;
   const [loading, setLoading] = useState(false);
@@ -66,8 +81,6 @@ const AppTab = () => {
   const [activeStep, setActiveStep] = useState(0);
   const isLastStep = activeStep === length;
   const { data } = currentUser || {};
-
-  const [application_reason, setApplication_reason] = useState('');
 
   const onSelect = (index) => setTabIndex(index);
 
@@ -88,7 +101,6 @@ const AppTab = () => {
     setTabIndex(activeStep - 1);
   };
   const save = () => {
-    // setSuccess(true);
     const DraftFieldData = formRef.current.values;
     console.log(DraftFieldData);
     dispatch(SaveApplicationDraft({ DraftFieldData }))
@@ -115,11 +127,6 @@ const AppTab = () => {
     }
   }, [tabIndex]);
 
-  const handleChangeInput = (e) => {
-    const { value } = e.target;
-    setApplication_reason(value);
-  };
-
   const config = {
     reference: new Date().getTime(),
     name: `${data && data.first_name} ${data && data.last_name}`,
@@ -133,6 +140,7 @@ const AppTab = () => {
   const handleFormSubmit = async (values) => {
     const {
       amount,
+      any_previous_business,
       address,
       amount_needed,
       bank_account_number,
@@ -142,6 +150,7 @@ const AppTab = () => {
       email,
       firstname,
       funding_reason,
+      id_number,
       lastname,
       means_of_identification,
       passport,
@@ -150,14 +159,13 @@ const AppTab = () => {
       previous_business_name,
       proof_of_address,
       state,
-      appResonType,
-      any_previous_business,
-      skills_acquisition,
       guardian_fullname,
       guardian_email,
       guardian_phone,
       guardian_address,
-      // reason,
+      application_reason,
+      appResonType,
+      second_means_of_identification,
     } = values;
 
     if (amountFees !== 0) {
@@ -179,7 +187,7 @@ const AppTab = () => {
 
             dispatch(
               createApplication({
-                application_fees: amountFees,
+                application_fees: amount,
                 any_previous_business,
                 address,
                 amount_needed,
@@ -190,6 +198,7 @@ const AppTab = () => {
                 email,
                 firstname,
                 funding_reason,
+                id_number,
                 lastname,
                 means_of_identification,
                 passport,
@@ -202,9 +211,10 @@ const AppTab = () => {
                 guardian_email,
                 guardian_phone,
                 guardian_address,
+                second_means_of_identification,
                 application_reason: {
                   reason: application_reason,
-                  name: previous_business_name ? previous_business_name : skills_acquisition,
+                  name: previous_business_name,
                   type: appResonType,
                 },
               }),
@@ -225,6 +235,7 @@ const AppTab = () => {
                   });
               })
               .catch((err) => {
+                setLoading(false);
                 if (err) {
                   let error;
                   if (err.error) {
@@ -271,7 +282,8 @@ const AppTab = () => {
         <PageHeader className="ant-page-header" title="New Applications" />
       </HeaderDiv>
       <Formik
-        initialValues={formInitialValues}
+        enableReinitialize
+        initialValues={formInitialValues(DraftData)}
         validate={validate(validationSchema)}
         onSubmit={handleFormSubmit}
         innerRef={formRef}
@@ -298,6 +310,7 @@ const AppTab = () => {
                   onChange={handleChange}
                   value={values}
                   errors={errors}
+                  draftData={DraftData}
                   setFieldValue={setFieldValue}
                   handlePrevious={previous}
                   handleNext={continueform}
@@ -308,8 +321,7 @@ const AppTab = () => {
                   onChange={handleChange}
                   value={values}
                   errors={errors}
-                  bankData={banks ? banks : null}
-                  handleChangeInput={handleChangeInput}
+                  bankData={banks && banks}
                   handlePrevious={previous}
                   setFieldValue={setFieldValue}
                   handleSave={save}

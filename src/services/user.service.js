@@ -5,6 +5,11 @@ const getAllApplication = async () => {
   const response = await tredjkAuthApi.get('application');
   return response.data;
 };
+const getDraftFormApplication = async () => {
+  const response = await tredjkAuthApi.get('application/draft');
+  console.log(response.data);
+  return response.data;
+};
 
 const getApplicationById = async (id) => {
   const response = await tredjkAuthApi.get(`application/${id}`);
@@ -22,6 +27,7 @@ const submitApplicationForm = async (
   email,
   firstname,
   funding_reason,
+  id_number,
   lastname,
   means_of_identification,
   passport,
@@ -34,49 +40,51 @@ const submitApplicationForm = async (
   guardian_email,
   guardian_phone,
   guardian_address,
+  second_means_of_identification,
   application_reason,
 ) => {
-  let formData = new FormData();
-  formData.append('application_fees', application_fees);
-  formData.append('address', address);
-  formData.append('amount_needed', amount_needed);
-  formData.append('bank_account_number', bank_account_number);
-  formData.append('bank_name', bank_name);
-  formData.append('state', state);
-  formData.append('country', country);
-  formData.append('email', email);
-  formData.append('firstname', firstname);
-  formData.append('lastname', lastname);
-  formData.append('phone', phone);
-  formData.append('funding_reason', funding_reason);
-  formData.append('guardian_fullname', guardian_fullname);
-  formData.append('guardian_email', guardian_email);
-  formData.append('guardian_phone', guardian_phone);
-  formData.append('guardian_address', guardian_address);
-  formData.append('previous_business_details', previous_business_details);
-  formData.append('previous_business_name', previous_business_name);
-  formData.append('application_reason[reason]', application_reason.reason);
-  formData.append('application_reason[name]', application_reason.name);
-  formData.append('application_reason[type]', application_reason.type);
-  formData.append('means_of_identification', means_of_identification, means_of_identification.name);
-  formData.append('business_plan', business_plan, means_of_identification.name);
-  formData.append('passport', passport, means_of_identification.name);
-  formData.append('proof_of_address', proof_of_address, means_of_identification.name);
+  let form = new FormData();
+  form.append('firstname', firstname);
+  form.append('lastname', lastname);
+  form.append('email', email);
+  form.append('phone', phone);
+  form.append('address', address);
+  form.append('country', country);
+  form.append('state', state);
+  form.append('means_of_identification', means_of_identification);
+  form.append('id_number', id_number);
+  form.append('amount_needed', amount_needed);
+  form.append('application_reason[reason]', application_reason.reason);
+  form.append('application_reason[name]', application_reason.name);
+  form.append('application_reason[type]', application_reason.type);
+  form.append('bank_account_number', bank_account_number);
+  form.append('bank_name', bank_name);
+  form.append('previous_business_name', previous_business_name);
+  form.append('previous_business_details', previous_business_details);
+  form.append('funding_reason', funding_reason);
+  form.append('business_plan', business_plan);
+  form.append('passport', passport);
+  form.append('second_means_of_identification', second_means_of_identification);
+  form.append('proof_of_address', proof_of_address);
+  form.append('application_fees', application_fees);
+  form.append('guardian_fullname', guardian_fullname);
+  form.append('guardian_email', guardian_email);
+  form.append('guardian_phone', guardian_phone);
+  form.append('guardian_address', guardian_address);
 
-  const response = await tredjkAuthApi.post(`application/create`, formData);
+  const response = await tredjkAuthApi.post(`application/create`, form);
+  console.log(response);
   return response.data;
 };
 const saveApplicationFormDraft = async (DraftFieldData) => {
-  console.log(DraftFieldData.business_plan.name);
-  console.log(DraftFieldData.passport.name);
-  console.log(DraftFieldData.means_of_identification.name);
-  console.log(DraftFieldData.proof_of_address.name);
+  console.log(DraftFieldData);
+
   let formData = new FormData();
   formData.append('application_fees', getfeesAmount(DraftFieldData.amount_needed));
   formData.append('address', DraftFieldData.address);
   formData.append('amount_needed', DraftFieldData.amount_needed);
   formData.append('bank_account_number', DraftFieldData.bank_account_number);
-  formData.append('business_plan', DraftFieldData.business_plan);
+  // formData.append('business_plan', DraftFieldData.business_plan);
   formData.append('bank_name', DraftFieldData.bank_name);
   formData.append('country', DraftFieldData.country);
   formData.append('email', DraftFieldData.email);
@@ -99,6 +107,7 @@ const saveApplicationFormDraft = async (DraftFieldData) => {
   formData.append('means_of_identification', DraftFieldData.means_of_identification);
   formData.append('business_plan', DraftFieldData.business_plan);
   formData.append('passport', DraftFieldData.passport);
+  formData.append('second_means_of_identification', DraftFieldData.second_means_of_identification);
   formData.append('proof_of_address', DraftFieldData.proof_of_address);
 
   const response = await tredjkAuthApi.post(`application/save/draft`, formData);
@@ -136,6 +145,7 @@ const applicationService = {
   updateUserProfile,
   getUserProfile,
   saveApplicationFormDraft,
+  getDraftFormApplication,
 };
 
 export default applicationService;

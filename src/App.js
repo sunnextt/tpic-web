@@ -21,7 +21,7 @@ import ForgotPassword from 'pages/AuthPage/ForgotPassword';
 import RequireAuth from 'utils/requireAuth';
 import { useDispatch } from 'react-redux';
 import TermsLayout from 'layouts/TermsLayout';
-import { getAllApplication, getUserProfile } from 'redux/slice/applicationDataSlice';
+import { getAllApplication, getDraftFormApplication, getUserProfile } from 'redux/slice/applicationDataSlice';
 import PrivacyPolicy from 'pages/privacyPolicy';
 import RequireToken from 'utils/requireToken';
 import ResetPassword from 'pages/AuthPage/resetPassword';
@@ -34,6 +34,7 @@ function App() {
   useEffect(() => {
     dispatch(getAllApplication(id));
     dispatch(getUserProfile(id));
+    dispatch(getDraftFormApplication(id));
   }, [dispatch]);
 
   return (

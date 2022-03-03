@@ -6,9 +6,8 @@ import state from '../../../../../utils/data/state.json';
 
 const colourStyles = {};
 
-const PersonalProfile = ({ onChange, value, errors, setFieldValue }) => {
+const PersonalProfile = ({ draftData, onChange, value, errors, setFieldValue }) => {
   const [stateList, setStateList] = React.useState(null);
-
 
   useEffect(() => {
     let ModifiedData = state.map((list) => {
@@ -36,6 +35,8 @@ const PersonalProfile = ({ onChange, value, errors, setFieldValue }) => {
     // { value: 'USA', label: 'USA' },
   ];
 
+  // console.log(draftData.firstname);
+
   return (
     <PPCTs>
       <div className="form_container">
@@ -48,7 +49,7 @@ const PersonalProfile = ({ onChange, value, errors, setFieldValue }) => {
                 onChange={onChange}
                 name="firstname"
                 type="text"
-                placeholder="Enter your name"
+                placeholder="Enter First name"
               />
               {errors.firstname && <div className="text-danger">{errors.firstname}</div>}
             </InputLabel>
@@ -112,12 +113,12 @@ const PersonalProfile = ({ onChange, value, errors, setFieldValue }) => {
               options={stateList}
             />
             <ReactSelect
-              value={value.means_of_identification}
+              value={value.second_means_of_identification}
               className="className"
-              name="means_of_identification"
+              name="second_means_of_identification"
               placeholder="International Passport"
               label="Means of Identification"
-              errors={errors.means_of_identification}
+              errors={errors.second_means_of_identification}
               options={NIN0ptions}
               setFieldValue={setFieldValue}
             />

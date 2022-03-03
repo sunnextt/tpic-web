@@ -47,7 +47,7 @@ const DocumentsUpload = ({ handleNext, handleSave, handlePrevious, setFieldValue
           setFieldValue={setFieldValue}
         >
           Choose File
-        </FileUpload>
+        </FileUpload> 
         <FileUpload
           description="Accepted file format: Pdf, doc, jpeg. Total file size may not exceed 5 MB. "
           label="Passport Photograph (Taken in the last two months)"
@@ -74,15 +74,6 @@ const DocumentsUpload = ({ handleNext, handleSave, handlePrevious, setFieldValue
         >
           Choose File
         </FileUpload>
-        {/* <div className="pre_next_div">
-          <Button onClick={handlePrevious}>Previous</Button>
-          <div className="flex_space_btw">
-            <LinkButton onClick={handleSave}>Save & finish later</LinkButton>
-            <ContinueButton color="primary" padding="16px 36px" onClick={handleNext}>
-              Continue
-            </ContinueButton>
-          </div>
-        </div> */}
       </div>
     </DocumentsUploadContainer>
   );

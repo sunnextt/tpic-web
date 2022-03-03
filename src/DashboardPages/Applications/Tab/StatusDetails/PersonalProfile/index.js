@@ -38,7 +38,7 @@ const PersonalProfile = ({ data }) => {
             </InputLabel>
             <InputLabel>
               <Label>Means of Identification</Label>
-              <Input name="min" type="text" defaultValue={data.means_of_identification} />
+              <Input name="min" type="text" defaultValue={data.second_means_of_identification} />
             </InputLabel>
             <InputLabel>
               <Label>ID Number</Label>

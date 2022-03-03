@@ -92,6 +92,7 @@ export const createApplication = createAsyncThunk(
       email,
       firstname,
       funding_reason,
+      id_number,
       lastname,
       means_of_identification,
       passport,
@@ -105,6 +106,7 @@ export const createApplication = createAsyncThunk(
       guardian_phone,
       guardian_address,
       application_reason,
+      second_means_of_identification,
     },
     { rejectWithValue },
   ) => {
@@ -121,6 +123,7 @@ export const createApplication = createAsyncThunk(
         email,
         firstname,
         funding_reason,
+        id_number,
         lastname,
         means_of_identification,
         passport,
@@ -133,6 +136,7 @@ export const createApplication = createAsyncThunk(
         guardian_email,
         guardian_phone,
         guardian_address,
+        second_means_of_identification,
         application_reason,
       );
       return response;
@@ -161,6 +165,22 @@ export const SaveApplicationDraft = createAsyncThunk(
   },
 );
 
+export const getDraftFormApplication = createAsyncThunk(
+  'users/draftApplication',
+  async ({ id }, { rejectWithValue }) => {
+    try {
+      const { data } = await applicationService.getDraftFormApplication();
+      return data;
+    } catch (err) {
+      let error = err; // cast the error for access
+      if (!error.response) {
+        throw err;
+      }
+      return rejectWithValue(error.response.data);
+    }
+  },
+);
+
 const initialState = {
   SingleApplication: {},
   userAllapplication: {},
@@ -169,6 +189,7 @@ const initialState = {
   updateInfo: {},
   userProfile: {},
   saveDraft: {},
+  DraftData: {},
   error: null,
 };
 
@@ -211,6 +232,16 @@ const createApplicationSlice = createSlice({
       state.userAllapplication = payload;
     });
     builder.addCase(getAllApplication.rejected, (state, action) => {
+      if (action.payload) {
+        state.error = action.payload.errorMessage;
+      } else {
+        state.error = action.error.message;
+      }
+    });
+    builder.addCase(getDraftFormApplication.fulfilled, (state, { payload }) => {
+      state.DraftData = payload;
+    });
+    builder.addCase(getDraftFormApplication.rejected, (state, action) => {
       if (action.payload) {
         state.error = action.payload.errorMessage;
       } else {

@@ -10,6 +10,8 @@ const ApplicationDetails = ({ data }) => {
     setIndex(e.target.value);
   };
 
+  console.log(data);
+
   return (
     <AppDetailsContainer>
       <div className="styled_form">
@@ -23,12 +25,12 @@ const ApplicationDetails = ({ data }) => {
           {index === 'Business Venture' ? (
             <InputLabel>
               <Label>Business Name</Label>
-              <Input name="business_name" type="text" defaultValue={data.business.business_name} />
+              <Input name="business_name" type="text" defaultValue={data.previous_business_name} />
             </InputLabel>
           ) : (
             <InputLabel>
               <Label>Business Aquisition</Label>
-              <Input name="business_name" type="text" defaultValue={data.skill && data.skill.business_name} />
+              <Input name="business_name" type="text" defaultValue={data.previous_business_name} />
             </InputLabel>
           )}
           <InputLabel>
@@ -44,12 +46,12 @@ const ApplicationDetails = ({ data }) => {
           {index === 'Business Venture' ? (
             <InputLabel>
               <Label>Business Type</Label>
-              <Input name="business_type" type="text" defaultValue={data.business.business_type} />
+              <Input name="business_type" type="text" defaultValue={data.business} />
             </InputLabel>
           ) : index === 'Skills Aquisition' ? (
             <InputLabel>
               <Label>Skills Type</Label>
-              <Input name="Skills_type" type="text" defaultValue={data.skill && data.skill} />
+              <Input name="Skills_type" type="text" defaultValue={data.skill} />
             </InputLabel>
           ) : null}
 

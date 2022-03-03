@@ -114,11 +114,13 @@ const Register = () => {
         }),
       )
         .unwrap()
-        .then(() => {
+        .then((res) => {
           setLoading(false);
           formik.setSubmitting(false);
-          Navigate('/dashboard');
-          // window.location.reload();
+          if (res) {
+            Navigate('/dashboard');
+            // window.location.reload();
+          }
         })
         .catch((error) => {
           setLoading(false);
@@ -135,7 +137,6 @@ const Register = () => {
       setErrorMessage(message);
     }
   }, [ErrorMessage, message]);
-
 
   return (
     <RegisterContainer>

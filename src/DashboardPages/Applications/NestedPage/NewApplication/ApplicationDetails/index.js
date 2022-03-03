@@ -1,15 +1,13 @@
 import { Radio } from 'antd';
 import { Input, InputDiv, InputLabel, Label, StyledTextArea, TextAreaDiv } from 'components/Input';
 import ReactSelect from 'components/ReactSelect';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import AppDetailsContainer from './styled';
 
-const ApplicationDetails = ({ handleChangeInput, bankData, onChange, value, errors, setFieldValue }) => {
+const ApplicationDetails = ({ bankData, onChange, value, errors, setFieldValue }) => {
   const [index, setIndex] = useState('');
-  const [bankList, setBankList] = React.useState(null);
 
   const handleindex = (e) => {
-    handleChangeInput(e);
     setFieldValue('reason', e.target.value);
     setIndex(e.target.value);
   };
@@ -34,18 +32,6 @@ const ApplicationDetails = ({ handleChangeInput, bankData, onChange, value, erro
     { value: 'Private Limited Company (Ltd)', label: 'Private Limited Company (Ltd)' },
     { value: 'Private Unlimited Company', label: 'Private Unlimited Company' },
   ];
-
-  useEffect(() => {
-    let ModifiedData = bankData.map((list) => {
-      return {
-        // value: list.code,
-        value: list.name,
-        label: list.name,
-      };
-    });
-
-    setBankList(ModifiedData);
-  }, [bankData]);
 
   const AMOUNToptions = [
     { value: '25000', label: new Intl.NumberFormat('en-NG', { style: 'currency', currency: 'NGN' }).format(25000) },
@@ -111,7 +97,7 @@ const ApplicationDetails = ({ handleChangeInput, bankData, onChange, value, erro
               label="Business Type"
               value={value.appResonType}
               setFieldValue={setFieldValue}
-              handleChangeInput={handleChangeInput}
+              // handleChangeInput={handleChangeInput}
               name="appResonType"
               placeholder={value.appResonType ? value.appResonType : 'Business Type'}
               options={BUSOptions}
@@ -122,9 +108,9 @@ const ApplicationDetails = ({ handleChangeInput, bankData, onChange, value, erro
               label="Skills Type"
               value={value.appResonType}
               setFieldValue={setFieldValue}
-              handleChangeInput={handleChangeInput}
+              // handleChangeInput={handleChangeInput}
               name="appResonType"
-              placeholder={value.appResonType  ? value.appResonType : 'Skills Type'}
+              placeholder={value.appResonType ? value.appResonType : 'Skills Type'}
               options={SkillsOptions}
               errors={errors.appResonType}
             />
@@ -155,7 +141,7 @@ const ApplicationDetails = ({ handleChangeInput, bankData, onChange, value, erro
             setFieldValue={setFieldValue}
             name={value.bank_name ? value.bank_name : 'bank_name'}
             placeholder="Select Bank"
-            options={bankList}
+            options={bankData}
             errors={errors.bank_name}
           />
           <InputLabel>
