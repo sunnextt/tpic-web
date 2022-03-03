@@ -252,7 +252,7 @@ const PrivacyPolicy = () => {
             </p>
             <p>
               Use of this site is subject to the terms and conditions located at:
-              <a target="_blank" href=" http://trekjlifters.com/termsofservice/">
+              <a target="_blank" href="https://www.tredkjlifters.com/docs/terms.pdf">
                  http://trekjlifters.com/termsofservice/
               </a>
             </p>

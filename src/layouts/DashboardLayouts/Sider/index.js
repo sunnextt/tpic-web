@@ -51,7 +51,7 @@ const ASide = ({ collapsed, onBreakpoint, onCollapse }) => {
         style={{ height: '100%', borderRight: 0, padding: '4rem 0 0 ' }}
       >
         <Menu.Item key="1">
-          <Link to={`${path}`}>Application</Link>
+          <Link to={`${path}`}>Applications</Link>
         </Menu.Item>
         <Menu.Item key="2">
           <Link to={`${path}/settings`}>Settings</Link>
