@@ -268,7 +268,7 @@ const AppTab = () => {
         pauseOnHover
       />
       <HeaderDiv>
-        <PageHeader className="ant-page-header" title="New Applications" />
+        <PageHeader className="ant-page-header" title="New Application" />
       </HeaderDiv>
       <Formik
         initialValues={formInitialValues}
