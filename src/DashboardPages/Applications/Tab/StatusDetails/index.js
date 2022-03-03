@@ -62,7 +62,7 @@ const StatusDetails = () => {
   return (
     <Container>
       <HeaderDiv>
-        <PageHeader className="ant-page-header" title="Your Applications" />
+        <PageHeader className="ant-page-header" title="Applications" />
       </HeaderDiv>
       {singleData ? (
         <StatusDetailsContainer>

@@ -27,7 +27,7 @@ const Application = () => {
   return (
     <Container>
       <HeaderDiv>
-        <PageHeader className="ant-page-header" title="Applications" />
+        <PageHeader className="ant-page-header" title="Your Applications" />
         <Button
           color="primary"
           radius="50px"
