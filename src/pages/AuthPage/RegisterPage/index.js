@@ -72,6 +72,14 @@ const getErrorsFromValidationError = (validationError) => {
   }, {});
 };
 
+const parseError = (error) => {
+  let errorlist = [];
+  for (let [key, value] of Object.entries(error)) {
+    errorlist = [...errorlist, ...value];
+  }
+  return errorlist;
+};
+
 const Register = () => {
   const matches = useMediaQuery('(max-width: 600px)');
   const { message } = useSelector((state) => state.message);
@@ -124,19 +132,20 @@ const Register = () => {
         })
         .catch((error) => {
           setLoading(false);
+          setErrorMessage(parseError(error));
           formik.setSubmitting(false);
-          if (error.message === 'Rejected') {
-            setErrorMessage(error.message);
-          }
+          // if (error.message === 'Rejected') {
+          //   setErrorMessage(error.message);
+          // }
         });
     },
   });
 
-  useEffect(() => {
-    if (ErrorMessage === 'Rejected') {
-      setErrorMessage(message);
-    }
-  }, [ErrorMessage, message]);
+  // useEffect(() => {
+  //   if (ErrorMessage === 'Rejected') {
+  //     setErrorMessage(message);
+  //   }
+  // }, [ErrorMessage, message]);
 
   return (
     <RegisterContainer>
@@ -153,7 +162,12 @@ const Register = () => {
                 <Col>
                   <Form className="styled_form" onSubmit={formik.handleSubmit}>
                     <h4>Create an account</h4>
-                    <div className="text-danger">{ErrorMessage && ErrorMessage}</div>
+                    <ul className="text-danger">
+                      {ErrorMessage &&
+                        ErrorMessage.map((error, i) => {
+                          return <li key={i}>{error}</li>;
+                        })}
+                    </ul>
                     <InputDiv>
                       <InputLabel>
                         <Label htmlFor="first_name">First Name</Label>
@@ -298,7 +312,12 @@ const Register = () => {
                 <Col>
                   <Form className="styled_form" onSubmit={formik.handleSubmit}>
                     <h4>Create an account</h4>
-                    <div className="text-danger">{ErrorMessage && ErrorMessage}</div>
+                    <ul className="text-danger">
+                      {ErrorMessage &&
+                        ErrorMessage.map((error, i) => {
+                          return <li key={i}>{error}</li>;
+                        })}
+                    </ul>
                     <InputDiv>
                       <InputLabel>
                         <Label htmlFor="first_name">First Name</Label>

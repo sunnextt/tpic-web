@@ -26,7 +26,7 @@ export const register = createAsyncThunk(
         error.response.data.errors ||
         error.toString();
       thunkAPI.dispatch(setMessage(message));
-      return thunkAPI.rejectWithValue();
+      return thunkAPI.rejectWithValue(error.response.data.errors);
     }
   },
 );
