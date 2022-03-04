@@ -6,6 +6,7 @@ import PaymentStatusContainer, { ApplicationFeeDiv, FundDiv } from './styled';
 
 const PaymentStatus = ({ data }) => {
   const matches = useMediaQuery('(max-width: 760px)');
+  console.log(data);
 
   return (
     <PaymentStatusContainer>
@@ -22,7 +23,17 @@ const PaymentStatus = ({ data }) => {
               The application fee allows us process your application and run background checks. The fee is
               non-refundable.
             </h6>
-            <StatusButton color="pending">Pending</StatusButton>
+            <StatusButton
+              color={
+                data.payment_status === 'Successful'
+                  ? 'success'
+                  : data.payment_status === 'In Review'
+                  ? 'review'
+                  : 'pending'
+              }
+            >
+              {data.payment_status}
+            </StatusButton>
           </ApplicationFeeDiv>
         </Col>
         {!matches && (
@@ -44,7 +55,9 @@ const PaymentStatus = ({ data }) => {
                 <a href="/contactus">contact us</a>
               </span>
             </div>
-            <StatusButton color="success">Pending</StatusButton>
+            <StatusButton color={data.fund_disbursed_status === 'Yes' ? 'success' : 'pending'}>
+              {data.fund_disbursed_status === 'Yes' ? 'Approved' : 'Pending'}
+            </StatusButton>
           </FundDiv>
         </Col>
       </Row>

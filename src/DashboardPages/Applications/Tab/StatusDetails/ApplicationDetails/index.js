@@ -61,11 +61,11 @@ const ApplicationDetails = ({ data }) => {
           </InputLabel>
           <InputLabel>
             <Label>Have you been in any business before now?</Label>
-            <Input name="previous_business_name" type="text" defaultValue={data.previous_business_name} />
+            <Input name="previous_business_name" type="text" defaultValue={data.is_previous_business} />
           </InputLabel>
           <InputLabel>
             <Label>Bank Name</Label>
-            <Input name="bank_name" type="text" defaultValue={data.bank_name} />
+            <Input name="bank_name" type="text" defaultValue={data.bank_name !== 'undefined' ? data.bank_name : ''} />
           </InputLabel>
           <InputLabel width="fullWidth">
             <Label>If yes, please provide details</Label>

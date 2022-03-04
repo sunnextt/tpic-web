@@ -25,6 +25,9 @@ const DocumentsUpload = ({ data, doc }) => {
     }
   }, [data]);
 
+
+  console.log(document);
+
   return (
     <DocumentsUploadContainer>
       <div className="filecontents">

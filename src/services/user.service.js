@@ -16,7 +16,7 @@ const getApplicationById = async (id) => {
 };
 const submitApplicationForm = async (
   application_fees,
-  any_previous_business,
+  is_previous_business,
   address,
   amount_needed,
   bank_account_number,
@@ -59,6 +59,7 @@ const submitApplicationForm = async (
   form.append('bank_account_number', bank_account_number);
   form.append('bank_name', bank_name);
   form.append('previous_business_name', previous_business_name);
+  form.append('is_previous_business', is_previous_business);
   form.append('previous_business_details', previous_business_details);
   form.append('funding_reason', funding_reason);
   form.append('business_plan', business_plan);
@@ -93,6 +94,7 @@ const saveApplicationFormDraft = async (DraftFieldData) => {
   formData.append('phone', DraftFieldData.phone);
   formData.append('guardian_phone', DraftFieldData.guardian_phone);
   formData.append('guardian_address', DraftFieldData.guardian_address);
+  formData.append('is_previous_business', DraftFieldData.is_previous_business);
   formData.append('previous_business_details', DraftFieldData.previous_business_details);
   formData.append('previous_business_name', DraftFieldData.previous_business_name);
   formData.append('state', DraftFieldData.state);

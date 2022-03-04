@@ -44,19 +44,21 @@ const Span = styled.span`
   font-family: 'Lato';
   font-style: normal;
   font-weight: 600;
-  font-size: 17px;
+  font-size: 1rem;
   line-height: 20px;
   text-align: center;
-  background-color: ${({ background }) => (background === 'approved' ? '#DEFFE7' : '#FDE6E1')};
+  background-color: ${({ background }) =>
+    background === 'Approved' ? '#DEFFE7' : background === 'In Review' ? '#E4F5FF' : '#FDE6E1'};
   padding: 12px 26px;
   border: none;
   margin: 0;
   h6 {
-    color: ${({ color }) => (color === 'approved' ? '#00A953' : '#FF2E00')};
+    color: ${({ color }) => (color === 'Approved' ? '#00A953' : color === 'In Review' ? '#2DB3FF' : '#FF2E00')};
     margin: 0;
     padding: 0;
     text-transform: capitalize;
     line-height: 20px;
+    font-size: 1.4rem;
   }
 
   @media screen and (max-width: 600px) {

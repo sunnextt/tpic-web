@@ -140,7 +140,7 @@ const AppTab = () => {
     const {
       amount,
       reason,
-      any_previous_business,
+      is_previous_business,
       address,
       amount_needed,
       bank_account_number,
@@ -171,7 +171,7 @@ const AppTab = () => {
     dispatch(
       createApplication({
         application_fees: amount,
-        any_previous_business,
+        is_previous_business,
         address,
         amount_needed,
         bank_account_number,

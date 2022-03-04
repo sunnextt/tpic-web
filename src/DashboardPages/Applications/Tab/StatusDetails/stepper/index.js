@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Stepper } from 'react-form-stepper';
-import { StepKey } from 'utils/getStepKey';
 
 const styleConfig = {
   activeTextColor: '#ffffff',
@@ -16,8 +15,6 @@ const styleConfig = {
   size: 40,
 };
 
-
-
 const ConnectorStyleProps = {
   disabledColor: '#cccccc',
   activeColor: '#00A953',
@@ -28,6 +25,22 @@ const ConnectorStyleProps = {
 
 const StepperWrap = ({ active, data }) => {
   const [ActiveSstep, SetActiveSstep] = useState();
+
+  const StepKey = (step) => {
+    let key;
+    if (data.fund_disbursed_status === 'Yes') {
+      key = 3;
+      return key;
+    }
+
+    if (step === 'In Review') {
+      key = 1;
+      return key;
+    } else if (step === 'Approved') {
+      key = 2;
+      return key;
+    } else return (key = 0);
+  };
 
   useEffect(() => {
     if (data) {

@@ -138,7 +138,7 @@ export const formInitialValues = function (values) {
     [proof_of_address.name]: '',
     reason: values !== null && values.reason !== null ? values.reason : '',
     appResonType: values !== null && values.appResonType !== null ? values.appResonType : '',
-    any_previous_business: values !== null && values.any_previous_business !== null ? values.any_previous_business : '',
+    is_previous_business: values !== null && values.is_previous_business !== null ? values.is_previous_business : '',
     guardian_fullname: values !== null && values.guardian_fullname !== null ? values.guardian_fullname : '',
     guardian_email: values !== null && values.guardian_email !== null ? values.guardian_email : '',
     guardian_phone: values !== null && values.guardian_phone !== null ? values.guardian_phone : '',
@@ -157,7 +157,7 @@ export const validationSchema = function () {
     [phone.name]: Yup.string().matches(phoneRegExp, 'Phone number is not valid').nullable(),
     [address.name]: Yup.string().required(`${address.requiredErrorMsg}`).nullable(),
     appResonType: Yup.string().required('Application reason type is required').nullable(),
-    any_previous_business: Yup.string().required('Field is required').nullable(),
+    is_previous_business: Yup.string().required('Field is required').nullable(),
     reason: Yup.string().required('Field is required').nullable(),
     [country.name]: Yup.string().required(`${country.requiredErrorMsg}`).nullable(),
     [state.name]: Yup.string().required(`${state.requiredErrorMsg}`).nullable(),
@@ -176,7 +176,7 @@ export const validationSchema = function () {
     guardian_email: Yup.string().required('Email is required').email('Email is invalid').nullable(),
     guardian_phone: Yup.string().matches(phoneRegExp, 'Phone number is not valid').nullable(),
     guardian_address: Yup.string().required('Field is required').nullable(),
-    previous_business_details: Yup.string().required('Field is required').nullable(),
+    // previous_business_details: Yup.string().required('Field is required').nullable(),
     acceptTerms: Yup.bool().oneOf([true], 'Accept Terms is required'),
   });
 };

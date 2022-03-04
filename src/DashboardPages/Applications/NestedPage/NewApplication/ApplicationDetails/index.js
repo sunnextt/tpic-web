@@ -128,12 +128,12 @@ const ApplicationDetails = ({ bankData, onChange, value, errors, setFieldValue }
           </InputLabel>
           <ReactSelect
             label="Have you been in any business before now?"
-            name="any_previous_business"
-            placeholder={value.any_previous_business ? value.any_previous_business : 'YES or NO'}
-            value={value.any_previous_business}
+            name="is_previous_business"
+            placeholder={value.is_previous_business ? value.is_previous_business : 'YES or NO'}
+            value={value.is_previous_business}
             setFieldValue={setFieldValue}
             options={MIN0ptions}
-            errors={errors.any_previous_business}
+            errors={errors.is_previous_business}
           />
           <ReactSelect
             label="Bank Name"
