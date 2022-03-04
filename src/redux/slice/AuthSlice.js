@@ -39,7 +39,7 @@ export const login = createAsyncThunk('auth/login', async ({ email, password }, 
     const message =
       (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
     thunkAPI.dispatch(setMessage(message));
-    return thunkAPI.rejectWithValue();
+    return thunkAPI.rejectWithValue(message);
   }
 });
 

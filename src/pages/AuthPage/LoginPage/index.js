@@ -21,7 +21,7 @@ import Checkbox from 'components/Checkbox';
 import { useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { clearMessage } from 'redux/slice/MessageSlice';
 import { login } from 'redux/slice/AuthSlice';
 import { Spin } from 'antd';
@@ -68,6 +68,7 @@ const Login = () => {
   const [value, setCheckbox] = useState(true);
   const [loading, setLoading] = useState(false);
   const [ErrorMessage, setErrorMessage] = useState('');
+  const { message } = useSelector((state) => state.message);
 
   const Navigate = useNavigate();
 
@@ -97,18 +98,16 @@ const Login = () => {
           setLoading(false);
           formik.setSubmitting(false);
           Navigate('/dashboard');
-          // window.location.reload();
+          window.location.reload();
         })
         .catch((error) => {
           setLoading(false);
           formik.setSubmitting(false);
-
-          if (error.message === 'Rejected') {
-            setErrorMessage('Email or password is incorrect');
-          }
+          setErrorMessage(error);
         });
     },
   });
+
 
   return (
     <LoginContainer>

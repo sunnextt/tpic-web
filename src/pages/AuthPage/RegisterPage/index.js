@@ -24,7 +24,7 @@ import Checkbox from 'components/Checkbox';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { clearMessage } from 'redux/slice/MessageSlice';
 import { register } from 'redux/slice/AuthSlice';
 import { Spin } from 'antd';
@@ -82,7 +82,6 @@ const parseError = (error) => {
 
 const Register = () => {
   const matches = useMediaQuery('(max-width: 600px)');
-  const { message } = useSelector((state) => state.message);
 
   const [value] = useState(true);
   const [loading, setLoading] = useState(false);
@@ -134,18 +133,9 @@ const Register = () => {
           setLoading(false);
           setErrorMessage(parseError(error));
           formik.setSubmitting(false);
-          // if (error.message === 'Rejected') {
-          //   setErrorMessage(error.message);
-          // }
         });
     },
   });
-
-  // useEffect(() => {
-  //   if (ErrorMessage === 'Rejected') {
-  //     setErrorMessage(message);
-  //   }
-  // }, [ErrorMessage, message]);
 
   return (
     <RegisterContainer>
