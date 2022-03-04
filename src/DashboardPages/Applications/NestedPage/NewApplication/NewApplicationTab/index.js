@@ -9,7 +9,6 @@ import ApplicationDetails from '../ApplicationDetails';
 import ApplicationFee from '../ApplicationFee';
 import DocumentsUpload from '../DocumentsUpload';
 import PersonalProfile from '../PersonalProfile';
-import tredjkAuthApi from '../../../../../services/api.instance';
 
 import Checkbox from 'components/Checkbox';
 
