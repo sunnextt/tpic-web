@@ -213,7 +213,7 @@ const AppTab = () => {
               const date = new Date();
               const configOrder = {
                 user_id: data.id,
-                application_id: reference.trxref,
+                application_id: res.data.id,
                 payer_name: `${data && data.first_name} ${data && data.last_name}`,
                 amount,
                 payment_reference_no: reference.reference,
@@ -258,7 +258,6 @@ const AppTab = () => {
         }
       });
   };
-
 
   if (success) {
     return <AppSuccess />;
