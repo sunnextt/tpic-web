@@ -4,10 +4,10 @@ export const getfeesAmount = (amount) => {
   if (amount >= 25000 && amount <= 50000) {
     feesamount = 3000;
     return feesamount;
-  } else if (amount >= 50000 && amount <= 75000) {
+  } else if (amount >= 50000 && amount <= 100000) {
     feesamount = 6000;
     return feesamount;
-  } else if (amount >= 100000 && amount <= 200000) {
+  } else if (amount > 100000 && amount <= 200000) {
     feesamount = 10000;
     return feesamount;
   } else if (amount >= 250000 && amount <= 500000) {
