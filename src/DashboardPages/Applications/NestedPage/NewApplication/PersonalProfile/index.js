@@ -24,7 +24,7 @@ const PersonalProfile = ({ draftData, onChange, value, errors, setFieldValue }) 
   const NIN0ptions = [
     { value: 'NIN', label: 'NIN' },
     { value: 'international passport', label: 'International passport' },
-    { value: 'Diver License', label: 'Diver License' },
+    { value: 'Drivers License', label: 'Drivers License' },
   ];
 
   const countryoptions = [
