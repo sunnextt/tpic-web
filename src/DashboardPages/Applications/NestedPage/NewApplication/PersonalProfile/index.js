@@ -13,7 +13,7 @@ const PersonalProfile = ({ draftData, onChange, value, errors, setFieldValue }) 
     let ModifiedData = state.map((list) => {
       return {
         // value: list.code,
-        value: list.code,
+        value: list.name,
         label: list.name,
       };
     });
@@ -96,7 +96,7 @@ const PersonalProfile = ({ draftData, onChange, value, errors, setFieldValue }) 
               value={value.country}
               className="selectinput"
               name="country"
-              placeholder="Nigeria"
+              placeholder={value.country ? value.country : 'Nigeria'}
               label="Country"
               colourStyles={colourStyles}
               errors={errors.country}
@@ -106,7 +106,7 @@ const PersonalProfile = ({ draftData, onChange, value, errors, setFieldValue }) 
             <ReactSelect
               className="className"
               name="state"
-              placeholder="Lagos"
+              placeholder={value.state ? value.state : 'state'}
               label="state"
               value={value.state}
               setFieldValue={setFieldValue}
@@ -116,7 +116,9 @@ const PersonalProfile = ({ draftData, onChange, value, errors, setFieldValue }) 
               value={value.second_means_of_identification}
               className="className"
               name="second_means_of_identification"
-              placeholder="International Passport"
+              placeholder={
+                value.second_means_of_identification ? value.second_means_of_identification : 'International Passport'
+              }
               label="Means of Identification"
               errors={errors.second_means_of_identification}
               options={NIN0ptions}

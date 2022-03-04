@@ -7,7 +7,6 @@ const getAllApplication = async () => {
 };
 const getDraftFormApplication = async () => {
   const response = await tredjkAuthApi.get('application/draft');
-  console.log(response.data);
   return response.data;
 };
 
@@ -73,18 +72,15 @@ const submitApplicationForm = async (
   form.append('guardian_address', guardian_address);
 
   const response = await tredjkAuthApi.post(`application/create`, form);
-  console.log(response);
   return response.data;
 };
 const saveApplicationFormDraft = async (DraftFieldData) => {
-  console.log(DraftFieldData);
 
   let formData = new FormData();
   formData.append('application_fees', getfeesAmount(DraftFieldData.amount_needed));
   formData.append('address', DraftFieldData.address);
   formData.append('amount_needed', DraftFieldData.amount_needed);
   formData.append('bank_account_number', DraftFieldData.bank_account_number);
-  // formData.append('business_plan', DraftFieldData.business_plan);
   formData.append('bank_name', DraftFieldData.bank_name);
   formData.append('country', DraftFieldData.country);
   formData.append('email', DraftFieldData.email);
@@ -111,7 +107,6 @@ const saveApplicationFormDraft = async (DraftFieldData) => {
   formData.append('proof_of_address', DraftFieldData.proof_of_address);
 
   const response = await tredjkAuthApi.post(`application/save/draft`, formData);
-  console.log(response);
   return response.data;
 };
 

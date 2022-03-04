@@ -99,7 +99,7 @@ const ApplicationDetails = ({ bankData, onChange, value, errors, setFieldValue }
               setFieldValue={setFieldValue}
               // handleChangeInput={handleChangeInput}
               name="appResonType"
-              placeholder={value.appResonType ? value.appResonType : 'Business Type'}
+              placeholder={value.appResonType ? value.appResonType : 'Type'}
               options={BUSOptions}
               errors={errors.appResonType}
             />
@@ -110,7 +110,7 @@ const ApplicationDetails = ({ bankData, onChange, value, errors, setFieldValue }
               setFieldValue={setFieldValue}
               // handleChangeInput={handleChangeInput}
               name="appResonType"
-              placeholder={value.appResonType ? value.appResonType : 'Skills Type'}
+              placeholder={value.appResonType ? value.appResonType : 'Type'}
               options={SkillsOptions}
               errors={errors.appResonType}
             />
@@ -122,7 +122,7 @@ const ApplicationDetails = ({ bankData, onChange, value, errors, setFieldValue }
               value={value.bank_account_number}
               onChange={onChange}
               type="text"
-              placeholder="Enter Bank Account"
+              placeholder={value.bank_account_number ? value.bank_account_number : 'Enter Bank Account'}
             />
             {errors.bank_account_number && <div className="text-danger">{errors.bank_account_number}</div>}
           </InputLabel>
@@ -140,7 +140,7 @@ const ApplicationDetails = ({ bankData, onChange, value, errors, setFieldValue }
             value={value.bank_name}
             setFieldValue={setFieldValue}
             name={value.bank_name ? value.bank_name : 'bank_name'}
-            placeholder="Select Bank"
+            placeholder={value.bank_name ? value.bank_name : 'Select Bank'}
             options={bankData}
             errors={errors.bank_name}
           />
@@ -148,10 +148,10 @@ const ApplicationDetails = ({ bankData, onChange, value, errors, setFieldValue }
             <Label>If yes, please provide details</Label>
             <Input
               name="previous_business_details"
-              onChange={onChange}
               value={value.previous_business_details}
+              onChange={onChange}
+              placeholder={value.previous_business_details ? value.previous_business_details : 'Previous details'}
               type="text"
-              placeholder=""
             />
             {errors.previous_business_details && <div className="text-danger">{errors.previous_business_details}</div>}
           </InputLabel>

@@ -102,11 +102,9 @@ const AppTab = () => {
   };
   const save = () => {
     const DraftFieldData = formRef.current.values;
-    console.log(DraftFieldData);
     dispatch(SaveApplicationDraft({ DraftFieldData }))
       .unwrap()
       .then((res) => {
-        console.log(res);
         notify(res.message);
       })
       .catch((err) => {});
@@ -137,9 +135,12 @@ const AppTab = () => {
 
   const initializePayment = usePaystackPayment(config);
 
-  const handleFormSubmit = async (values) => {
+  const handleFormSubmit = async (values, actions) => {
+    setError('');
+    actions.setSubmitting(false);
     const {
       amount,
+      reason,
       any_previous_business,
       address,
       amount_needed,
@@ -168,99 +169,96 @@ const AppTab = () => {
       second_means_of_identification,
     } = values;
 
-    if (amountFees !== 0) {
-      initializePayment(
-        (reference) => {
-          if (reference.status === 'success') {
-            setLoading(true);
-            const date = new Date();
+    dispatch(
+      createApplication({
+        application_fees: amount,
+        any_previous_business,
+        address,
+        amount_needed,
+        bank_account_number,
+        bank_name,
+        business_plan,
+        country,
+        email,
+        firstname,
+        funding_reason,
+        id_number,
+        lastname,
+        means_of_identification,
+        passport,
+        phone,
+        previous_business_details,
+        previous_business_name,
+        proof_of_address,
+        state,
+        guardian_fullname,
+        guardian_email,
+        guardian_phone,
+        guardian_address,
+        second_means_of_identification,
+        application_reason: {
+          reason: reason,
+          name: previous_business_name,
+          type: appResonType,
+        },
+      }),
+    )
+      .unwrap()
+      .then((res) => {
+        notify(res.message);
+        initializePayment(
+          (reference) => {
+            if (reference.status === 'success') {
+              setLoading(true);
+              const date = new Date();
+              const configOrder = {
+                user_id: data.id,
+                application_id: reference.trxref,
+                payer_name: `${data && data.first_name} ${data && data.last_name}`,
+                amount,
+                payment_reference_no: reference.reference,
+                email: data && data.email,
+                payment_date: formateDate(date),
+              };
 
-            const configOrder = {
-              user_id: data.id,
-              application_id: reference.trxref,
-              payer_name: `${data && data.first_name} ${data && data.last_name}`,
-              amount,
-              payment_reference_no: reference.reference,
-              email: data && data.email,
-              payment_date: formateDate(date),
-            };
-
-            dispatch(
-              createApplication({
-                application_fees: amount,
-                any_previous_business,
-                address,
-                amount_needed,
-                bank_account_number,
-                bank_name,
-                business_plan,
-                country,
-                email,
-                firstname,
-                funding_reason,
-                id_number,
-                lastname,
-                means_of_identification,
-                passport,
-                phone,
-                previous_business_details,
-                previous_business_name,
-                proof_of_address,
-                state,
-                guardian_fullname,
-                guardian_email,
-                guardian_phone,
-                guardian_address,
-                second_means_of_identification,
-                application_reason: {
-                  reason: application_reason,
-                  name: previous_business_name,
-                  type: appResonType,
-                },
-              }),
-            )
-              .unwrap()
-              .then((res) => {
-                notify(res.message);
-                instance
-                  .post('application/payment', configOrder)
-                  .then((res) => {
-                    console.log(res);
-                    setSuccess(true);
-                    setLoading(false);
-                  })
-                  .catch((error) => {
-                    setLoading(false);
-                    console.log(error);
-                  });
-              })
-              .catch((err) => {
-                setLoading(false);
-                if (err) {
-                  let error;
-                  if (err.error) {
-                    error = err.error;
-                    setError(error);
-                  } else if (err.errors) {
-                    error =
-                      (err.errors && err.errors.email) ||
-                      err.errors.phone ||
-                      err.errors.guardian_email ||
-                      err.errors.guardian_phone;
-                    setError(error);
-                  } else {
-                    console.log(err);
-                  }
-                }
-              });
+              instance
+                .post('application/payment', configOrder)
+                .then((res) => {
+                  setSuccess(true);
+                  setLoading(false);
+                })
+                .catch((error) => {
+                  setLoading(false);
+                });
+            }
+          },
+          () => {
+            // console.log('close')
+          },
+        );
+      })
+      .catch((err) => {
+        setLoading(false);
+        if (err) {
+          // setError(err.message);
+          let error;
+          if (err.error) {
+            error = err.error;
+            setError(error);
+          } else if (err.errors) {
+            error =
+              (err.errors && err.errors.email) ||
+              err.errors.phone ||
+              err.errors.guardian_email ||
+              err.errors.guardian_phone;
+            setError(error);
+          } else {
+            console.log(err);
           }
-        },
-        () => {
-          // console.log('close')
-        },
-      );
-    }
+        }
+      });
   };
+
 
   if (success) {
     return <AppSuccess />;
@@ -288,7 +286,7 @@ const AppTab = () => {
         onSubmit={handleFormSubmit}
         innerRef={formRef}
       >
-        {({ setFieldValue, handleSubmit, handleChange, values, errors, isValid }) => (
+        {({ isSubmitting, setFieldValue, handleSubmit, handleChange, values, errors, isValid }) => (
           <form onSubmit={handleSubmit}>
             <Tabs className="tabs" selectedIndex={tabIndex} onSelect={onSelect}>
               <TabList className="tab_list">
@@ -403,6 +401,7 @@ const AppTab = () => {
                   type={tabIndex === 3 ? 'submit' : 'button'}
                   color="primary"
                   padding="16px 36px"
+                  disabled={isSubmitting}
                 >
                   {tabIndex === 3 ? 'Pay Now' : 'Continue'}
                 </ContinueButton>

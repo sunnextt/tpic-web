@@ -119,7 +119,7 @@ const Register = () => {
           formik.setSubmitting(false);
           if (res) {
             Navigate('/dashboard');
-            // window.location.reload();
+            window.location.reload();
           }
         })
         .catch((error) => {

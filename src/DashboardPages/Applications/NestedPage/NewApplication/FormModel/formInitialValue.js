@@ -112,36 +112,38 @@ const {
 } = model;
 
 export const formInitialValues = function (values) {
-  console.log(values);
   const formInitialValues = {
-    [firstname.name]: values.firstname !== null ? values.firstname : '',
-    [lastname.name]: values.lastname !== null ? values.lastname : '',
-    [email.name]: values.email !== null ? values.email : '',
-    [phone.name]: values.phone !== null ? values.phone : '',
-    [address.name]: values.address !== null ? values.address : '',
-    [country.name]: values.country !== null ? values.country : '',
-    [state.name]: values.state !== null ? values.state : '',
+    [firstname.name]: values !== null && values.firstname !== null ? values.firstname : '',
+    [lastname.name]: values !== null && values.lastname !== null ? values.lastname : '',
+    [email.name]: values !== null && values.email !== null ? values.email : '',
+    [phone.name]: values !== null && values.phone !== null ? values.phone : '',
+    [address.name]: values !== null && values.address !== null ? values.address : '',
+    [country.name]: values !== null && values.country !== null ? values.country : '',
+    [state.name]: values !== null && values.state !== null ? values.state : '',
     [means_of_identification.name]: '',
-    [id_number.name]: values.id_number !== null ? values.id_number : '',
-    [amount_needed.name]: values.amount_needed !== null ? values.amount_needed : '',
-    [bank_account_number.name]: values.bank_account_number !== null ? values.bank_account_number : '',
-    [bank_name.name]: values.bank_name !== null ? values.bank_name : '',
-    [previous_business_name.name]: values.previous_business_name !== null ? values.previous_business_name : '',
-    [previous_business_details.name]: values.previous_business_details !== null ? values.previous_business_details : '',
-    [funding_reason.name]: values.funding_reason !== null ? values.funding_reason : '',
+    [id_number.name]: values !== null && values.id_number !== null ? values.id_number : '',
+    [amount_needed.name]: values !== null && values.amount_needed !== null ? values.amount_needed : '',
+    [bank_account_number.name]:
+      values !== null && values.bank_account_number !== null ? values.bank_account_number : '',
+    [bank_name.name]: values !== null && values.bank_name !== null ? values.bank_name : '',
+    [previous_business_name.name]:
+      values !== null && values.previous_business_name !== null ? values.previous_business_name : '',
+    [previous_business_details.name]:
+      values !== null && values.previous_business_details !== null ? values.previous_business_details : '',
+    [funding_reason.name]: values !== null && values.funding_reason !== null ? values.funding_reason : '',
     [business_plan.name]: '',
     [passport.name]: '',
     second_means_of_identification:
-      values.second_means_of_identification !== null ? values.second_means_of_identification : '',
+      values !== null && values.second_means_of_identification !== null ? values.second_means_of_identification : '',
     [proof_of_address.name]: '',
-    reason: values.reason !== null ? values.reason : '',
-    appResonType: values.appResonType !== null ? values.appResonType : '',
-    any_previous_business: values.any_previous_business !== null ? values.any_previous_business : '',
-    guardian_fullname: values.guardian_fullname !== null ? values.guardian_fullname : '',
-    guardian_email: values.guardian_email !== null ? values.guardian_email : '',
-    guardian_phone: values.guardian_phone !== null ? values.guardian_phone : '',
-    guardian_address: values.guardian_address !== null ? values.guardian_address : '',
-    application_fees: values.application_fees !== null ? values.application_fees : '',
+    reason: values !== null && values.reason !== null ? values.reason : '',
+    appResonType: values !== null && values.appResonType !== null ? values.appResonType : '',
+    any_previous_business: values !== null && values.any_previous_business !== null ? values.any_previous_business : '',
+    guardian_fullname: values !== null && values.guardian_fullname !== null ? values.guardian_fullname : '',
+    guardian_email: values !== null && values.guardian_email !== null ? values.guardian_email : '',
+    guardian_phone: values !== null && values.guardian_phone !== null ? values.guardian_phone : '',
+    guardian_address: values !== null && values.guardian_address !== null ? values.guardian_address : '',
+    application_fees: values !== null && values.application_fees !== null ? values.application_fees : '',
     acceptTerms: false,
   };
   return formInitialValues;
@@ -171,9 +173,10 @@ export const validationSchema = function () {
     [proof_of_address.name]: Yup.string().required(`${proof_of_address.requiredErrorMsg}`).nullable(),
     second_means_of_identification: Yup.string().required('Means of identification is required').nullable(),
     guardian_fullname: Yup.string().required('Field is required').nullable(),
-    guardian_email: Yup.string().required('Field is required').nullable(),
-    guardian_phone: Yup.string().required('Field is required').nullable(),
+    guardian_email: Yup.string().required('Email is required').email('Email is invalid').nullable(),
+    guardian_phone: Yup.string().matches(phoneRegExp, 'Phone number is not valid').nullable(),
     guardian_address: Yup.string().required('Field is required').nullable(),
+    previous_business_details: Yup.string().required('Field is required').nullable(),
     acceptTerms: Yup.bool().oneOf([true], 'Accept Terms is required'),
   });
 };
