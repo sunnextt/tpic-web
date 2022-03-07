@@ -136,6 +136,7 @@ const Register = () => {
         });
     },
   });
+  console.log(loading);
 
   return (
     <RegisterContainer>
